@@ -80,7 +80,7 @@ namespace SlowNewsBlog.Data
             }
         }
 
-        public void RemoveHashTag(int id)
+        public bool RemoveHashTag(int id)
         {
             using (var cn = new SqlConnection(Settings.GetConnectionString()))
             {
@@ -90,7 +90,14 @@ namespace SlowNewsBlog.Data
                 cmd.Parameters.AddWithValue("@hashTagId", id);
                 cn.Open();
 
-                cmd.ExecuteNonQuery();
+                var rowsAffected = cmd.ExecuteNonQuery();
+
+                if(rowsAffected > 0)
+                {
+                    return true;
+                }
+
+                return false;
             }
         }
     }

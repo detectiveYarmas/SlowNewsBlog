@@ -134,5 +134,19 @@ namespace SlowNewsBlog.Domain.Managers
 
             return response;
         }
+
+        public DeleteHashTagResponse RemoveHashTag(int id)
+        {
+            var response = new DeleteHashTagResponse();
+
+            response.Success = repo.RemoveHashTag(id);
+
+            if (!response.Success)
+            {
+                response.Message = "Delete was unsuccessful.";
+            }
+
+            return response;
+        }
     }
 }

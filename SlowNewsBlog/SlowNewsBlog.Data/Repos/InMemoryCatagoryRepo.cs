@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SlowNewsBlog.Data.Repos
 {
-    public class InMemoryCatagoryRepo:ICatagory
+    public class InMemoryCatagoryRepo:ICategory
     {
         public static List<Catagory> catagories = new List<Catagory>()
         {

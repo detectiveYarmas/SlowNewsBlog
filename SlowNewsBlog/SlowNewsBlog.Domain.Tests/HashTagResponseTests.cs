@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SlowNewsBlog.Models.Responses;
+using SlowNewsBlog.Models.Tables;
 
 namespace SlowNewsBlog.Domain.Tests
 {
@@ -82,7 +83,15 @@ namespace SlowNewsBlog.Domain.Tests
         [Test]
         public void CanAddHashTag()
         {
-            
+            HashTag hashtag = new HashTag(5, "#fart", false);
+            var manager = HashTagManagerFactory.Create();
+            var response = manager.AddHashTag(hashtag);
+
+            Assert.IsNotNull(response.Hashtag);
+            Assert.IsTrue(response.Success);
+            Assert.AreEqual(5, response.Hashtag.HashTagId);
+            Assert.AreEqual("#fart", response.Hashtag.HashTagName);
+            Assert.IsFalse(response.Hashtag.Approved);
         }
     }
 }

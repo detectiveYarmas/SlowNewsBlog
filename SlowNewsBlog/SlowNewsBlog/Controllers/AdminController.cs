@@ -219,7 +219,11 @@ namespace SlowNewsBlog.Controllers
         [HttpPost]
         public ActionResult DeleteHashTag(int hashTagId)
         {
-            throw new NotImplementedException();
+            var hashMgr = HashTagManagerFactory.Create();
+            var hashtag = hashMgr.GetHashTag(hashTagId);
+
+            
+
         }
 
     }

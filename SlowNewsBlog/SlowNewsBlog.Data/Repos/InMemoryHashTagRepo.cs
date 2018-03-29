@@ -83,12 +83,13 @@ namespace SlowNewsBlog.Data.InMemoryRepos
             return unApproved;
         }
 
-        public void RemoveHashTag(int id)
+        public bool RemoveHashTag(int id)
         {
             var hashtags = GetAllHashtags();
             var toRemove = GetHashTag(id);
 
             hashtags.Remove(toRemove);
+            return true;
         }
     }
 }
