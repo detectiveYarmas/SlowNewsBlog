@@ -44,12 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\ICategory.cs" />
     <Compile Include="Repos\CategoryRepo.cs" />
     <Compile Include="Repos\InMemoryBlogPostRepo.cs" />
     <Compile Include="Repos\InMemoryCatagoryRepo.cs" />
     <Compile Include="Repos\InMemoryHashTagRepo.cs" />
     <Compile Include="Interfaces\IBlogPostRepo.cs" />
-    <Compile Include="Interfaces\ICatagory.cs" />
     <Compile Include="Interfaces\IHashTagRepo.cs" />
     <Compile Include="Repos\BlogPostRepo.cs" />
     <Compile Include="Repos\HashTagRepo.cs" />

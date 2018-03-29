@@ -20,7 +20,7 @@ namespace SlowNewsBlog.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            _blogManager.GetNewestBlogs().
+            //_blogManager.GetNewestBlogs().
 
                 return View();
         }
@@ -56,7 +56,7 @@ namespace SlowNewsBlog.Controllers
         [HttpPost]
         public ActionResult Create(BlogPost post)
         {
-            _blogManager.AddNewBlogPost(post);
+            //_blogManager.AddNewBlogPost(post);
 
             return RedirectToAction("Post");
         }

@@ -63,6 +63,11 @@ namespace SlowNewsBlog.Data.Repos
             throw new NotImplementedException();
         }
 
+        public List<BlogPost> GetNewestBlogs()
+        {
+            throw new NotImplementedException();
+        }
+
         public void RemoveBloggerFromBlogPost(int bloggerId, int blogPostId)
         {
             throw new NotImplementedException();
