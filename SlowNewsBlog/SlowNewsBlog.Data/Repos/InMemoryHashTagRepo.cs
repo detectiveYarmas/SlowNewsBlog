@@ -74,6 +74,11 @@ namespace SlowNewsBlog.Data.InMemoryRepos
             return hashTag;
         }
 
+        public List<HashTag> GetHashTagsForBlog(int blogPostId)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<HashTag> GetUnapprovedHashtags()
         {
             List<HashTag> unApproved = new List<HashTag>();

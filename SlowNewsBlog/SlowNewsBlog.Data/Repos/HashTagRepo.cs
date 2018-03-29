@@ -71,6 +71,19 @@ namespace SlowNewsBlog.Data
 
         }
 
+        public List<HashTag> GetHashTagsForBlog(int blogPostId)
+        {
+            using (var con = new SqlConnection(Settings.GetConnectionString()))
+            {
+                var param = new DynamicParameters();
+                param.Add("@blogPostId", blogPostId);
+
+                var hashtags = con.Query<HashTag>("GetHashTagsForBlogPost", param, commandType: CommandType.StoredProcedure).AsList();
+                return hashtags;
+            }
+            
+        }
+
         public List<HashTag> GetUnapprovedHashtags()
         {
             using (var cn = new SqlConnection(Settings.GetConnectionString()))

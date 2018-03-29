@@ -13,7 +13,7 @@ namespace SlowNewsBlog.Controllers
     public class HomeController : Controller
     {
         BlogPostRepoManager _blogManager = BlogPostRepoManagerFactory.Create();
-        CategoryRepoManager _catrgoryManager = CategoryRepoManagerFactory.Create();
+        CategoryRepoManager _categoryManager = CategoryRepoManagerFactory.Create();
         HashtagRepoManager _hashManager = HashTagManagerFactory.Create();
 
 
@@ -21,7 +21,28 @@ namespace SlowNewsBlog.Controllers
         public ActionResult Index()
         {
             //_blogManager.GetNewestBlogs().
-
+            BlogPreviewPageGroupModel model = new BlogPreviewPageGroupModel();
+            var blogResponse = _blogManager.GetNewestBlogs();
+            var categoryResponse = _categoryManager.GetAllCategories();            
+            if (blogResponse.Success)
+            {
+                model.BlogPosts = blogResponse.BlogPosts;
+                Dictionary<int, List<HashTag>> hashtags = new Dictionary<int, List<HashTag>>();
+                foreach( var blah in blogResponse.BlogPosts)
+                {
+                    var hashResponse = _hashManager.GetHashTagsForBlog(blah.BlogPostId);
+                    if (hashResponse.Success)
+                    {
+                        hashtags.Add(blah.BlogPostId, hashResponse.HashTags);
+                    }
+                 
+                }
+                model.HashTagsForBlogPosts = hashtags;
+            }
+            if (categoryResponse.Success)
+            {
+                model.Categories = categoryResponse.Catagories;
+            }
                 return View();
         }
 
