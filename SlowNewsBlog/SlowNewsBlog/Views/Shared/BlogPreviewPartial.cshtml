@@ -1,0 +1,7 @@
+﻿@model SlowNewsBlog.Models.Tables.BlogPost
+
+<div class="blog-preview">
+    @Html.HiddenFor(m=>m.BlogPostId)
+    <div class="blog-title"><h3>@Model.Title</h3></div>
+    <div class="blog-content">@Model.Blog</div>
+</div>

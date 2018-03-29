@@ -1,0 +1,3 @@
+SuperBlogger - fart ->db_owner
+bill@bill.com/bill@bill.com- twofarts -> user Blogger
+phil@phil.com/phil@phil.com - threefarts -> user Blogger

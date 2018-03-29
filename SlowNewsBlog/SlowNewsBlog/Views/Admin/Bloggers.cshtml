@@ -1,0 +1,52 @@
+﻿@model SlowNewsBlog.Models.GroupedViewModel
+
+@{
+    ViewBag.Title = "Bloggers";
+}
+
+<h2>Bloggers</h2>
+@Html.ActionLink("Add a new Blogger", "AddBlogger")
+<div>
+    <h3>Bloggers</h3>
+    <table class="table-striped table">
+        <thead>
+            <tr>
+                <th>Email</th>
+
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Bloggers)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td>@user.Role</td>
+                    <td>@Html.ActionLink("Edit", "EditBlogger", new { id = user.Id })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <h3>Administrators</h3>
+    <table class="table-striped table">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Admins)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td>@user.Role</td>
+                    <td>@Html.ActionLink("Edit", "EditBlogger", new { id = user.Id })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

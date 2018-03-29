@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlowNewsBlog", "SlowNewsBlog\SlowNewsBlog.csproj", "{E737CD42-8710-4FE0-8EE0-73FCE737B12A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlowNewsBlog.Models", "SlowNewsBlog.Models\SlowNewsBlog.Models.csproj", "{3CB2CB2E-90A4-411A-A33F-DA86D1922AD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlowNewsBlog.Data", "SlowNewsBlog.Data\SlowNewsBlog.Data.csproj", "{D4EFB03E-25D4-451D-A4A7-F7793CCB1463}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlowNewsBlog.Tests", "SlowNewsBlog.Tests\SlowNewsBlog.Tests.csproj", "{66FF9FB4-241B-498B-9AF4-B259E955C167}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlowNewsBlog.Domain", "SlowNewsBlog.Domain\SlowNewsBlog.Domain.csproj", "{042EF496-8336-46DA-A9BB-AD5EB0E1EC8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlowNewsBlog.Domain.Tests", "SlowNewsBlog.Domain.Tests\SlowNewsBlog.Domain.Tests.csproj", "{0289DE13-E1B1-411C-B89A-A19CFFD7EDFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E737CD42-8710-4FE0-8EE0-73FCE737B12A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E737CD42-8710-4FE0-8EE0-73FCE737B12A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E737CD42-8710-4FE0-8EE0-73FCE737B12A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E737CD42-8710-4FE0-8EE0-73FCE737B12A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CB2CB2E-90A4-411A-A33F-DA86D1922AD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CB2CB2E-90A4-411A-A33F-DA86D1922AD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CB2CB2E-90A4-411A-A33F-DA86D1922AD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CB2CB2E-90A4-411A-A33F-DA86D1922AD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4EFB03E-25D4-451D-A4A7-F7793CCB1463}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4EFB03E-25D4-451D-A4A7-F7793CCB1463}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4EFB03E-25D4-451D-A4A7-F7793CCB1463}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4EFB03E-25D4-451D-A4A7-F7793CCB1463}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66FF9FB4-241B-498B-9AF4-B259E955C167}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66FF9FB4-241B-498B-9AF4-B259E955C167}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66FF9FB4-241B-498B-9AF4-B259E955C167}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66FF9FB4-241B-498B-9AF4-B259E955C167}.Release|Any CPU.Build.0 = Release|Any CPU
+		{042EF496-8336-46DA-A9BB-AD5EB0E1EC8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{042EF496-8336-46DA-A9BB-AD5EB0E1EC8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{042EF496-8336-46DA-A9BB-AD5EB0E1EC8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{042EF496-8336-46DA-A9BB-AD5EB0E1EC8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0289DE13-E1B1-411C-B89A-A19CFFD7EDFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0289DE13-E1B1-411C-B89A-A19CFFD7EDFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0289DE13-E1B1-411C-B89A-A19CFFD7EDFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0289DE13-E1B1-411C-B89A-A19CFFD7EDFB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {40634ED6-5DAD-4B25-8E9A-F39AB1CF8487}
+	EndGlobalSection
+EndGlobal

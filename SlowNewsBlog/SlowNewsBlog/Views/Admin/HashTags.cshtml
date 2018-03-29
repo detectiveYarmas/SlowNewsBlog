@@ -1,0 +1,81 @@
+﻿@model SlowNewsBlog.Models.HashTagListViewModel
+
+@{
+    ViewBag.Title = "HashTags";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Approved Hashtags</h3>       
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var hashtag in Model.HashTags)
+                {
+                    if (hashtag.Approved == true)
+                    {
+                <tr>
+                    <td>@hashtag.HashTagName</td>
+                    @using (Html.BeginForm("EditHashTag", "Admin", FormMethod.Post))
+                    {
+                        @Html.Hidden("HashTagId", hashtag.HashTagId)
+                        <td><button class="btn btn-primary">Edit</button></td>
+                    }
+                    @using (Html.BeginForm("DeleteHashTag", "Admin", FormMethod.Post))
+                    {
+                        @Html.Hidden("HashTagId", hashtag.HashTagId)
+                        <td><button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this hashtag?')">Delete</button></td>
+                    }
+                </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Hashtags Awaiting Approval</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var hashtag in Model.HashTags)
+                {
+                    if(hashtag.Approved == false)
+                    {
+                        <tr>
+                            <td>@hashtag.HashTagName</td>
+                            @using (Html.BeginForm("ApproveHashtag", "Admin", FormMethod.Post))
+                            {
+                                @Html.Hidden("Approved", hashtag.Approved)
+                                <td><button class="btn btn-primary" onclick="return confirm('Are you sure you want to approved this hashtag?')">Approve</button></td>
+                            }
+                            @using (Html.BeginForm("DeleteHashTag", "Admin", FormMethod.Post))
+                            {
+                                @Html.Hidden("HashTagId", hashtag.HashTagId)
+                                <td><button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this hashtag?')">Delete</button></td>
+                            }
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

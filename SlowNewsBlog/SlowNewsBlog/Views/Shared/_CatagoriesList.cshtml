@@ -1,0 +1,10 @@
+﻿@model List<SlowNewsBlog.Models.Tables.Catagory>
+
+<div class="catagories-list">
+    <ul>
+        @foreach(var catagory in Model)
+        {
+            <li>@catagory.CatagoryName</li>
+        }
+    </ul>
+</div>
