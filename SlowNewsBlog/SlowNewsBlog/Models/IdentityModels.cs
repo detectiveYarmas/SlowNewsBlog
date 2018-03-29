@@ -30,10 +30,5 @@ namespace SlowNewsBlog.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<SlowNewsBlog.Models.Tables.Catagory> Catagories { get; set; }
-
-        public System.Data.Entity.DbSet<SlowNewsBlog.Models.Tables.HashTag> HashTags { get; set; }
-
-        public System.Data.Entity.DbSet<SlowNewsBlog.Models.Tables.BlogPost> BlogPosts { get; set; }
     }
 }

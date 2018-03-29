@@ -1,5 +1,5 @@
 ﻿@model SlowNewsBlog.Models.BlogPreviewPageGroupModel
-@using SlowNewsBlog.Models.Tables
+
 @{
     ViewBag.Title = "Home Page";
 }
@@ -10,27 +10,3 @@
 </div>
 
 
-<div class="container">
-    <div class="row">
-        <div class="col-xs-8" style="background-color: aquamarine">
-            @* Blog previews go here *@
-            @foreach (KeyValuePair<int, BlogPost> blog in Model.BlogPosts)
-            {
-                <div class="title"><h3>@blog.Value.Title</h3></div>
-                <div class="blogBody">@blog.Value.Blog</div>
-                <div class="hashtags">
-                    @foreach (HashTag hashtag in Model.HashTagsForBlogPosts[blog.Value.BlogPostId])
-                    {
-                        <div>@hashtag.HashTagName </div>
-                    }
-
-                </div>
-            }
-        </div>
-        <div class="col-xs-4" style="background-color: rebeccapurple">
-
-            @* Catagories goes here *@
-            I will be catagories
-        </div>
-    </div>
-</div>

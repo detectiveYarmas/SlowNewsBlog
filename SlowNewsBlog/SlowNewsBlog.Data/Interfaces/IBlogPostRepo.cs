@@ -20,6 +20,8 @@ namespace SlowNewsBlog.Data.Interfaces
         void UpdateBlogPost(BlogPost blogPost);
         List<BlogPost> GetAllApprovedBlogPosts();
         List<BlogPost> GetAllDisapprovedBlogPosts();
+        List<BlogPost> GetBlogsByCatagory(int id);//
+
         List<BlogPost> GetNewestBlogs();
     }
 }

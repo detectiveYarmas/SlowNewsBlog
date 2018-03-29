@@ -40,6 +40,8 @@ namespace SlowNewsBlog.Tests
             Assert.AreEqual(0, repo.GetBlogsByBlogger(2).Count);
         }
 
+
+
         [Test]
         public void CanDisapproveBlog()
         {
@@ -91,6 +93,23 @@ namespace SlowNewsBlog.Tests
         {
             var repo = new BlogPostRepo();
             Assert.AreEqual("The Great Moon Escape", repo.GetBlog(1).Title);
+        }
+
+        [Test]
+        public void CanRemoveCatagoryFromBlogPost()
+        {
+            var repoC = new CatagoryRepo();
+            var repo = new BlogPostRepo();
+            Assert.AreEqual(1, repo.GetBlogsByCatagory(2).Count);
+            repoC.RemoveCatagoryFromBlogPost(1, 2);
+            Assert.AreEqual(0, repo.GetBlogsByCatagory(2).Count);
+        }
+
+        [Test]
+        public void CanGetBlogsByCatagory()
+        {
+            var repo = new BlogPostRepo();
+            Assert.AreEqual(1, repo.GetBlogsByCatagory(2).Count);
         }
 
         [Test]
