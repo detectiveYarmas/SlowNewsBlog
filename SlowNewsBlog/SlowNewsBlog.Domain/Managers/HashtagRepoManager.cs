@@ -181,5 +181,38 @@ namespace SlowNewsBlog.Domain.Managers
 
             return response;
         }
+
+        public EditHashTagResponse EditHashTag(HashTag hash)
+        {
+            var response = new EditHashTagResponse();
+            var hashTags = repo.GetAllHashtags();
+
+            if(hash == null)
+            {
+                response.Success = false;
+                response.Message = $"{hash} does not exist.";
+            }
+            else if (!hash.HashTagName.Contains("#"))
+            {
+                response.Success = false;
+                response.Message = $"{hash.HashTagName} needs to contain a #.";
+            }
+            else
+            {
+                response.HashTag = repo.EditHashTag(hash);
+
+                if(response.HashTag == null)
+                {
+                    response.Success = false;
+                    response.Message = $"{response.HashTag} does not exist.";
+                }
+                else
+                {
+                    response.Success = true;
+                }
+            }
+
+            return response;
+        }
     }
 }

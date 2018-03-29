@@ -93,5 +93,22 @@ namespace SlowNewsBlog.Domain.Tests
             Assert.AreEqual("#fart", response.Hashtag.HashTagName);
             Assert.IsFalse(response.Hashtag.Approved);
         }
+
+        [Test]
+        public void CanEditHashTag()
+        {
+            var manager = HashTagManagerFactory.Create();
+            var response = manager.GetHashTag(1);
+            response.HashTag.HashTagName = "#poop";
+            response.HashTag.Approved = true;
+
+            var edited = manager.EditHashTag(response.HashTag);
+
+            Assert.IsNotNull(edited.HashTag);
+            Assert.IsTrue(edited.Success);
+            Assert.AreEqual(1, edited.HashTag.HashTagId);
+            Assert.AreEqual("#poop", edited.HashTag.HashTagName);
+            Assert.AreEqual(true, edited.HashTag.Approved);
+        }
     }
 }

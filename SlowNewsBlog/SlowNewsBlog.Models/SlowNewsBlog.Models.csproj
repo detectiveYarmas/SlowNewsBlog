@@ -44,6 +44,7 @@
     <Compile Include="Responses\AddHashTagResponse.cs" />
     <Compile Include="Responses\ApprovedHashTagsResponse.cs" />
     <Compile Include="Responses\DeleteHashTagResponse.cs" />
+    <Compile Include="Responses\EditHashTagResponse.cs" />
     <Compile Include="Responses\GetAllApprovedBlogPostsResponse.cs" />
     <Compile Include="Responses\GetAllBlogsResponse.cs" />
     <Compile Include="Responses\GetAllCategoriesResponse.cs" />
