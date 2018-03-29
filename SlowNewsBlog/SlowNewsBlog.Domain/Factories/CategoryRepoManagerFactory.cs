@@ -18,7 +18,7 @@ namespace SlowNewsBlog.Domain.Factories
                 case "QA":
                     return new CategoryRepoManager(new InMemoryCatagoryRepo(),new InMemoryBlogPostRepo());
                 case "Prod":
-                    return new CategoryRepoManager(new CatagoryRepo(),new BlogPostRepo());
+                    return new CategoryRepoManager(new CategoryRepo(),new BlogPostRepo());
                 default:
                     throw new Exception("Could not find a valid repo configuration.");
             }
