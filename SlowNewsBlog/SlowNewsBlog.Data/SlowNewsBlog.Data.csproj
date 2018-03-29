@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Repos\CategoryRepo.cs" />
     <Compile Include="Repos\InMemoryBlogPostRepo.cs" />
     <Compile Include="Repos\InMemoryCatagoryRepo.cs" />
     <Compile Include="Repos\InMemoryHashTagRepo.cs" />
@@ -51,7 +52,6 @@
     <Compile Include="Interfaces\ICatagory.cs" />
     <Compile Include="Interfaces\IHashTagRepo.cs" />
     <Compile Include="Repos\BlogPostRepo.cs" />
-    <Compile Include="Repos\CatagoryRepo.cs" />
     <Compile Include="Repos\HashTagRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />

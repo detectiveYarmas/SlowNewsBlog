@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Factories\BlogPostRepoFactory.cs" />
+    <Compile Include="Factories\BlogPostRepoManagerFactory.cs" />
     <Compile Include="Factories\CategoryRepoManagerFactory.cs" />
     <Compile Include="Factories\HashTagManagerFactory.cs" />
     <Compile Include="Managers\BlogPostRepoManager.cs" />
