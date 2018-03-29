@@ -48,6 +48,15 @@ namespace SlowNewsBlog.Data.Repos
             }
         }
 
+         public List<BlogPost> GetNewestBlogs()
+        {
+            using (var sqlConn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                return sqlConn.Query<BlogPost>("GetNewestBlogs",
+                    commandType: CommandType.StoredProcedure).AsList();
+            }
+        }
+
         public void UpdateBlogPost(BlogPost blogPost)
         {
             using (var sqlConnection = new SqlConnection())
@@ -199,12 +208,20 @@ namespace SlowNewsBlog.Data.Repos
             }
         }
 
-        public List<BlogPost> GetNewestBlogs()
+        public List<BlogPost> GetBlogsByCatagory(int id)
         {
-            using (var sqlConn = new SqlConnection(Settings.GetConnectionString()))
+            using (var sqlConnection = new SqlConnection())
             {
-                return sqlConn.Query<BlogPost>("GetNewestBlogs",
-                    commandType: CommandType.StoredProcedure).AsList();
+                sqlConnection.ConnectionString = ConfigurationManager
+                    .ConnectionStrings["DefaultConnection"]
+                    .ConnectionString;
+
+                var parameters = new DynamicParameters();
+                parameters.Add("@catagoryId", id);
+
+                return sqlConnection.Query<BlogPost>("GetBlogsByCatagory",
+                   parameters,
+                   commandType: CommandType.StoredProcedure).AsList();
             }
         }
     }

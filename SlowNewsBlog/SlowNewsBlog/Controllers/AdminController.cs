@@ -216,5 +216,11 @@ namespace SlowNewsBlog.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public ActionResult DeleteHashTag(int hashTagId)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

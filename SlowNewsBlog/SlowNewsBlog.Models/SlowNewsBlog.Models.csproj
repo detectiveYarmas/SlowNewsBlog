@@ -45,8 +45,11 @@
     <Compile Include="Responses\ApprovedHashTagsResponse.cs" />
     <Compile Include="Responses\GetAllApprovedBlogPostsResponse.cs" />
     <Compile Include="Responses\GetAllBlogsResponse.cs" />
+    <Compile Include="Responses\GetAllCategoriesResponse.cs" />
     <Compile Include="Responses\GetAllDisapprovedBlogPostsResponse.cs" />
     <Compile Include="Responses\GetBlogResponse.cs" />
+    <Compile Include="Responses\GetBlogsByCatagoryResponse.cs" />
+    <Compile Include="Responses\GetCatagoryResponse.cs" />
     <Compile Include="Responses\GetHashTagResponse.cs" />
     <Compile Include="Responses\GetHashTagsResponse.cs" />
     <Compile Include="Responses\GetNewestBlogsResponse.cs" />

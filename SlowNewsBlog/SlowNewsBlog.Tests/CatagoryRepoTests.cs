@@ -77,6 +77,8 @@ namespace SlowNewsBlog.Tests
             Assert.AreEqual(7, repo.GetAllCategories().Count);
         }
 
+    
+
         [Test]
         public void CanUpdateCatagory()
         {

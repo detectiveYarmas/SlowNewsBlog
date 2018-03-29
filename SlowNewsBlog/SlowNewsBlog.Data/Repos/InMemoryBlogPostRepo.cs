@@ -10,12 +10,12 @@ namespace SlowNewsBlog.Data.Repos
 {
     public class InMemoryBlogPostRepo:IBlogPostRepo
     {
-        public static List<BlogPost> catagories = new List<BlogPost>()
+        public static List<BlogPost> blogPosts = new List<BlogPost>()
         {
-            new BlogPost (){BlogPostId = 1,Blog = "metapost"},
-            new BlogPost (){BlogPostId= 2,Blog= "horseandbuggy"},
-            new BlogPost (){BlogPostId=3, Blog="moon"},
-            new BlogPost (){BlogPostId= 4, Blog= "y2k" }
+            new BlogPost (){BlogPostId = 1,Blog = "metapost",Title="Test1",Approved=true},
+            new BlogPost (){BlogPostId= 2,Blog= "horseandbuggy",Title="Test2",Approved = true},
+            new BlogPost (){BlogPostId=3, Blog="moon",Title="Test3", Approved = false},
+            new BlogPost (){BlogPostId= 4, Blog= "y2k",Title="Test4",Approved = false}
         };
 
         public void AddBloggerToBlogPost(int blogger, int blogPost)
@@ -25,48 +25,59 @@ namespace SlowNewsBlog.Data.Repos
 
         public void AddNewBlogPost(BlogPost blogPost)
         {
-            throw new NotImplementedException();
+            blogPost.BlogPostId = blogPosts.Max(id => id.BlogPostId) + 1;
+            blogPosts.Add(blogPost);
         }
 
         public void ApproveBlog(int id)
         {
-            throw new NotImplementedException();
+            BlogPost blogPost = blogPosts.Where(blog => blog.BlogPostId == id).FirstOrDefault();
+            blogPost.Approved = true;
+            UpdateBlogPost(blogPost);
         }
 
         public void DisapproveBlog(int id)
         {
-            throw new NotImplementedException();
+            BlogPost blogPost = blogPosts.Where(blog => blog.BlogPostId == id).FirstOrDefault();
+            blogPost.Approved = false;
+            UpdateBlogPost(blogPost);
         }
 
         public List<BlogPost> GetAllApprovedBlogPosts()
         {
-            throw new NotImplementedException();
+            return blogPosts.Where(blog => blog.Approved).ToList();
         }
 
         public List<BlogPost> GetAllBlogs()
         {
-            throw new NotImplementedException();
+            return blogPosts;
         }
 
         public List<BlogPost> GetAllDisapprovedBlogPosts()
         {
-            throw new NotImplementedException();
+            return blogPosts.Where(blog => blog.Approved==false).ToList();
         }
 
         public BlogPost GetBlog(int id)
         {
-            throw new NotImplementedException();
+            return blogPosts.Where(blog => blog.BlogPostId == id).FirstOrDefault();
         }
 
         public List<BlogPost> GetBlogsByBlogger(int id)
         {
             throw new NotImplementedException();
+
         }
 
         public List<BlogPost> GetNewestBlogs()
         {
             throw new NotImplementedException();
         }
+        public List<BlogPost> GetBlogsByCatagory(int id)
+        {
+            throw new NotImplementedException();
+        }
+
 
         public void RemoveBloggerFromBlogPost(int bloggerId, int blogPostId)
         {
@@ -75,7 +86,8 @@ namespace SlowNewsBlog.Data.Repos
 
         public void UpdateBlogPost(BlogPost blogPost)
         {
-            throw new NotImplementedException();
+            blogPosts.Remove(blogPosts.Where(blog => blog.BlogPostId == blogPost.BlogPostId).FirstOrDefault());
+            blogPosts.Add(blogPost);
         }
     }
 }

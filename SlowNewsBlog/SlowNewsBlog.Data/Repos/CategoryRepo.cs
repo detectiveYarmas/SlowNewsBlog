@@ -65,21 +65,7 @@ namespace SlowNewsBlog.Data.Repos
             }
         }
 
-        public List<BlogPost> GetBlogsByCatagory(int id)
-        {
-            using (var sqlConnection = new SqlConnection())
-            {
-                sqlConnection.ConnectionString = ConfigurationManager
-                    .ConnectionStrings["DefaultConnection"]
-                    .ConnectionString;
-
-                var parameters = new DynamicParameters(); 
-                parameters.Add("@catagoryId", id);
-
-                return sqlConnection.Query<BlogPost>("GetBlogsByCatagory", parameters,
-                    commandType: CommandType.StoredProcedure).AsList();
-            }        
-        }
+       
 
         public Catagory GetCatagory(int id)
         {

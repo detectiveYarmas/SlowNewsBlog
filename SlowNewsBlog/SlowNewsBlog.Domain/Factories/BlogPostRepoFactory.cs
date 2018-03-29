@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace SlowNewsBlog.Domain.Factories
 {
-    public class CategoryRepoManagerFactory
+    public class BlogPostRepoFactory
     {
-        public static CategoryRepoManager Create()
+        public static BlogPostRepoManager Create()
         {
             switch (Settings.GetRepositoryType())
             {
                 case "QA":
-                    return new CategoryRepoManager(new InMemoryCatagoryRepo(),new InMemoryBlogPostRepo());
+                    return new BlogPostRepoManager(new InMemoryBlogPostRepo(), new InMemoryCatagoryRepo());
                 case "Prod":
-                    return new CategoryRepoManager(new CatagoryRepo(),new BlogPostRepo());
+                    return new BlogPostRepoManager( new BlogPostRepo(), new CatagoryRepo());
                 default:
                     throw new Exception("Could not find a valid repo configuration.");
             }
