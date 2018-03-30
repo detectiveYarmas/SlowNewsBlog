@@ -11,11 +11,11 @@ namespace SlowNewsBlog.Domain.Managers
 {
     public class CategoryRepoManager
     {
-        private ICatagory repo { get; set; }
+        private ICategory repo { get; set; }
         private IBlogPostRepo repoBlog { get; set; }
 
 
-        public CategoryRepoManager(ICatagory category, IBlogPostRepo blogPostRepo)
+        public CategoryRepoManager(ICategory category, IBlogPostRepo blogPostRepo)
         {
             repo = category;
             repoBlog = blogPostRepo;
@@ -54,7 +54,7 @@ namespace SlowNewsBlog.Domain.Managers
 
         public Response AddCatagoryToBlogPost(int blogPostId, int categoryId)
         {
-            Response response = new Response();
+            Response response = new Response();            
 
             if (repo.GetAllCategories().All(cat => cat.CatagoryId != categoryId))
             {

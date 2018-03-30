@@ -12,6 +12,7 @@ namespace SlowNewsBlog.Models.Tables
         public string Blog { get; set; }
         public string Title { get; set; }
         public bool Approved { get; set; }
+        public int? CatagoryId { get; set; }
         public DateTime PublishedDate { get; set; }
         public DateTime DateAdded { get; set; }
     }

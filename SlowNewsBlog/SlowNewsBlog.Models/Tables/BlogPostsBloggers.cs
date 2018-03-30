@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace SlowNewsBlog.Models.Tables
 {
-    public class Catagory
+    public class BlogPostsBloggers
     {
-        public int CatagoryId { get; set; }
-        public string CatagoryName { get; set; }
-        public bool Approved { get; set; }
+        public int BloggerId { get; set; }
+        public int BlogPostId { get; set; }
     }
 }

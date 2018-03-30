@@ -17,10 +17,19 @@ namespace SlowNewsBlog.Data.Repos
             new BlogPost (){BlogPostId=3, Blog="moon",Title="Test3", Approved = false},
             new BlogPost (){BlogPostId= 4, Blog= "y2k",Title="Test4",Approved = false}
         };
+        public static List<BlogPostsBloggers> blogPostsBloggers = new List<BlogPostsBloggers>()
+        {
+            new BlogPostsBloggers(){BloggerId=1,BlogPostId=1},
+            new BlogPostsBloggers(){BlogPostId=2,BloggerId=2},
+            new BlogPostsBloggers(){BloggerId= 1, BlogPostId=2},
+            new BlogPostsBloggers(){BlogPostId =3,BloggerId=3},
+            new BlogPostsBloggers(){BloggerId = 4, BlogPostId=4}
+        };
+        
 
         public void AddBloggerToBlogPost(int blogger, int blogPost)
         {
-            throw new NotImplementedException();
+            blogPostsBloggers.Add(new BlogPostsBloggers() { BlogPostId = blogPost, BloggerId = blogger });
         }
 
         public void AddNewBlogPost(BlogPost blogPost)
@@ -65,23 +74,27 @@ namespace SlowNewsBlog.Data.Repos
 
         public List<BlogPost> GetBlogsByBlogger(int id)
         {
-            throw new NotImplementedException();
+            List<BlogPost> toReturn = new List<BlogPost>();
+            foreach (var group in blogPostsBloggers.Where(blogger => blogger.BloggerId == id).GroupBy(i => i.BlogPostId))
+            {
+                toReturn.Add(GetBlog(group.Key));
+            }
+            return toReturn;
 
         }
 
         public List<BlogPost> GetNewestBlogs()
         {
-            throw new NotImplementedException();
+            return blogPosts.OrderByDescending(p => p.PublishedDate).Take(10).ToList();
         }
         public List<BlogPost> GetBlogsByCatagory(int id)
         {
-            throw new NotImplementedException();
+            return blogPosts.Where(blog => blog.CatagoryId == id).ToList();
         }
-
 
         public void RemoveBloggerFromBlogPost(int bloggerId, int blogPostId)
         {
-            throw new NotImplementedException();
+            blogPostsBloggers.Remove(blogPostsBloggers.Where(b => b.BloggerId == bloggerId && b.BlogPostId == blogPostId).FirstOrDefault());
         }
 
         public void UpdateBlogPost(BlogPost blogPost)
