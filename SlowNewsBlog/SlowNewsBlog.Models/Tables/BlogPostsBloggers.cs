@@ -8,7 +8,7 @@ namespace SlowNewsBlog.Models.Tables
 {
     public class BlogPostsBloggers
     {
-        public int BloggerId { get; set; }
+        public string UserName { get; set; }
         public int BlogPostId { get; set; }
     }
 }
