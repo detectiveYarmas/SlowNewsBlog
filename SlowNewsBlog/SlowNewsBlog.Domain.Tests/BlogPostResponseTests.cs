@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SlowNewsBlog.Data.Repos;
+using SlowNewsBlog.Domain.Factories;
 using SlowNewsBlog.Domain.Managers;
 using System;
 using System.Collections.Generic;
@@ -34,23 +35,8 @@ namespace SlowNewsBlog.Domain.Tests
         [Test]
         public void ManagerGetBlogsByBlogger()
         {
-            BlogPostRepoManager blogPostRepoManager = new BlogPostRepoManager(new BlogPostRepo(), new CategoryRepo());
-            Assert.IsTrue(blogPostRepoManager.GetBlogByBloger("1").BlogsByBlogger.Count == 1);
-        }
-
-        [Test]
-        public void ManagerAddBloggerToBlogPost()
-        {
-            BlogPostRepoManager blogPostRepoManager = new BlogPostRepoManager(new BlogPostRepo(), new CategoryRepo());
-            Assert.IsTrue(blogPostRepoManager.AddBloggerToBlogPost("1", 2).Success);
-            Assert.IsFalse(blogPostRepoManager.AddBloggerToBlogPost("1", 27).Success);
-        }
-
-        [Test]
-        public void ManagerRemoveBloggerFromBlogPost()
-        {
-            BlogPostRepoManager blogPostRepoManager = new BlogPostRepoManager(new BlogPostRepo(), new CategoryRepo());
-            Assert.IsTrue(blogPostRepoManager.RemoveBloggerFromBlogPost("1", 1).Success);
-        }
+            BlogPostRepoManager blogPostRepoManager = new BlogPostRepoManager(new InMemoryBlogPostRepo(), new InMemoryCatagoryRepo());
+            Assert.AreEqual(blogPostRepoManager.GetBlogByBloger("1").BlogsByBlogger.Count,2);
+        } 
     }
 }

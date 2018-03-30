@@ -121,23 +121,7 @@ namespace SlowNewsBlog.Data.Repos
             }
         }
 
-        public void AddBloggerToBlogPost(string blogger, int blogPost)
-        {
-            using (var sqlConnection = new SqlConnection())
-            {
-                sqlConnection.ConnectionString = ConfigurationManager
-                    .ConnectionStrings["DefaultConnection"]
-                    .ConnectionString;
-
-                var parameters = new DynamicParameters();
-                parameters.Add("@bloggerId", blogger);
-                parameters.Add("@blogPostId", blogPost);
-
-                sqlConnection.Query<BlogPost>("AddBloggerToBlogPost",
-                    parameters,
-                    commandType: CommandType.StoredProcedure).AsList();
-            }
-        }
+        
 
         public List<BlogPost> GetBlogsByBlogger(string id)
         {
@@ -148,7 +132,7 @@ namespace SlowNewsBlog.Data.Repos
                     .ConnectionString;
 
                 var parameters = new DynamicParameters();
-                parameters.Add("@bloggerId", id);
+                parameters.Add("@Id", id);
 
                 return sqlConnection.Query<BlogPost>("GetBlogsByBlogger",
                     parameters,
@@ -189,24 +173,7 @@ namespace SlowNewsBlog.Data.Repos
                    commandType: CommandType.StoredProcedure).AsList();
             }
         }
-
-        public void RemoveBloggerFromBlogPost(string bloggerId, int blogPostId)
-        {
-            using (var sqlConnection = new SqlConnection())
-            {
-                sqlConnection.ConnectionString = ConfigurationManager
-                    .ConnectionStrings["DefaultConnection"]
-                    .ConnectionString;
-
-                var parameters = new DynamicParameters();
-                parameters.Add("@blogPostId", blogPostId);
-                parameters.Add("@bloggerId", bloggerId);
-
-                sqlConnection.Query<BlogPost>("RemoveBloggerFromBlogPost",
-                   parameters,
-                   commandType: CommandType.StoredProcedure);
-            }
-        }
+        
 
         public List<BlogPost> GetBlogsByCatagory(int id)
         {

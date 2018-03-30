@@ -17,7 +17,6 @@ CREATE PROCEDURE DbReset AS
 BEGIN
 DELETE FROM BlogPostsHashTags
 DELETE FROM BlogPostsCatagories
-DELETE FROM BlogPostsBloggers
 DELETE FROM HashTags
 DELETE FROM Catagories
 DELETE FROM BlogPosts
@@ -82,11 +81,6 @@ VALUES
 ((SELECT BlogPostId FROM BlogPosts WHERE BlogPostId = 2),(SELECT CatagoryId FROM Catagories WHERE CatagoryId = 7))
 
 
---blogpostsbloggers
-INSERT INTO BlogPostsBloggers (BlogPostId, Id)
-VALUES 
-((SELECT BlogPostId FROM BlogPosts WHERE BlogPostId = 1),(SELECT Id FROM AspNetUsers WHERE Id = 'ae94109c-04e4-4be6-95b7-cda08a92e78d')),
-((SELECT BlogPostId FROM BlogPosts WHERE BlogPostId = 2),(SELECT Id FROM AspNetUsers WHERE Id = 'ce7b9b6d-75ea-4533-8f28-6c502c1ca1a8'))
 
 
 END

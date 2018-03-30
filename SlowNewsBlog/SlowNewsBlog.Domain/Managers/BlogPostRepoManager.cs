@@ -19,20 +19,7 @@ namespace SlowNewsBlog.Domain.Managers
             categoryRepo = category;
         }
 
-        public Response AddBloggerToBlogPost(string blogger, int blog)
-        {
-            Response response = new Response();
-            if (blogRepo.GetAllBlogs().All(b => b.BlogPostId != blog))
-            {
-                response.Success = false;
-                response.Message = "ERROR: No Blogs with ID=" + blog;
-                return response;
-            }
-            blogRepo.AddBloggerToBlogPost(blogger, blog);
-            response.Message = "BloggerAddedToPost";
-            response.Success = true;
-            return response;
-        }
+        
 
         public GetBlogByBlogerResponse GetBlogByBloger(string blogger)
         {
@@ -63,20 +50,7 @@ namespace SlowNewsBlog.Domain.Managers
             return response;
         }
 
-        public Response RemoveBloggerFromBlogPost(string blogger,int post)
-        {
-            Response response = new Response();
-            if (blogRepo.GetAllBlogs().All(b => b.BlogPostId != post))
-            {
-                response.Message = "ERROR: Blog with ID " + post + " DNE";
-                response.Success = false;
-                return response;
-            }
-            blogRepo.RemoveBloggerFromBlogPost(blogger, post);
-            response.Success = true;
-            response.Message = "Success";
-            return response;
-        }
+        
 
         public GetAllBlogsResponse GetAllBlogs()
         {

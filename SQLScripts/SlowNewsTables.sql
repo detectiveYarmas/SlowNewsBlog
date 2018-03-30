@@ -59,13 +59,7 @@ CREATE TABLE BlogPostsHashTags
 )
 GO
 
-CREATE TABLE BlogPostsBloggers
-(
-    Id nvarchar(128) foreign key references AspNetUsers(Id),
-    BlogPostId INT FOREIGN KEY REFERENCES BlogPosts(BlogPostId),
-    PRIMARY KEY (Id, BlogPostId)
-)
-GO
+
 
 CREATE TABLE BlogPostsCatagories
 (
