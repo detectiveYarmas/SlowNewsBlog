@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.Owin;
 using SlowNewsBlog.Domain.Factories;
 using SlowNewsBlog.Domain.Managers;
 using SlowNewsBlog.Models;
+using SlowNewsBlog.Models.Tables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -236,9 +237,7 @@ namespace SlowNewsBlog.Controllers
 
             var model = new EditHashTagViewModel();
 
-            model.HashTag.HashTagId = toEdit.HashTag.HashTagId;
-            model.HashTag.HashTagName = toEdit.HashTag.HashTagName;
-            model.HashTag.Approved = toEdit.HashTag.Approved;
+            model.HashTag = toEdit.HashTag;
 
             return View(model);
         }
@@ -247,13 +246,13 @@ namespace SlowNewsBlog.Controllers
         public ActionResult EditHashTag(EditHashTagViewModel model)
         {
             var hashMgr = HashTagManagerFactory.Create();
-            var hashtag = hashMgr.GetHashTag(model.HashTag.HashTagId);
+            HashTag hash = new HashTag();
 
             if (ModelState.IsValid)
             {
-                hashtag.HashTag.HashTagName = model.HashTag.HashTagName;
-                hashtag.HashTag.Approved = model.HashTag.Approved;
-                hashMgr.EditHashTag(hashtag.HashTag);
+                hash.HashTagName = model.HashTag.HashTagName;
+                hash.Approved = model.HashTag.Approved;
+                hashMgr.EditHashTag(hash);
 
                 return RedirectToAction("HashTags");
             }
