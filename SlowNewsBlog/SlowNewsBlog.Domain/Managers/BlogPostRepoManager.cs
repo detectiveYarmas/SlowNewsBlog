@@ -19,7 +19,7 @@ namespace SlowNewsBlog.Domain.Managers
             categoryRepo = category;
         }
 
-        public Response AddBloggerToBlogPost(int blogger, int blog)
+        public Response AddBloggerToBlogPost(string blogger, int blog)
         {
             Response response = new Response();
             if (blogRepo.GetAllBlogs().All(b => b.BlogPostId != blog))
@@ -34,7 +34,7 @@ namespace SlowNewsBlog.Domain.Managers
             return response;
         }
 
-        public GetBlogByBlogerResponse GetBlogByBloger(int blogger)
+        public GetBlogByBlogerResponse GetBlogByBloger(string blogger)
         {
             GetBlogByBlogerResponse getBlogByBlogerResponse = new GetBlogByBlogerResponse();
            
@@ -63,7 +63,7 @@ namespace SlowNewsBlog.Domain.Managers
             return response;
         }
 
-        public Response RemoveBloggerFromBlogPost(int blogger,int post)
+        public Response RemoveBloggerFromBlogPost(string blogger,int post)
         {
             Response response = new Response();
             if (blogRepo.GetAllBlogs().All(b => b.BlogPostId != post))

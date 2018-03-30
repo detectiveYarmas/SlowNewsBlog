@@ -121,7 +121,7 @@ namespace SlowNewsBlog.Data.Repos
             }
         }
 
-        public void AddBloggerToBlogPost(int blogger, int blogPost)
+        public void AddBloggerToBlogPost(string blogger, int blogPost)
         {
             using (var sqlConnection = new SqlConnection())
             {
@@ -139,7 +139,7 @@ namespace SlowNewsBlog.Data.Repos
             }
         }
 
-        public List<BlogPost> GetBlogsByBlogger(int id)
+        public List<BlogPost> GetBlogsByBlogger(string id)
         {
             using (var sqlConnection = new SqlConnection())
             {
@@ -190,7 +190,7 @@ namespace SlowNewsBlog.Data.Repos
             }
         }
 
-        public void RemoveBloggerFromBlogPost(int bloggerId, int blogPostId)
+        public void RemoveBloggerFromBlogPost(string bloggerId, int blogPostId)
         {
             using (var sqlConnection = new SqlConnection())
             {
