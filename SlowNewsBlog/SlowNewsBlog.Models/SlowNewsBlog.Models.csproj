@@ -49,6 +49,7 @@
     <Compile Include="Responses\GetAllBlogsResponse.cs" />
     <Compile Include="Responses\GetAllCategoriesResponse.cs" />
     <Compile Include="Responses\GetAllDisapprovedBlogPostsResponse.cs" />
+    <Compile Include="Responses\GetBlogByBlogerResponse.cs" />
     <Compile Include="Responses\GetBlogResponse.cs" />
     <Compile Include="Responses\GetBlogsByCatagoryResponse.cs" />
     <Compile Include="Responses\GetCatagoryResponse.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Tables\Bloggers.cs" />
     <Compile Include="Responses\UnapprovedHashTagsResponse.cs" />
     <Compile Include="Tables\BlogPost.cs" />
+    <Compile Include="Tables\BlogPostsBloggers.cs" />
     <Compile Include="Tables\BlogPostsHashTags.cs" />
     <Compile Include="Tables\Catagory.cs" />
     <Compile Include="Tables\HashTag.cs" />

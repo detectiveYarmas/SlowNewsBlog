@@ -98,7 +98,7 @@ namespace SlowNewsBlog.Tests
         [Test]
         public void CanRemoveCatagoryFromBlogPost()
         {
-            var repoC = new CatagoryRepo();
+            var repoC = new CategoryRepo();
             var repo = new BlogPostRepo();
             Assert.AreEqual(1, repo.GetBlogsByCatagory(2).Count);
             repoC.RemoveCatagoryFromBlogPost(1, 2);
@@ -159,6 +159,14 @@ namespace SlowNewsBlog.Tests
             Assert.AreEqual(repo.GetBlogsByBlogger(2).Count, 1);
             repo.AddBloggerToBlogPost(blogger.BloggerId, repo.GetBlog(1).BlogPostId);
             Assert.AreEqual(repo.GetBlogsByBlogger(2).Count, 2);
+        }
+
+        [Test]
+        public void CanGetNewestBlogs()
+        {
+            var repo = new BlogPostRepo();
+            Assert.AreEqual(2, repo.GetNewestBlogs().Count);
+
         }
     }
 }

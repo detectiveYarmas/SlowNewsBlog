@@ -16,7 +16,9 @@ namespace SlowNewsBlog.Domain.Factories
             switch (Settings.GetRepositoryType())
             {
                 case "QA":
-                    return new BlogPostRepoManager(new BlogPostRepo());
+                    return new BlogPostRepoManager(new InMemoryBlogPostRepo(), new InMemoryCatagoryRepo());
+                case "Prod":
+                    return new BlogPostRepoManager(new BlogPostRepo(), new CategoryRepo());
                 default:
                     throw new Exception("Could not find a valid repo configuration.");
             }
