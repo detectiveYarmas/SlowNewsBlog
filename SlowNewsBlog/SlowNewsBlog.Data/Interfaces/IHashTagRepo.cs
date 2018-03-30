@@ -10,11 +10,12 @@ namespace SlowNewsBlog.Data.Interfaces
     public interface IHashTagRepo
     {
         HashTag GetHashTag(int id);
-        void RemoveHashTag(int id);
+        bool RemoveHashTag(int id);
         HashTag AddHashTag(HashTag hashtag);
         List<HashTag> GetAllHashtags();
         List<HashTag> GetApprovedHashtags();
         List<HashTag> GetUnapprovedHashtags();
         HashTag EditHashTag(HashTag hash);
+        List<HashTag> GetHashTagsForBlog(int blogPostId);
     }
 }

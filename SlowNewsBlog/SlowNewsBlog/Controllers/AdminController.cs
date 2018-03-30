@@ -219,7 +219,43 @@ namespace SlowNewsBlog.Controllers
         [HttpPost]
         public ActionResult DeleteHashTag(int hashTagId)
         {
-            throw new NotImplementedException();
+            var hashMgr = HashTagManagerFactory.Create();
+            var hashtag = hashMgr.GetHashTag(hashTagId);
+
+            hashMgr.RemoveHashTag(hashtag.HashTag.HashTagId);
+
+            return RedirectToAction("HashTags");
+
+        }
+
+        [HttpGet]
+        public ActionResult EditHashTag(int hashTagId)
+        {
+            var hashMgr = HashTagManagerFactory.Create();
+            var toEdit = hashMgr.GetHashTag(hashTagId);
+
+            var model = new EditHashTagViewModel();
+
+            model.HashTag.HashTagId = toEdit.HashTag.HashTagId;
+            model.HashTag.HashTagName = toEdit.HashTag.HashTagName;
+            model.HashTag.Approved = toEdit.HashTag.Approved;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditHashTag(EditHashTagViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var hashMgr = HashTagManagerFactory.Create();
+                var hashtag = hashMgr.GetHashTag(model.HashTag.HashTagId);
+
+                hashtag.HashTag.HashTagName = model.HashTag.HashTagName;
+                hashtag.HashTag.Approved = model.HashTag.Approved;
+
+                return RedirectToAction("HashTags")
+            }
         }
 
     }

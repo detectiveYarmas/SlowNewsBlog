@@ -28,7 +28,10 @@ namespace SlowNewsBlog.Domain.Managers
             {
                 response.Success = false;
                 response.Message = "There are no hashtags.";
-                return null;
+            }
+            else
+            {
+                response.Success = true;
             }
 
             response.Success = true;
@@ -46,8 +49,29 @@ namespace SlowNewsBlog.Domain.Managers
                 response.Success = false;
                 response.Message = "No hashtag associated with this id.";
             }
+            else
+            {
+                response.Success = true;
+            }
 
-            response.Success = true;
+            
+            return response;
+        }
+
+        public GetHashTagsResponse GetHashTagsForBlog(int blogPostId)
+        {
+
+            var response = new GetHashTagsResponse();
+            response.HashTags = repo.GetHashTagsForBlog(blogPostId);
+            if (response.HashTags == null)
+            {
+                response.Success = false;
+                response.Message = "No hashtags found for that blog post.";
+            }
+            else
+            {
+                response.Success = true;
+            }
             return response;
         }
 
@@ -60,15 +84,19 @@ namespace SlowNewsBlog.Domain.Managers
             {
                 response.Success = false;
                 response.Message = "There are no approved hashtags.";
-                return null;
+                
             }
-            else if(response.HashTags.Any(h => h.Approved == false))
+            else if (response.HashTags.Any(h => h.Approved == false))
             {
                 response.Success = false;
                 response.Message = "These hashtags should be approved.";
             }
+            else
+            {
+                response.Success = true;
+            }
 
-            response.Success = true;
+            
             return response;
         }
 
@@ -81,14 +109,19 @@ namespace SlowNewsBlog.Domain.Managers
             {
                 response.Success = false;
                 response.Message = "There are no unapproved hashtags.";
+                return null;
             }
             else if(response.HashTags.Any(h => h.Approved == true))
             {
                 response.Success = false;
                 response.Message = "These hashtags should be unapproved.";
             }
+            else
+            {
+                response.Success = true;
+            }
 
-            response.Success = true;
+            
             return response;
         }
 
@@ -125,6 +158,53 @@ namespace SlowNewsBlog.Domain.Managers
                 {
                     response.Success = false;
                     response.Message = $"{response.Hashtag} does not exist.";
+                }
+                else
+                {
+                    response.Success = true;
+                }
+            }
+
+            return response;
+        }
+
+        public DeleteHashTagResponse RemoveHashTag(int id)
+        {
+            var response = new DeleteHashTagResponse();
+
+            response.Success = repo.RemoveHashTag(id);
+
+            if (!response.Success)
+            {
+                response.Message = "Delete was unsuccessful.";
+            }
+
+            return response;
+        }
+
+        public EditHashTagResponse EditHashTag(HashTag hash)
+        {
+            var response = new EditHashTagResponse();
+            var hashTags = repo.GetAllHashtags();
+
+            if(hash == null)
+            {
+                response.Success = false;
+                response.Message = $"{hash} does not exist.";
+            }
+            else if (!hash.HashTagName.Contains("#"))
+            {
+                response.Success = false;
+                response.Message = $"{hash.HashTagName} needs to contain a #.";
+            }
+            else
+            {
+                response.HashTag = repo.EditHashTag(hash);
+
+                if(response.HashTag == null)
+                {
+                    response.Success = false;
+                    response.Message = $"{response.HashTag} does not exist.";
                 }
                 else
                 {

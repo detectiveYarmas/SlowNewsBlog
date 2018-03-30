@@ -74,6 +74,11 @@ namespace SlowNewsBlog.Data.InMemoryRepos
             return hashTag;
         }
 
+        public List<HashTag> GetHashTagsForBlog(int blogPostId)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<HashTag> GetUnapprovedHashtags()
         {
             List<HashTag> unApproved = new List<HashTag>();
@@ -83,12 +88,13 @@ namespace SlowNewsBlog.Data.InMemoryRepos
             return unApproved;
         }
 
-        public void RemoveHashTag(int id)
+        public bool RemoveHashTag(int id)
         {
             var hashtags = GetAllHashtags();
             var toRemove = GetHashTag(id);
 
             hashtags.Remove(toRemove);
+            return true;
         }
     }
 }
