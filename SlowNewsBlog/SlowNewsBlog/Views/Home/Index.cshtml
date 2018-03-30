@@ -6,7 +6,7 @@
 
 <div class="jumbotron">
     <h1>Slow News Network</h1>
-    <p class="lead">Get your news from yesterday, today.</p>
+    <p class="lead">Get yesterday's new, today.</p>
 </div>
 
 <div class="container">
@@ -14,8 +14,8 @@
         <div class="col-xs-8">
             @foreach (var blag in Model.BlogPosts)
             {
-                @Html.Partial("BlogPreviewPartial", blag)
-                @Html.Partial("HashTagsList", Model.HashTagsForBlogPosts[blag.BlogPostId])
+                @Html.Partial("_BlogPreviewPartial", blag)
+                @Html.Partial("_HashTagsList", Model.HashTagsForBlogPosts[blag.BlogPostId])
             }
 
         </div>
