@@ -3,11 +3,9 @@ GO
 --drop sprocs
 DROP PROCEDURE IF EXISTS dbo.AddNewHashTag
 DROP PROCEDURE IF EXISTS dbo.AddNewBlogPost
-DROP PROCEDURE IF EXISTS dbo.AddNewBlogger
 DROP PROCEDURE IF EXISTS dbo.AddNewCatagory
 DROP PROCEDURE IF EXISTS dbo.AddHashTagToBlogPost
 DROP PROCEDURE IF EXISTS dbo.AddCatagoryToBlogPost
-DROP PROCEDURE IF EXISTS dbo.AddBloggerToBlogPost
 DROP PROCEDURE IF EXISTS dbo.GetBlog
 DROP PROCEDURE IF EXISTS dbo.GetAllBlogs
 DROP PROCEDURE IF EXISTS dbo.GetBlogsByHashTag
@@ -17,7 +15,6 @@ DROP PROCEDURE IF EXISTS dbo.GetCatagory
 DROP PROCEDURE IF EXISTS dbo.RemoveBlog
 DROP PROCEDURE IF EXISTS dbo.RemoveHashTag
 DROP PROCEDURE IF EXISTS dbo.RemoveBloggerFromBlogPost
-DROP PROCEDURE IF EXISTS dbo.RemoveBlogger
 DROP PROCEDURE IF EXISTS dbo.RemoveCatagory
 DROP PROCEDURE IF EXISTS dbo.RemoveCatagoryFromBlogPost
 DROP PROCEDURE IF EXISTS dbo.RemoveHashTagFromBlogPost
@@ -28,7 +25,6 @@ DROP PROCEDURE IF EXISTS dbo.DisapproveHashTag
 DROP PROCEDURE IF EXISTS dbo.UpdateHashTag
 DROP PROCEDURE IF EXISTS dbo.UpdateBlogPost
 DROP PROCEDURE IF EXISTS dbo.UpdateCatagory
-DROP PROCEDURE IF EXISTS dbo.UpdateBlogger
 DROP PROCEDURE IF EXISTS dbo.AddVoteToBlogPostHashTag
 DROP PROCEDURE IF EXISTS dbo.DeleteVotToBlogPostHashTag
 DROP PROCEDURE IF EXISTS dbo.GetAllHashTags
@@ -38,15 +34,17 @@ DROP PROCEDURE IF EXISTS dbo.DeleteVoteToBlogPostHashTag
 DROP PROCEDURE IF EXISTS dbo.GetAllCatagories
 DROP PROCEDURE IF EXISTS dbo.GetAllApprovedHashTags
 DROP PROCEDURE IF EXISTS dbo.GetAllUnapprovedHashTags
-DROP PROCEDURE IF EXISTS dbo.GetBlogsByBlogger
 DROP PROCEDURE IF EXISTS dbo.GetNewestBlogs
 DROP PROCEDURE IF EXISTS dbo.HashTagUpdate
 DROP PROCEDURE IF EXISTS dbo.GetHashTagsForBlogPost
 DROP PROCEDURE IF EXISTS dbo.GetAllBloggers
+DROP PROCEDURE IF EXISTS dbo.GetBlogsByBlogger
 GO
 
 
 -- add new sprocs
+
+
 CREATE PROCEDURE GetAllBloggers
 AS
 BEGIN
@@ -85,15 +83,6 @@ SET @blogPostId = SCOPE_IDENTITY()
 END
 GO
 
-CREATE PROCEDURE AddNewBlogger (@BloggerName NVARCHAR(100), @bloggerId INT OUTPUT)
-AS
-BEGIN
-INSERT INTO Bloggers (BloggerName)
-VALUES (@BloggerName)
-SET @bloggerId = SCOPE_IDENTITY()
-END
-GO
-
 CREATE PROCEDURE AddNewCatagory (@CatagoryName NVARCHAR(50), @catagoryId INT OUTPUT)
 AS
 BEGIN
@@ -114,12 +103,12 @@ FROM BlogPosts
 ORDER BY PublishDate DESC
 GO
 
-CREATE PROCEDURE GetBlogsByBlogger @bloggerId INT
+CREATE PROCEDURE GetBlogsByBlogger @Id nvarchar(128)
 AS
 SELECT *
 FROM BlogPosts
-INNER JOIN BlogPostsBloggers ON BlogPosts.BlogPostId = BlogPostsBloggers.BlogPostId
-WHERE BloggerId = @bloggerId
+INNER JOIN BlogPostsBloggers b ON BlogPosts.BlogPostId = b.BlogPostId
+WHERE b.Id = @Id
 GO
 
 CREATE PROCEDURE GetAllCatagories
@@ -243,21 +232,10 @@ WHERE @hashTagId = HashTagId
 END
 GO
 
-CREATE PROCEDURE RemoveBloggerFromBlogPost @bloggerId INT, @blogPostId INT
+CREATE PROCEDURE RemoveBloggerFromBlogPost @Id nvarchar(128), @blogPostId INT
 AS
-DELETE FROM BlogPostsBloggers
-WHERE @bloggerId = BloggerId AND @blogPostId = BlogPostId
-GO
-
-CREATE PROCEDURE RemoveBlogger @bloggerId INT
-AS
-BEGIN
-DELETE FROM BlogPostsBloggers
-WHERE BloggerId = @bloggerId
-
-DELETE FROM Bloggers
-WHERE BloggerId = @bloggerId
-END
+DELETE FROM BlogPostsBloggers 
+WHERE Id = @Id AND @blogPostId = BlogPostId
 GO
 
 CREATE PROCEDURE RemoveCatagory @catagoryId INT
@@ -336,13 +314,6 @@ SET CatagoryName = @catagoryName
 WHERE CatagoryId = @catagoryId
 GO
 
-CREATE PROCEDURE UpdateBlogger @bloggerId INT, @bloggerName NVARCHAR(100)
-AS
-UPDATE Bloggers
-SET BloggerName = @bloggerName
-WHERE BloggerId = @bloggerId
-GO
-
 --vote count change
 CREATE PROCEDURE AddVoteToBlogPostHashTag @blogPostId INT, @hashTagId INT
 AS
@@ -369,10 +340,4 @@ CREATE PROCEDURE AddCatagoryToBlogPost @catagoryId INT, @blogPostId INT
 AS
 INSERT INTO BlogPostsCatagories (CatagoryId, BlogPostId)
 VALUES ((SELECT CatagoryId FROM Catagories WHERE CatagoryId = @catagoryId), (SELECT BlogPostId FROM BlogPosts WHERE BlogPostId = @blogPostId))
-GO
-
-CREATE PROCEDURE AddBloggerToBlogPost @bloggerId INT, @blogPostId INT
-AS
-INSERT INTO BlogPostsBloggers (BlogPostId, BloggerId)
-VALUES ((SELECT BlogPostId FROM BlogPosts WHERE BlogPostId = @blogPostId), (SELECT BloggerId FROM Bloggers WHERE BloggerId = @bloggerId))
 GO

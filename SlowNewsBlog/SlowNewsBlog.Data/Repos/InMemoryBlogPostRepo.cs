@@ -19,17 +19,17 @@ namespace SlowNewsBlog.Data.Repos
         };
         public static List<BlogPostsBloggers> blogPostsBloggers = new List<BlogPostsBloggers>()
         {
-            new BlogPostsBloggers(){BloggerId=1,BlogPostId=1},
-            new BlogPostsBloggers(){BlogPostId=2,BloggerId=2},
-            new BlogPostsBloggers(){BloggerId= 1, BlogPostId=2},
-            new BlogPostsBloggers(){BlogPostId =3,BloggerId=3},
-            new BlogPostsBloggers(){BloggerId = 4, BlogPostId=4}
+            new BlogPostsBloggers(){UserName="1",BlogPostId=1},
+            new BlogPostsBloggers(){BlogPostId=2,UserName="2"},
+            new BlogPostsBloggers(){UserName= "1", BlogPostId=2},
+            new BlogPostsBloggers(){BlogPostId =3,UserName="3"},
+            new BlogPostsBloggers(){UserName = "4", BlogPostId=4}
         };
         
 
-        public void AddBloggerToBlogPost(int blogger, int blogPost)
+        public void AddBloggerToBlogPost(string blogger, int blogPost)
         {
-            blogPostsBloggers.Add(new BlogPostsBloggers() { BlogPostId = blogPost, BloggerId = blogger });
+            blogPostsBloggers.Add(new BlogPostsBloggers() { BlogPostId = blogPost, UserName = blogger });
         }
 
         public void AddNewBlogPost(BlogPost blogPost)
@@ -72,10 +72,10 @@ namespace SlowNewsBlog.Data.Repos
             return blogPosts.Where(blog => blog.BlogPostId == id).FirstOrDefault();
         }
 
-        public List<BlogPost> GetBlogsByBlogger(int id)
+        public List<BlogPost> GetBlogsByBlogger(string id)
         {
             List<BlogPost> toReturn = new List<BlogPost>();
-            foreach (var group in blogPostsBloggers.Where(blogger => blogger.BloggerId == id).GroupBy(i => i.BlogPostId))
+            foreach (var group in blogPostsBloggers.Where(blogger => blogger.UserName == id).GroupBy(i => i.BlogPostId))
             {
                 toReturn.Add(GetBlog(group.Key));
             }
@@ -92,9 +92,9 @@ namespace SlowNewsBlog.Data.Repos
             return blogPosts.Where(blog => blog.CatagoryId == id).ToList();
         }
 
-        public void RemoveBloggerFromBlogPost(int bloggerId, int blogPostId)
+        public void RemoveBloggerFromBlogPost(string bloggerId, int blogPostId)
         {
-            blogPostsBloggers.Remove(blogPostsBloggers.Where(b => b.BloggerId == bloggerId && b.BlogPostId == blogPostId).FirstOrDefault());
+            blogPostsBloggers.Remove(blogPostsBloggers.Where(b => b.UserName == bloggerId && b.BlogPostId == blogPostId).FirstOrDefault());
         }
 
         public void UpdateBlogPost(BlogPost blogPost)

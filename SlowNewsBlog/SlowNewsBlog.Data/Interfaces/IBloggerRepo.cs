@@ -8,6 +8,6 @@ namespace SlowNewsBlog.Data.Interfaces
 {
     public interface IBloggerRepo
     {
-        List<int> GetAll();
+        List<string> GetAll();
     }
 }

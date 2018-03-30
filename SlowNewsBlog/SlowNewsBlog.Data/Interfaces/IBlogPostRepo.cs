@@ -9,9 +9,9 @@ namespace SlowNewsBlog.Data.Interfaces
 {
     public interface IBlogPostRepo
     {
-        List<BlogPost> GetBlogsByBlogger(int id);
-        void AddBloggerToBlogPost(int bloggerId, int blogId);
-        void RemoveBloggerFromBlogPost(int bloggerId, int blogPostId);
+        List<BlogPost> GetBlogsByBlogger(string id);
+        void AddBloggerToBlogPost(string bloggerId, int blogId);
+        void RemoveBloggerFromBlogPost(string bloggerId, int blogPostId);
         void AddNewBlogPost(BlogPost blogPost);
         void DisapproveBlog(int id);
         void ApproveBlog(int id);
