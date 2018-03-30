@@ -16,5 +16,6 @@ namespace SlowNewsBlog.Models.Tables
         public DateTime PublishedDate { get; set; }
         public DateTime DateAdded { get; set; }
         public string Id { get; set; }
+        public string HeaderImage { get; set; }
     }
 }

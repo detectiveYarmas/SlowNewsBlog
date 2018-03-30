@@ -28,7 +28,8 @@ CREATE TABLE BlogPosts
     Approved bit DEFAULT 0,
     PublishDate DATE,
     DateAdded DATE DEFAULT(GetDate()),
-	Id nvarchar(128) foreign key REFERENCES AspNetUsers(Id)
+	Id nvarchar(128) foreign key REFERENCES AspNetUsers(Id),
+	HeaderImage nvarchar(128)
 )
 GO
 
