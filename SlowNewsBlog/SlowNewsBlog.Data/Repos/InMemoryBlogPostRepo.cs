@@ -32,10 +32,11 @@ namespace SlowNewsBlog.Data.Repos
             blogPostsBloggers.Add(new BlogPostsBloggers() { BlogPostId = blogPost, UserName = blogger });
         }
 
-        public void AddNewBlogPost(BlogPost blogPost)
+        public BlogPost AddNewBlogPost(BlogPost blogPost)
         {
             blogPost.BlogPostId = blogPosts.Max(id => id.BlogPostId) + 1;
             blogPosts.Add(blogPost);
+            return blogPost;
         }
 
         public void ApproveBlog(int id)

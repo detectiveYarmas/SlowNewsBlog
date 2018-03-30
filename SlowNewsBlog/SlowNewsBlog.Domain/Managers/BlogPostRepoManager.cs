@@ -1,5 +1,6 @@
 ﻿using SlowNewsBlog.Data.Interfaces;
 using SlowNewsBlog.Models.Responses;
+using SlowNewsBlog.Models.Tables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -157,6 +158,44 @@ namespace SlowNewsBlog.Domain.Managers
                 response.Success = true;
                 response.Message = "Got newest posts";
             }
+            return response;
+        }
+
+        public AddBlogResponse AddBlog(BlogPost blog)
+        {
+            var response = new AddBlogResponse();
+            var blogs = blogRepo.GetAllBlogs();
+
+            if(blogs == null)
+            {
+                response.Success = false;
+                response.Message = "There are no blogs.";
+            }
+            else if(blogs.Any(b => b.BlogPostId == blog.BlogPostId))
+            {
+                response.Success = false;
+                response.Message = $"{blog.BlogPostId} already exists.";
+            }
+            else if (blogs.Any(b => b.Title == blog.Title))
+            {
+                response.Success = false;
+                response.Message = $"{blog.Title} already exists.";
+            }
+            else
+            {
+                response.Blog = blogRepo.AddNewBlogPost(blog);
+                
+                if(response.Blog == null)
+                {
+                    response.Success = false;
+                    response.Message = $"{response.Blog} is not valid.";
+                }
+                else
+                {
+                    response.Success = true;
+                }
+            }
+
             return response;
         }
     }

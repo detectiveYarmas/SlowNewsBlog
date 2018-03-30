@@ -11,6 +11,7 @@ namespace SlowNewsBlog.Models.Tables
         public int HashTagId { get; set; }
         public string HashTagName { get; set; }
         public bool Approved { get; set; }
+        public ICollection<BlogPost> HashTagBlogPosts { get; set; }
 
         public HashTag(int hashTagId, string hashTagName, bool approved)
         {
