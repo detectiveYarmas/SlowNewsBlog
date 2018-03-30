@@ -29,7 +29,5 @@ namespace SlowNewsBlog.Models
         {
             return new ApplicationDbContext();
         }
-
-        public System.Data.Entity.DbSet<SlowNewsBlog.Models.Tables.Catagory> Catagories { get; set; }
     }
 }
