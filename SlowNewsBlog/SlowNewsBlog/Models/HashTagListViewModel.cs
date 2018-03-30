@@ -9,5 +9,6 @@ namespace SlowNewsBlog.Models
     public class HashTagListViewModel
     {
         public List<HashTag> HashTags { get; set; }
+        public HashTag HashTag { get; set; }
     }
 }

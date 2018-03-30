@@ -7,7 +7,6 @@ DROP TABLE IF EXISTS dbo.BlogPostsHashTags
 DROP TABLE IF EXISTS dbo.Catagories
 DROP TABLE IF EXISTS dbo.HashTags
 DROP TABLE IF EXISTS dbo.BlogPosts
-DROP TABLE IF EXISTS dbo.Bloggers
 DROP TABLE IF EXISTS dbo.StaticPages
 GO 
 
@@ -19,12 +18,6 @@ CREATE TABLE StaticPages
 )
 GO
 
-CREATE TABLE Bloggers
-(
-    BloggerId INT PRIMARY KEY IDENTITY(1,1),
-    BloggerName NVARCHAR(100)
-)
-GO
 
 
 CREATE TABLE BlogPosts
@@ -34,7 +27,8 @@ CREATE TABLE BlogPosts
     Title NVARCHAR(100),
     Approved bit DEFAULT 0,
     PublishDate DATE,
-    DateAdded DATE DEFAULT(GetDate())
+    DateAdded DATE DEFAULT(GetDate()),
+	Id nvarchar(128) foreign key REFERENCES AspNetUsers(Id)
 )
 GO
 
@@ -67,9 +61,9 @@ GO
 
 CREATE TABLE BlogPostsBloggers
 (
-    BloggerId INT FOREIGN KEY REFERENCES Bloggers(BloggerId),
+    Id nvarchar(128) foreign key references AspNetUsers(Id),
     BlogPostId INT FOREIGN KEY REFERENCES BlogPosts(BlogPostId),
-    PRIMARY KEY (BloggerId, BlogPostId)
+    PRIMARY KEY (Id, BlogPostId)
 )
 GO
 

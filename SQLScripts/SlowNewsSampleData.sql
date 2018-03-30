@@ -18,24 +18,16 @@ BEGIN
 DELETE FROM BlogPostsHashTags
 DELETE FROM BlogPostsCatagories
 DELETE FROM BlogPostsBloggers
-DELETE FROM Bloggers
 DELETE FROM HashTags
 DELETE FROM Catagories
 DELETE FROM BlogPosts
 DELETE FROM StaticPages
 
-DBCC CHECKIDENT ('Bloggers', RESEED, 1);
 DBCC CHECKIDENT ('Catagories', RESEED, 1);
 DBCC CHECKIDENT ('HashTags', RESEED, 1);
 DBCC CHECKIDENT ('StaticPages', RESEED, 1);
 DBCC CHECKIDENT ('BlogPosts', RESEED, 1);
 
---bloggers 
-SET IDENTITY_INSERT Bloggers ON;
-INSERT INTO Bloggers (BloggerId, BloggerName)
-VALUES (1, 'Jeff Jefferson'), (2, 'Kevin Kevinson'), (3, 'Doug Dougson')
-
-SET IDENTITY_INSERT Bloggers OFF;
 
 SET IDENTITY_INSERT Catagories ON;
 --catagories
@@ -91,11 +83,10 @@ VALUES
 
 
 --blogpostsbloggers
-INSERT INTO BlogPostsBloggers (BlogPostId, BloggerId)
+INSERT INTO BlogPostsBloggers (BlogPostId, Id)
 VALUES 
-((SELECT BlogPostId FROM BlogPosts WHERE BlogPostId = 1),(SELECT BloggerId FROM Bloggers WHERE BloggerId = 1)),
-((SELECT BlogPostId FROM BlogPosts WHERE BlogPostId = 2),(SELECT BloggerId FROM Bloggers WHERE BloggerId = 2)),
-((SELECT BlogPostId FROM BlogPosts WHERE BlogPostId = 2),(SELECT BloggerId FROM Bloggers WHERE BloggerId = 3))
+((SELECT BlogPostId FROM BlogPosts WHERE BlogPostId = 1),(SELECT Id FROM AspNetUsers WHERE Id = 'ae94109c-04e4-4be6-95b7-cda08a92e78d')),
+((SELECT BlogPostId FROM BlogPosts WHERE BlogPostId = 2),(SELECT Id FROM AspNetUsers WHERE Id = 'ce7b9b6d-75ea-4533-8f28-6c502c1ca1a8'))
 
 
 END
