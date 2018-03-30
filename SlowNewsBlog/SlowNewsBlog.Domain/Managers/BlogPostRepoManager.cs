@@ -38,6 +38,7 @@ namespace SlowNewsBlog.Domain.Managers
         {
             GetBlogByBlogerResponse getBlogByBlogerResponse = new GetBlogByBlogerResponse();
            
+
             getBlogByBlogerResponse.BlogsByBlogger = blogRepo.GetBlogsByBlogger(blogger);
             getBlogByBlogerResponse.Message = "Success";
             getBlogByBlogerResponse.Success = true;

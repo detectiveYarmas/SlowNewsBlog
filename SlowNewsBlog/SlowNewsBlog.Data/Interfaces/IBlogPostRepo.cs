@@ -12,7 +12,6 @@ namespace SlowNewsBlog.Data.Interfaces
         List<BlogPost> GetBlogsByBlogger(int id);
         void AddBloggerToBlogPost(int bloggerId, int blogId);
         void RemoveBloggerFromBlogPost(int bloggerId, int blogPostId);
-
         void AddNewBlogPost(BlogPost blogPost);
         void DisapproveBlog(int id);
         void ApproveBlog(int id);
