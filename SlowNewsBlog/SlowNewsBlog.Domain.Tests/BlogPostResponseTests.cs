@@ -31,26 +31,26 @@ namespace SlowNewsBlog.Domain.Tests
             }
         }
 
-        //[Test]
-        //public void ManagerGetBlogsByBlogger()
-        //{
-        //    BlogPostRepoManager blogPostRepoManager = new BlogPostRepoManager(new BlogPostRepo(),new CategoryRepo());
-        //    Assert.IsTrue(blogPostRepoManager.GetBlogByBloger(1).BlogsByBlogger.Count == 1);
-        //}
+        [Test]
+        public void ManagerGetBlogsByBlogger()
+        {
+            BlogPostRepoManager blogPostRepoManager = new BlogPostRepoManager(new BlogPostRepo(), new CategoryRepo());
+            Assert.IsTrue(blogPostRepoManager.GetBlogByBloger("1").BlogsByBlogger.Count == 1);
+        }
 
-        ////[Test]
-        ////public void ManagerAddBloggerToBlogPost()
-        ////{
-        ////    BlogPostRepoManager blogPostRepoManager = new BlogPostRepoManager(new BlogPostRepo(), new CategoryRepo());
-        ////    Assert.IsTrue(blogPostRepoManager.AddBloggerToBlogPost(1, 2).Success);
-        ////    Assert.IsFalse(blogPostRepoManager.AddBloggerToBlogPost(1,27).Success);
-        ////}
+        [Test]
+        public void ManagerAddBloggerToBlogPost()
+        {
+            BlogPostRepoManager blogPostRepoManager = new BlogPostRepoManager(new BlogPostRepo(), new CategoryRepo());
+            Assert.IsTrue(blogPostRepoManager.AddBloggerToBlogPost("1", 2).Success);
+            Assert.IsFalse(blogPostRepoManager.AddBloggerToBlogPost("1", 27).Success);
+        }
 
-        //[Test]
-        //public void ManagerRemoveBloggerFromBlogPost()
-        //{
-        //    BlogPostRepoManager blogPostRepoManager = new BlogPostRepoManager(new BlogPostRepo(), new CategoryRepo());
-        //    Assert.IsTrue(blogPostRepoManager.RemoveBloggerFromBlogPost(1, 1).Success);
-        //}
+        [Test]
+        public void ManagerRemoveBloggerFromBlogPost()
+        {
+            BlogPostRepoManager blogPostRepoManager = new BlogPostRepoManager(new BlogPostRepo(), new CategoryRepo());
+            Assert.IsTrue(blogPostRepoManager.RemoveBloggerFromBlogPost("1", 1).Success);
+        }
     }
 }

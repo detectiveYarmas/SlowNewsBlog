@@ -31,14 +31,14 @@ namespace SlowNewsBlog.Tests
             }
         }
 
-        //[Test]
-        //public void CanRemoveBloggerFromBlogPost()
-        //{
-        //    var repo = new BlogPostRepo();
-        //    Assert.AreEqual(1, repo.GetBlogsByBlogger(2).Count);
-        //    repo.RemoveBloggerFromBlogPost(2, 2);
-        //    Assert.AreEqual(0, repo.GetBlogsByBlogger(2).Count);
-        //}
+        [Test]
+        public void CanRemoveBloggerFromBlogPost()
+        {
+            var repo = new BlogPostRepo();
+            Assert.AreEqual(1, repo.GetBlogsByBlogger("2").Count);
+            repo.RemoveBloggerFromBlogPost("2", 2);
+            Assert.AreEqual(0, repo.GetBlogsByBlogger("2").Count);
+        }
 
 
 
@@ -146,20 +146,20 @@ namespace SlowNewsBlog.Tests
             Assert.AreEqual(repo.GetAllDisapprovedBlogPosts().Count, 2);
         }
 
-        //[Test]
-        //public void CanAddBloggerToBlogPost()
-        //{
-        //    Bloggers blogger = new Bloggers()
-        //    {
-        //        BloggerId = 2,
-        //        BloggerName = "Deb Dub"
-        //    };
+        [Test]
+        public void CanAddBloggerToBlogPost()
+        {
+            //Bloggers blogger = new Bloggers()
+            //{
+            //    BloggerId = 2,
+            //    BloggerName = "Deb Dub"
+            //};
 
-        //    var repo = new BlogPostRepo();
-        //    Assert.AreEqual(repo.GetBlogsByBlogger(2).Count, 1);
-        //    repo.AddBloggerToBlogPost(blogger.BloggerId, repo.GetBlog(1).BlogPostId);
-        //    Assert.AreEqual(repo.GetBlogsByBlogger(2).Count, 2);
-        //}
+            var repo = new BlogPostRepo();
+            Assert.AreEqual(repo.GetBlogsByBlogger("2").Count, 1);
+            //repo.AddBloggerToBlogPost(blogger.BloggerId, repo.GetBlog(1).BlogPostId);
+            Assert.AreEqual(repo.GetBlogsByBlogger("2").Count, 2);
+        }
 
         [Test]
         public void CanGetNewestBlogs()
