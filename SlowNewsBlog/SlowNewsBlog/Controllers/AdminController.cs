@@ -257,7 +257,6 @@ namespace SlowNewsBlog.Controllers
 
                 return RedirectToAction("HashTags");
             }
-
             return View(model);
         }
 
