@@ -22,3 +22,40 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.blog-title:hover {
+    text-decoration-style: none;
+}
+
+.blog-title {
+    color: black;
+    text-decoration: none;
+}
+
+.blog-title:hover {
+        color: black;
+        text-decoration: none;
+    }
+
+.blog-title:visited {
+    color: black;
+    text-decoration: none;
+}
+
+.blogBlock {
+    margin: 2px;
+    padding: 4px;
+    border: 1px solid black;
+}
+
+.hashTag {
+    color: dimgrey;
+    padding: 5px;
+}
+.hashTag:hover {
+    color: black;
+}
+
+.hashTagBlock {
+    background-color: lightgray;
+}

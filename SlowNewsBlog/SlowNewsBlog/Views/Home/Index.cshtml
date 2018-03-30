@@ -11,18 +11,25 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-8">
+        <div class="col-xs-10">
+            <div class="previewedBlogs">
             @foreach (var blag in Model.BlogPosts)
-            {
-                @Html.Partial("_BlogPreviewPartial", blag)
-                @Html.Partial("_HashTagsList", Model.HashTagsForBlogPosts[blag.BlogPostId])
-            }
+        {
+                <div class="blogBlock">
+                    @Html.Partial("_BlogPreviewPartial", blag)
+                    <div class="hashTagBlock">
+                    @Html.Partial("_HashTagsList", Model.HashTagsForBlogPosts[blag.BlogPostId])
+                        </div>
+                </div>
+    }
 
         </div>
+</div>
+        <div class="col-xs-2">
+            @Html.Partial("_CatagoriesList", Model.Categories)
+        </div>
     </div>
-    <div class="col-xs-4">
-        @Html.Partial("_CatagoriesList", Model.Categories)
-    </div>
+
 </div>
 
 
