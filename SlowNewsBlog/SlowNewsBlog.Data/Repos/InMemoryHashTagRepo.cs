@@ -76,7 +76,9 @@ namespace SlowNewsBlog.Data.InMemoryRepos
 
         public List<HashTag> GetHashTagsForBlog(int blogPostId)
         {
-            throw new NotImplementedException();
+            //temp code for now please replace with actual code
+            return new List<HashTag> { new HashTag { HashTagId = 1, HashTagName = "#face", Approved = true } };
+            
         }
 
         public List<HashTag> GetUnapprovedHashtags()

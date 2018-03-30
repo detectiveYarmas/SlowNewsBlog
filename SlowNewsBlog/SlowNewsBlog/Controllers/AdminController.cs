@@ -254,8 +254,9 @@ namespace SlowNewsBlog.Controllers
                 hashtag.HashTag.HashTagName = model.HashTag.HashTagName;
                 hashtag.HashTag.Approved = model.HashTag.Approved;
 
-                return RedirectToAction("HashTags")
+                return RedirectToAction("HashTags");
             }
+            return View(model);
         }
 
     }

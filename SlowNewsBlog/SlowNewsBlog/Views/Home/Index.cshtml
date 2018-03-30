@@ -9,4 +9,21 @@
     <p class="lead">Get your news from yesterday, today.</p>
 </div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-xs-8">
+            @foreach (var blag in Model.BlogPosts)
+            {
+                @Html.Partial("BlogPreviewPartial", blag)
+                @Html.Partial("HashTagsList", Model.HashTagsForBlogPosts[blag.BlogPostId])
+            }
+
+        </div>
+    </div>
+    <div class="col-xs-4">
+        @Html.Partial("_CatagoriesList", Model.Categories)
+    </div>
+</div>
+
+
 

@@ -20,7 +20,7 @@ namespace SlowNewsBlog.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            //_blogManager.GetNewestBlogs().
+            
             BlogPreviewPageGroupModel model = new BlogPreviewPageGroupModel();
             var blogResponse = _blogManager.GetNewestBlogs();
             var categoryResponse = _categoryManager.GetAllCategories();            
@@ -43,7 +43,7 @@ namespace SlowNewsBlog.Controllers
             {
                 model.Categories = categoryResponse.Catagories;
             }
-                return View();
+                return View(model);
         }
 
         public ActionResult About()
