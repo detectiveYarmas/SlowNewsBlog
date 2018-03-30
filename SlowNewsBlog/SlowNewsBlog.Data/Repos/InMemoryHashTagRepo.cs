@@ -1,4 +1,5 @@
 ﻿using SlowNewsBlog.Data.Interfaces;
+using SlowNewsBlog.Data.Repos;
 using SlowNewsBlog.Models.Tables;
 using System;
 using System.Collections.Generic;
@@ -76,7 +77,9 @@ namespace SlowNewsBlog.Data.InMemoryRepos
 
         public List<HashTag> GetHashTagsForBlog(int blogPostId)
         {
-            throw new NotImplementedException();
+            var hashtags = new List<HashTag>();
+
+            return hashtags;
         }
 
         public List<HashTag> GetUnapprovedHashtags()

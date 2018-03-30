@@ -42,10 +42,21 @@ DROP PROCEDURE IF EXISTS dbo.GetBlogsByBlogger
 DROP PROCEDURE IF EXISTS dbo.GetNewestBlogs
 DROP PROCEDURE IF EXISTS dbo.HashTagUpdate
 DROP PROCEDURE IF EXISTS dbo.GetHashTagsForBlogPost
+DROP PROCEDURE IF EXISTS dbo.GetAllBloggers
 GO
 
 
 -- add new sprocs
+CREATE PROCEDURE GetAllBloggers
+AS
+BEGIN
+	SELECT au.UserName
+	FROM AspNetUsers au
+	INNER JOIN AspNetUserRoles ar ON au.Id = ar.UserId
+	WHERE ar.RoleId = '0f23e78e-13be-4a36-8ab4-4ba857721bdb'
+END
+GO
+
 CREATE PROCEDURE AddNewHashTag (@hashTagId INT OUTPUT, @hashTagName NVARCHAR(50))
 AS
 BEGIN
