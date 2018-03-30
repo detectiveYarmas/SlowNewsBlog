@@ -10,10 +10,10 @@ namespace SlowNewsBlog.Data.Repos
         public static List<BlogPost> blogPosts = InMemoryBlogPostRepo.blogPosts;
         public static List<Catagory> catagories = new List<Catagory>()
         {
-            new Catagory (){CatagoryId = 1,CatagoryName = "metapost"},
-            new Catagory (){CatagoryId= 2,CatagoryName= "horseandbuggy"},
-            new Catagory (){CatagoryId=3, CatagoryName="moon"},
-            new Catagory (){CatagoryId= 4, CatagoryName= "y2k" }
+            new Catagory (){CatagoryId = 1,CatagoryName = "Science"},
+            new Catagory (){CatagoryId= 2,CatagoryName= "Sports"},
+            new Catagory (){CatagoryId=3, CatagoryName="Politics"},
+            new Catagory (){CatagoryId= 4, CatagoryName= "Entertainment" }
         };
 
         public void AddCatagoryToBlogPost(int blogPostId, int categoryId)
