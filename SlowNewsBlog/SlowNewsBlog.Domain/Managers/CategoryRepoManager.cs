@@ -54,7 +54,7 @@ namespace SlowNewsBlog.Domain.Managers
 
         public Response AddCatagoryToBlogPost(int blogPostId, int categoryId)
         {
-            Response response = new Response();
+            Response response = new Response();            
 
             if (repo.GetAllCategories().All(cat => cat.CatagoryId != categoryId))
             {

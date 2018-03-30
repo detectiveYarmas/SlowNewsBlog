@@ -10,18 +10,46 @@ namespace SlowNewsBlog.Domain.Managers
 {
     public class BlogPostRepoManager
     {
-        private IBlogPostRepo repo { get; set; }
+        private IBlogPostRepo blogRepo { get; set; }
+        private ICategory categoryRepo { get; set; }
 
-        public BlogPostRepoManager(IBlogPostRepo blogPostRepo)
+        public BlogPostRepoManager(IBlogPostRepo blogPostRepo, ICategory category)
         {
-            repo = blogPostRepo;
+            blogRepo = blogPostRepo;
+            categoryRepo = category;
+        }
+
+        public Response AddBloggerToBlogPost(int blogger, int blog)
+        {
+            Response response = new Response();
+            if (blogRepo.GetAllBlogs().All(b => b.BlogPostId != blog))
+            {
+                response.Success = false;
+                response.Message = "ERROR: No Blogs with ID=" + blog;
+                return response;
+            }
+            blogRepo.AddBloggerToBlogPost(blogger, blog);
+            response.Message = "BloggerAddedToPost";
+            response.Success = true;
+            return response;
+        }
+
+        public GetBlogByBlogerResponse GetBlogByBloger(int blogger)
+        {
+            GetBlogByBlogerResponse getBlogByBlogerResponse = new GetBlogByBlogerResponse();
+           
+
+            getBlogByBlogerResponse.BlogsByBlogger = blogRepo.GetBlogsByBlogger(blogger);
+            getBlogByBlogerResponse.Message = "Success";
+            getBlogByBlogerResponse.Success = true;
+            return getBlogByBlogerResponse;
         }
 
         public GetBlogResponse GetBlogById(int id)
         {
             var response = new GetBlogResponse();
 
-            response.BlogPost = repo.GetBlog(1);
+            response.BlogPost = blogRepo.GetBlog(1);
 
             if (response.BlogPost==null)
             {
@@ -35,11 +63,26 @@ namespace SlowNewsBlog.Domain.Managers
             return response;
         }
 
+        public Response RemoveBloggerFromBlogPost(int blogger,int post)
+        {
+            Response response = new Response();
+            if (blogRepo.GetAllBlogs().All(b => b.BlogPostId != post))
+            {
+                response.Message = "ERROR: Blog with ID " + post + " DNE";
+                response.Success = false;
+                return response;
+            }
+            blogRepo.RemoveBloggerFromBlogPost(blogger, post);
+            response.Success = true;
+            response.Message = "Success";
+            return response;
+        }
+
         public GetAllBlogsResponse GetAllBlogs()
         {
             var response = new GetAllBlogsResponse();
 
-            response.BlogPosts = repo.GetAllBlogs();
+            response.BlogPosts = blogRepo.GetAllBlogs();
 
             if (response.BlogPosts == null)
             {
@@ -56,7 +99,7 @@ namespace SlowNewsBlog.Domain.Managers
         public GetAllApprovedBlogPostsResponse GetAllApprovedBlogPosted()
         {
             var response = new GetAllApprovedBlogPostsResponse();
-            response.Blogs = repo.GetAllApprovedBlogPosts();
+            response.Blogs = blogRepo.GetAllApprovedBlogPosts();
 
             if (response.Blogs==null)
             {
@@ -78,7 +121,7 @@ namespace SlowNewsBlog.Domain.Managers
         public GetAllDisapprovedBlogPostsResponse GetAllDisapprovedBlogs()
         {
             var response = new GetAllDisapprovedBlogPostsResponse();
-            response.BlogPosts = repo.GetAllDisapprovedBlogPosts();
+            response.BlogPosts = blogRepo.GetAllDisapprovedBlogPosts();
 
             if (response.BlogPosts==null)
             {
@@ -100,9 +143,8 @@ namespace SlowNewsBlog.Domain.Managers
 
         public GetNewestBlogsResponse GetNewestBlogs()
         {
-        
             var response = new GetNewestBlogsResponse();
-            response.BlogPosts = repo.GetNewestBlogs();
+            response.BlogPosts = blogRepo.GetNewestBlogs();
             
             if (response.BlogPosts == null)
             {
@@ -111,7 +153,9 @@ namespace SlowNewsBlog.Domain.Managers
             }
             else
             {
+                response.BlogPosts = blogRepo.GetNewestBlogs();
                 response.Success = true;
+                response.Message = "Got newest posts";
             }
             return response;
         }

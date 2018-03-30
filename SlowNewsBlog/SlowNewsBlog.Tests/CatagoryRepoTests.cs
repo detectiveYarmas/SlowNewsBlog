@@ -100,18 +100,23 @@ namespace SlowNewsBlog.Tests
         public void CanGetBlogsByCatagory()
         {
             var repo = new CategoryRepo();
+            var repo2 = new BlogPostRepo();
             Assert.AreEqual(8, repo.GetAllCategories().Count);
-            Assert.AreEqual(1, repo.GetBlogsByCatagory(2).Count);
+            Assert.AreEqual(1, repo2.GetBlogsByCatagory(2).Count);
         }
 
         [Test]
         public void CanRemoveCatagoryFromBlogPost()
         {
             var repo = new CategoryRepo();
+            var repo2 = new BlogPostRepo();
+
             Assert.AreEqual(8, repo.GetAllCategories().Count);
-            Assert.AreEqual(1, repo.GetBlogsByCatagory(2).Count);
+            Assert.AreEqual(1, repo2.GetBlogsByCatagory(2).Count);
             repo.RemoveCatagoryFromBlogPost(1, 2);
-            Assert.AreEqual(0, repo.GetBlogsByCatagory(2).Count);
+            Assert.AreEqual(0, repo2.GetBlogsByCatagory(2).Count);
         }
+
+     
     }
 }

@@ -7,23 +7,21 @@ namespace SlowNewsBlog.Data.Repos
 {
     public class InMemoryCatagoryRepo:ICategory
     {
+        public static List<BlogPost> blogPosts = InMemoryBlogPostRepo.blogPosts;
         public static List<Catagory> catagories = new List<Catagory>()
         {
-            new Catagory ()
-            {
-                CatagoryId = 1,
-                CatagoryName = "metapost"
-            },
+            new Catagory (){CatagoryId = 1,CatagoryName = "metapost"},
             new Catagory (){CatagoryId= 2,CatagoryName= "horseandbuggy"},
             new Catagory (){CatagoryId=3, CatagoryName="moon"},
             new Catagory (){CatagoryId= 4, CatagoryName= "y2k" }
         };
 
-        
-
         public void AddCatagoryToBlogPost(int blogPostId, int categoryId)
         {
-            throw new System.NotImplementedException();
+            BlogPost toSwapFor = blogPosts.Where(b => b.BlogPostId == blogPostId).FirstOrDefault();
+            toSwapFor.CatagoryId = categoryId;
+            InMemoryBlogPostRepo inMemoryBlogPostRepo = new InMemoryBlogPostRepo();
+            inMemoryBlogPostRepo.UpdateBlogPost(toSwapFor);
         }
 
         public void AddNewCatagory(Catagory catagory)
@@ -55,7 +53,10 @@ namespace SlowNewsBlog.Data.Repos
 
         public void RemoveCatagoryFromBlogPost(int blogId, int categoryId)
         {
-            throw new System.NotImplementedException();
+            BlogPost toSwapFor = blogPosts.Where(b => b.BlogPostId == blogId).FirstOrDefault();
+            toSwapFor.CatagoryId = null;
+            InMemoryBlogPostRepo inMemoryBlogPostRepo = new InMemoryBlogPostRepo();
+            inMemoryBlogPostRepo.UpdateBlogPost(toSwapFor);
         }
 
         public void UpdateCatagory(Catagory catagory)

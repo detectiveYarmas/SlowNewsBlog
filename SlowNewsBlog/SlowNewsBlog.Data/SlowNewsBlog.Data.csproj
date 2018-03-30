@@ -44,7 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IBloggerRepo.cs" />
     <Compile Include="Interfaces\ICategory.cs" />
+    <Compile Include="Repos\BloggerRepo.cs" />
     <Compile Include="Repos\CategoryRepo.cs" />
     <Compile Include="Repos\InMemoryBlogPostRepo.cs" />
     <Compile Include="Repos\InMemoryCatagoryRepo.cs" />

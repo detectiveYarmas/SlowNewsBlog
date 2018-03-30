@@ -246,13 +246,14 @@ namespace SlowNewsBlog.Controllers
         [HttpPost]
         public ActionResult EditHashTag(EditHashTagViewModel model)
         {
+            var hashMgr = HashTagManagerFactory.Create();
+            var hashtag = hashMgr.GetHashTag(model.HashTag.HashTagId);
+
             if (ModelState.IsValid)
             {
-                var hashMgr = HashTagManagerFactory.Create();
-                var hashtag = hashMgr.GetHashTag(model.HashTag.HashTagId);
-
                 hashtag.HashTag.HashTagName = model.HashTag.HashTagName;
                 hashtag.HashTag.Approved = model.HashTag.Approved;
+                hashMgr.EditHashTag(hashtag.HashTag);
 
                 return RedirectToAction("HashTags");
             }
