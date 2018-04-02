@@ -239,6 +239,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Compile Include="Models\SingleBlogPostViewModel.cs" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -448,6 +449,7 @@
     <Content Include="Views\Blog\AddBlog.cshtml" />
     <Content Include="Views\Admin\Blogs.cshtml" />
     <Content Include="Views\Blog\BlogsByHashTag.cshtml" />
+    <Content Include="Views\Blog\BlogPost.cshtml" />
     <Content Include="Views\Blog\BlogsByCatagory.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -5,7 +5,7 @@
         <div class="hashtag-list">
                 @foreach (var tag in Model)
                 {
-                    @Html.ActionLink($"{tag.HashTagName}", "BlogsByHashTag", "Blog", tag.HashTagId, new { @class="hashTag"})
+                    @Html.ActionLink($"{tag.HashTagName}", "BlogsByHashTag", "Blog", new { hashTagId = tag.HashTagId }, new { @class="hashTag"})
                 
                 }
         </div>
