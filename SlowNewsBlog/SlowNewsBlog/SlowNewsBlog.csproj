@@ -449,6 +449,7 @@
     <Content Include="Views\Admin\Blogs.cshtml" />
     <Content Include="Views\Blog\BlogsByHashTag.cshtml" />
     <Content Include="Views\Blog\BlogPost.cshtml" />
+    <Content Include="Views\Blog\BlogsByCatagory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

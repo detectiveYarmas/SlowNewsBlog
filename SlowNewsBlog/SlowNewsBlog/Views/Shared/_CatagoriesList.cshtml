@@ -4,7 +4,7 @@
     
         @foreach(var catagory in Model)
         {
-            @Html.ActionLink($"{catagory.CatagoryName}", "BlogPosts", new { categoryId = catagory.CatagoryId }, new { @class="category" })
+            @Html.ActionLink($"{catagory.CatagoryName}","BlogsByCatagory", "Blog",new { id = catagory.CatagoryId }, new { @class="category" })
             <br />
         }
     

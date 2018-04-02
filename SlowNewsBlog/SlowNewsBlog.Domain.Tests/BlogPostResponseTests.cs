@@ -38,12 +38,12 @@ namespace SlowNewsBlog.Domain.Tests
             BlogPostRepoManager blogPostRepoManager = new BlogPostRepoManager(new InMemoryBlogPostRepo(), new InMemoryCatagoryRepo());
             Assert.AreEqual(blogPostRepoManager.GetBlogByBloger("1").BlogsByBlogger.Count,2);
         } 
-        public void GetBlogsByHashTagTest()
-        {
-            BlogPostRepoManager blogPostRepoManager = new BlogPostRepoManager(new BlogPostRepo(), new CategoryRepo());
-            var blogpostshashtags = blogPostRepoManager.GetBlogsByHashTag(1);
-            Assert.Equals(blogpostshashtags.BlogPosts.Count(), 2);
-        }
+        //public void GetBlogsByHashTagTest()
+        //{
+        //    BlogPostRepoManager blogPostRepoManager = new BlogPostRepoManager(new BlogPostRepo(), new CategoryRepo());
+        //    var blogpostshashtags = blogPostRepoManager.GetBlogsByHashTag(1);
+        //    Assert.Equals(blogpostshashtags.BlogPosts.Count(), 2);
+        //}
 
         //[Test]
         //public void ManagerGetBlogsByBlogger()
