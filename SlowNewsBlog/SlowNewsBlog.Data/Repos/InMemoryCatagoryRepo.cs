@@ -51,7 +51,7 @@ namespace SlowNewsBlog.Data.Repos
             allCatagories.Remove(toRemove);
         }
 
-        public void RemoveCatagoryFromBlogPost(int blogId, int categoryId)
+        public void RemoveCatagoryFromBlogPost(int blogId)
         {
             BlogPost toSwapFor = blogPosts.Where(b => b.BlogPostId == blogId).FirstOrDefault();
             toSwapFor.CatagoryId = null;

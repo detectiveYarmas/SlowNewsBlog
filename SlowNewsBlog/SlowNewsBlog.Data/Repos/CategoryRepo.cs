@@ -99,7 +99,7 @@ namespace SlowNewsBlog.Data.Repos
             }
         }
 
-        public void RemoveCatagoryFromBlogPost(int blogId, int categoryId)
+        public void RemoveCatagoryFromBlogPost(int blogId)
         {
             using (var sqlConnection = new SqlConnection())
             {
@@ -109,8 +109,6 @@ namespace SlowNewsBlog.Data.Repos
 
                 var parameters = new DynamicParameters();
                 parameters.Add("@blogPostId", blogId);
-                parameters.Add("@catagoryId", categoryId);
-
 
                 sqlConnection.Query<Catagory>("RemoveCatagoryFromBlogPost", parameters,
                     commandType: CommandType.StoredProcedure);

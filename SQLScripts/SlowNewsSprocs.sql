@@ -107,8 +107,7 @@ CREATE PROCEDURE GetBlogsByBlogger @Id nvarchar(128)
 AS
 SELECT *
 FROM BlogPosts
-INNER JOIN BlogPostsBloggers b ON BlogPosts.BlogPostId = b.BlogPostId
-WHERE b.Id = @Id
+WHERE BlogPosts.Id = @Id
 GO
 
 CREATE PROCEDURE GetAllCatagories
@@ -154,9 +153,7 @@ CREATE PROCEDURE GetBlogsByCatagory @catagoryId INT
 AS
 SELECT *
 FROM BlogPosts
-INNER JOIN BlogPostsCatagories ON BlogPosts.BlogPostId = BlogPostsCatagories.BlogPostId
-INNER JOIN Catagories ON BlogPostsCatagories.CatagoryId = Catagories.CatagoryId
-WHERE @catagoryId = Catagories.CatagoryId
+WHERE @catagoryId = BlogPosts.CatagoryId
 GO
 
 CREATE PROCEDURE GetBlog @blogId INT
@@ -210,11 +207,6 @@ BEGIN
 DELETE FROM BlogPostsHashTags
 WHERE @blogId = BlogPostId
 
-DELETE FROM BlogPostsBloggers
-WHERE @blogId = BlogPostId
-
-DELETE FROM BlogPostsCatagories
-WHERE @blogId = BlogPostId
 
 DELETE FROM BlogPosts
 WHERE @blogId = BlogPostId
@@ -232,27 +224,25 @@ WHERE @hashTagId = HashTagId
 END
 GO
 
-CREATE PROCEDURE RemoveBloggerFromBlogPost @Id nvarchar(128), @blogPostId INT
+CREATE PROCEDURE RemoveBloggerFromBlogPost ( @blogPostId INT)
 AS
-DELETE FROM BlogPostsBloggers 
-WHERE Id = @Id AND @blogPostId = BlogPostId
+UPDATE BlogPosts SET Id=null WHERE BlogPosts.BlogPostId=@blogPostId;
+
 GO
 
 CREATE PROCEDURE RemoveCatagory @catagoryId INT
 AS
 BEGIN
-DELETE FROM BlogPostsCatagories
-WHERE @catagoryId = CatagoryId
-
+UPDATE BlogPosts SET CatagoryId=null WHERE BlogPosts.CatagoryId=@catagoryId;
 DELETE FROM Catagories
 WHERE @catagoryId = CatagoryId
-END
-GO
+End
+go
 
-CREATE PROCEDURE RemoveCatagoryFromBlogPost @catagoryId INT, @blogPostId INT
+CREATE PROCEDURE RemoveCatagoryFromBlogPost( @blogPostId INT)
 AS
-DELETE FROM BlogPostsCatagories
-WHERE @catagoryId = CatagoryId AND BlogPostId = @blogPostId
+UPDATE BlogPosts SET CatagoryId=null WHERE BlogPosts.BlogPostId=@blogPostId;
+
 GO
 
 CREATE PROCEDURE RemoveHashTagFromBlogPost @hashTagId INT, @blogPostId INT
@@ -338,6 +328,5 @@ GO
 
 CREATE PROCEDURE AddCatagoryToBlogPost @catagoryId INT, @blogPostId INT
 AS
-INSERT INTO BlogPostsCatagories (CatagoryId, BlogPostId)
-VALUES ((SELECT CatagoryId FROM Catagories WHERE CatagoryId = @catagoryId), (SELECT BlogPostId FROM BlogPosts WHERE BlogPostId = @blogPostId))
+UPDATE BlogPosts SET CatagoryId=@catagoryId WHERE BlogPosts.BlogPostId=@blogPostId;
 GO

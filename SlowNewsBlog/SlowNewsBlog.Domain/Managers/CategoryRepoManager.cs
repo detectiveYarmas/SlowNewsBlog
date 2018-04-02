@@ -127,7 +127,7 @@ namespace SlowNewsBlog.Domain.Managers
                 response.Message = "ERROR: no blogs in catagory " + categoryId + " have id " + blogId;
                 return response;
             }
-            repo.RemoveCatagoryFromBlogPost(blogId, categoryId);
+            repo.RemoveCatagoryFromBlogPost(blogId);
             response.Success = true;
             response.Message = "catagory " + repo.GetCatagory(categoryId).CatagoryName + " removed from post with Id= "+blogId;
             return response;
@@ -148,5 +148,8 @@ namespace SlowNewsBlog.Domain.Managers
             response.Message = "Catagory Edited";
             return response;
         }
+
+        
+
     }
 }

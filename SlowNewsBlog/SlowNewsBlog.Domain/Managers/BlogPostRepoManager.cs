@@ -173,21 +173,24 @@ namespace SlowNewsBlog.Domain.Managers
             return response;
         }
 
-        public GetBlogsByHashTagResponse GetBlogsByHashTag(int hashId)
+
+        public GetBlogsByCatagoryResponse GetBlogsByCatagory(int id)
         {
-            var response = new GetBlogsByHashTagResponse();
-            var blogs = blogRepo.GetBlogsByHashTag(hashId);
-            if (blogs == null)
+            GetBlogsByCatagoryResponse getBlogsByCatagoryResponse = new GetBlogsByCatagoryResponse();
+            if (blogRepo.GetBlogsByCatagory(id).FirstOrDefault()==null)
             {
-                response.Success = false;
-                response.Message = "No blogs with that hashtag available";
+                getBlogsByCatagoryResponse.Success = false;
+                getBlogsByCatagoryResponse.Message = "Error: No blogs with CatagoryId=" + id;
+                return getBlogsByCatagoryResponse;
             }
             else
             {
-                response.Success = true;
+                getBlogsByCatagoryResponse.BlogsInCatagory = blogRepo.GetBlogsByCatagory(id);
+                getBlogsByCatagoryResponse.Success = true;
+                getBlogsByCatagoryResponse.Message = "Success";
+                return getBlogsByCatagoryResponse;
             }
 
-            return response;
         }
     }
 }

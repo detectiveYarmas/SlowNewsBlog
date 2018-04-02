@@ -1,4 +1,5 @@
-﻿using SlowNewsBlog.Domain.Factories;
+
+using SlowNewsBlog.Domain.Factories;
 using SlowNewsBlog.Models;
 using SlowNewsBlog.Models.Tables;
 using System;
@@ -12,7 +13,7 @@ namespace SlowNewsBlog.Controllers
     public class BlogController : Controller
     {
         // GET: Blog
-        public ActionResult AddPost()
+        public ActionResult AddBlog()
         {
             var model = new AddBlogViewModel();
             var hashMgr = HashTagManagerFactory.Create();
@@ -38,7 +39,7 @@ namespace SlowNewsBlog.Controllers
 
         [ValidateInput(false)]
         [HttpPost]
-        public ActionResult AddPost(AddBlogViewModel model)
+        public ActionResult AddBlog(AddBlogViewModel model)
         {
             var hashMgr = HashTagManagerFactory.Create();
             var cateMgr = CategoryRepoManagerFactory.Create();
@@ -47,7 +48,7 @@ namespace SlowNewsBlog.Controllers
             {
                 model.BlogPost.BlogPostHashTags = new List<HashTag>();
 
-                foreach(var id in model.SelectedHashtagIds)
+                foreach (var id in model.SelectedHashtagIds)
                 {
                     var response = hashMgr.GetHashTag(id);
 
@@ -66,44 +67,3 @@ namespace SlowNewsBlog.Controllers
 
             return View(model);
         }
-
-        [HttpGet]
-        public ActionResult BlogsByHashTag(int hashId)
-        {
-            var blogMngr = BlogPostRepoManagerFactory.Create();
-            var blogs = blogMngr.GetBlogsByHashTag(hashId);
-            var cateMngr = CategoryRepoManagerFactory.Create();
-            var cates = cateMngr.GetAllCategories();
-            var hashMngr = HashTagManagerFactory.Create();
-            var model = new MultipleBlogPostViewModel();
-            var hashtagsForBlogPosts = new Dictionary<int, List<HashTag>>();
-
-            if(!blogs.Success)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                foreach (var blog in blogs.BlogPosts)
-                {
-                    var hashtags = hashMngr.GetHashTagsForBlog(blog.BlogPostId);
-                    if (hashtags.Success)
-                    {
-                        hashtagsForBlogPosts.Add(blog.BlogPostId, hashtags.HashTags);
-                    }
-                }
-                model.HashTagsForBlogPosts = hashtagsForBlogPosts;
-            }
-            if (cates.Success)
-            {
-                model.Categories = cates.Catagories;
-            }
-            if (blogs.Success)
-            {
-                model.BlogPosts = blogs.BlogPosts;
-            }
-
-            return View(model);
-        }
-    }
-}
