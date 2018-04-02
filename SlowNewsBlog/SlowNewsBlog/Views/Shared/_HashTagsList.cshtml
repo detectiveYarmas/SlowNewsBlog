@@ -5,7 +5,7 @@
         <div class="hashtag-list">
                 @foreach (var tag in Model)
                 {
-                    @Html.ActionLink($"{tag.HashTagName}", "BlogPosts", $"{tag.HashTagId}", new { @class="hashTag"}) @*replace with proper method call when controller in made*@
+                    @Html.ActionLink($"{tag.HashTagName}", "BlogsByHashTag", "Blog", tag.HashTagId, new { @class="hashTag"})
                 
                 }
         </div>
