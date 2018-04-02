@@ -14,7 +14,7 @@ namespace SlowNewsBlog.Data.Interfaces
         void AddCatagoryToBlogPost(int blogPostId, int categoryId);//
         Catagory GetCatagory(int id);
         void RemoveCatagory(int id);
-        void RemoveCatagoryFromBlogPost(int blogId, int categoryId);//
+        void RemoveCatagoryFromBlogPost(int blogId);//
         void UpdateCatagory(Catagory catagory);
     }
 }

@@ -61,6 +61,17 @@ namespace SlowNewsBlog.Tests
         }
 
         [Test]
+        public void CanAddCatagoryToBlogPost()
+        {
+            var repo = new CategoryRepo();
+            repo.RemoveCatagoryFromBlogPost(1);
+            repo.AddCatagoryToBlogPost(3,1);
+            var repo2 = new BlogPostRepo();
+            Assert.AreEqual(1, repo2.GetBlogsByCatagory(3).Count);
+
+        }
+
+        [Test]
         public void CanGetCatagory()
         {
             var repo = new CategoryRepo();
@@ -113,10 +124,8 @@ namespace SlowNewsBlog.Tests
 
             Assert.AreEqual(8, repo.GetAllCategories().Count);
             Assert.AreEqual(1, repo2.GetBlogsByCatagory(2).Count);
-            repo.RemoveCatagoryFromBlogPost(1, 2);
+            repo.RemoveCatagoryFromBlogPost(2);
             Assert.AreEqual(0, repo2.GetBlogsByCatagory(2).Count);
-        }
-
-     
+        }    
     }
 }

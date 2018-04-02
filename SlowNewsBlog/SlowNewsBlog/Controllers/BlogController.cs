@@ -1,4 +1,7 @@
-﻿using SlowNewsBlog.Domain.Factories;
+﻿using SlowNewsBlog.Data.Interfaces;
+using SlowNewsBlog.Data.Repos;
+using SlowNewsBlog.Domain.Factories;
+using SlowNewsBlog.Domain.Managers;
 using SlowNewsBlog.Models;
 using SlowNewsBlog.Models.Tables;
 using System;
@@ -47,7 +50,7 @@ namespace SlowNewsBlog.Controllers
             {
                 model.BlogPost.BlogPostHashTags = new List<HashTag>();
 
-                foreach(var id in model.SelectedHashtagIds)
+                foreach (var id in model.SelectedHashtagIds)
                 {
                     var response = hashMgr.GetHashTag(id);
 
@@ -67,20 +70,14 @@ namespace SlowNewsBlog.Controllers
             return View(model);
         }
 
+        [ValidateInput(false)]
         [HttpGet]
-        public ActionResult BlogsByHashTag(int hashId)
+        public ActionResult BlogsByCatagory(int id)
         {
-            var blogMngr = BlogPostRepoManagerFactory.Create();
-            var model = blogMngr.GetBlogsByHashTag(hashId);
-            if(model.Success)
-            {
-                return View(model.BlogPosts);
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            
+            BlogPostRepoManager manager = BlogPostRepoManagerFactory.Create();
+            IEnumerable<BlogPost> model = manager.GetBlogsByCatagory(id).BlogsInCatagory;
+            return View(model);
         }
+
     }
 }
