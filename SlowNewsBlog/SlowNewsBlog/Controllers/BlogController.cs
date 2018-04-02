@@ -66,4 +66,43 @@ namespace SlowNewsBlog.Controllers
             }
 
             return View(model);
+
+        [HttpGet]
+        public ActionResult BlogPost(int blogId)
+        {
+            var blogResponse = _blogManager.GetBlogById(blogId);
+            var model = new SingleBlogPostViewModel();
+            
+            if (blogResponse.Success)
+            {
+                model.BlogPost = blogResponse.BlogPost;
+                var hashTagResponse = _hashManager.GetHashTagsForBlog(blogResponse.BlogPost.BlogPostId);
+                if (hashTagResponse.Success)
+                {
+                    model.HashTags = hashTagResponse.HashTags;
+                }
+            }
+            var cates = _categoryManager.GetAllCategories();
+            if (cates.Success)
+            {
+                model.Catagories = cates.Catagories;
+            }
+
+            return View(model);
         }
+
+        [ValidateInput(false)]
+        [HttpGet]
+        public ActionResult BlogsByCatagory(int id)
+        {
+            BlogPostRepoManager manager = BlogPostRepoManagerFactory.Create();
+            if (!manager.GetBlogsByCatagory(id).Success)
+            {
+                return RedirectToAction("Index", "Home");                
+            }
+            IEnumerable<BlogPost> model = manager.GetBlogsByCatagory(id).BlogsInCatagory;
+            return View(model);
+        }
+
+    }
+}
