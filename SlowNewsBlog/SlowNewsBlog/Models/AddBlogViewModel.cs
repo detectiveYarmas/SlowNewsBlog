@@ -20,5 +20,7 @@ namespace SlowNewsBlog.Models
         public IEnumerable<SelectListItem> HashTags { get; set; }
         [AllowHtml]
         public List<int> SelectedHashtagIds { get; set; }
+        [AllowHtml]
+        public HttpPostedFileBase ImageUpload { get; set; }
     }
 }
