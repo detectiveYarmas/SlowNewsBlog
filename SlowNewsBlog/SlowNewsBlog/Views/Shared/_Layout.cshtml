@@ -28,7 +28,7 @@
                     }
                     @if (User.IsInRole("Blogger"))
                     {
-                        <li>@Html.ActionLink("AddPost", "AddPost", "Blogger")</li>
+                        <li>@Html.ActionLink("Add Post", "AddPost", "Blog")</li>
                         <li>@Html.ActionLink("EditPost", "EditPost", "Blogger")</li>
                     }
                     else

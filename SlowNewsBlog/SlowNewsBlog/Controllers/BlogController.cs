@@ -24,7 +24,7 @@ namespace SlowNewsBlog.Controllers
         {
             var model = new AddBlogViewModel();
             var hashMgr = HashTagManagerFactory.Create();
-            var hashTags = hashMgr.GetApprovedHashtags();
+            var hashTags = hashMgr.GetAllHashTags();
             var cataMgr = CategoryRepoManagerFactory.Create();
             var categories = cataMgr.GetAllCategories();
 
