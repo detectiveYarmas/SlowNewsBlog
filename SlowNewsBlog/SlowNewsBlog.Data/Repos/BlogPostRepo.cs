@@ -226,5 +226,16 @@ namespace SlowNewsBlog.Data.Repos
                    commandType: CommandType.StoredProcedure).AsList();
             }
         }
+
+        public List<BlogPost> GetBlogsByHashTag(int hashId)
+        {
+            using (var sqlConn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                var param = new DynamicParameters();
+                param.Add("@hashTagId", hashId);
+                return sqlConn.Query<BlogPost>("GetBlogsByHashTag", param, commandType: CommandType.StoredProcedure).AsList();
+
+            }
+        }
     }
 }

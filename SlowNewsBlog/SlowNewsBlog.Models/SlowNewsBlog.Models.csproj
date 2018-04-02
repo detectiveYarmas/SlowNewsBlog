@@ -53,6 +53,7 @@
     <Compile Include="Responses\GetBlogByBlogerResponse.cs" />
     <Compile Include="Responses\GetBlogResponse.cs" />
     <Compile Include="Responses\GetBlogsByCatagoryResponse.cs" />
+    <Compile Include="Responses\GetBlogsByHashTagResponse.cs" />
     <Compile Include="Responses\GetCatagoryResponse.cs" />
     <Compile Include="Responses\GetHashTagResponse.cs" />
     <Compile Include="Responses\GetHashTagsResponse.cs" />
