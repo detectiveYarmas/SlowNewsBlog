@@ -1,4 +1,5 @@
 ﻿using SlowNewsBlog.Domain.Factories;
+using SlowNewsBlog.Domain.Managers;
 using SlowNewsBlog.Models;
 using SlowNewsBlog.Models.Tables;
 using System;
@@ -11,6 +12,9 @@ namespace SlowNewsBlog.Controllers
 {
     public class BlogController : Controller
     {
+        BlogPostRepoManager _blogManager = BlogPostRepoManagerFactory.Create();
+        CategoryRepoManager _categoryManager = CategoryRepoManagerFactory.Create();
+        HashtagRepoManager _hashManager = HashTagManagerFactory.Create();
         // GET: Blog
         public ActionResult AddBlog()
         {
@@ -68,10 +72,10 @@ namespace SlowNewsBlog.Controllers
         }
 
         [HttpGet]
-        public ActionResult BlogsByHashTag(int hashId)
-        {
+        public ActionResult BlogsByHashTag(int hashTagId)
+        { 
             var blogMngr = BlogPostRepoManagerFactory.Create();
-            var blogs = blogMngr.GetBlogsByHashTag(hashId);
+            var blogs = blogMngr.GetBlogsByHashTag(hashTagId);
             var cateMngr = CategoryRepoManagerFactory.Create();
             var cates = cateMngr.GetAllCategories();
             var hashMngr = HashTagManagerFactory.Create();
@@ -101,6 +105,30 @@ namespace SlowNewsBlog.Controllers
             if (blogs.Success)
             {
                 model.BlogPosts = blogs.BlogPosts;
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult BlogPost(int blogId)
+        {
+            var blogResponse = _blogManager.GetBlogById(blogId);
+            var model = new SingleBlogPostViewModel();
+            
+            if (blogResponse.Success)
+            {
+                model.BlogPost = blogResponse.BlogPost;
+                var hashTagResponse = _hashManager.GetHashTagsForBlog(blogResponse.BlogPost.BlogPostId);
+                if (hashTagResponse.Success)
+                {
+                    model.HashTags = hashTagResponse.HashTags;
+                }
+            }
+            var cates = _categoryManager.GetAllCategories();
+            if (cates.Success)
+            {
+                model.Catagories = cates.Catagories;
             }
 
             return View(model);
