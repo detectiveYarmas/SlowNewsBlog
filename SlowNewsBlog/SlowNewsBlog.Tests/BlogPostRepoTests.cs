@@ -133,8 +133,7 @@ namespace SlowNewsBlog.Tests
         public void CanGetNewestBlogs()
         {
             var repo = new BlogPostRepo();
-            Assert.AreEqual(2, repo.GetNewestBlogs().Count);
-
+            Assert.AreEqual(1, repo.GetNewestBlogs().Count);
         }
     }
 }
