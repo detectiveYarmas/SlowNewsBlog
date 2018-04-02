@@ -1,4 +1,5 @@
-
+using SlowNewsBlog.Data.Interfaces;
+using SlowNewsBlog.Data.Repos;
 using SlowNewsBlog.Domain.Factories;
 using SlowNewsBlog.Domain.Managers;
 using SlowNewsBlog.Models;
@@ -14,6 +15,10 @@ namespace SlowNewsBlog.Controllers
 {
     public class BlogController : Controller
     {
+        BlogPostRepoManager _blogManager = BlogPostRepoManagerFactory.Create();
+        CategoryRepoManager _categoryManager = CategoryRepoManagerFactory.Create();
+        HashtagRepoManager _hashManager = HashTagManagerFactory.Create();
+
         // GET: Blog
         public ActionResult AddPost()
         {
@@ -90,6 +95,20 @@ namespace SlowNewsBlog.Controllers
             return View(model);
         }
 
+
+        [ValidateInput(false)]
+        [HttpGet]
+        public ActionResult BlogsByCatagory(int id)
+        {
+            BlogPostRepoManager manager = BlogPostRepoManagerFactory.Create();
+            if (!manager.GetBlogsByCatagory(id).Success)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            IEnumerable<BlogPost> model = manager.GetBlogsByCatagory(id).BlogsInCatagory;
+            return View(model);
+        }
+
         [HttpGet]
         public ActionResult BlogPost(int blogId)
         {
@@ -99,6 +118,7 @@ namespace SlowNewsBlog.Controllers
             var hashMgr = HashTagManagerFactory.Create();
             var cateMgr = CategoryRepoManagerFactory.Create();
             
+
             if (blogResponse.Success)
             {
                 model.BlogPost = blogResponse.BlogPost;
@@ -116,19 +136,8 @@ namespace SlowNewsBlog.Controllers
 
             return View(model);
         }
-
-        [ValidateInput(false)]
-        [HttpGet]
-        public ActionResult BlogsByCatagory(int id)
-        {
-            BlogPostRepoManager manager = BlogPostRepoManagerFactory.Create();
-            if (!manager.GetBlogsByCatagory(id).Success)
-            {
-                return RedirectToAction("Index", "Home");                
-            }
-            IEnumerable<BlogPost> model = manager.GetBlogsByCatagory(id).BlogsInCatagory;
-            return View(model);
-        }
-
     }
 }
+
+
+    
