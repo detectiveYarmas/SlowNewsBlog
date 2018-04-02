@@ -75,6 +75,10 @@ namespace SlowNewsBlog.Controllers
         public ActionResult BlogsByCatagory(int id)
         {
             BlogPostRepoManager manager = BlogPostRepoManagerFactory.Create();
+            if (!manager.GetBlogsByCatagory(id).Success)
+            {
+                return RedirectToAction("Index", "Home");                
+            }
             IEnumerable<BlogPost> model = manager.GetBlogsByCatagory(id).BlogsInCatagory;
             return View(model);
         }
