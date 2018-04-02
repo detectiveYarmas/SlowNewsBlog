@@ -444,7 +444,7 @@
     <Content Include="Views\Shared\_BlogPreviewPartial.cshtml" />
     <Content Include="Views\Admin\EditHashTag.cshtml" />
     <Content Include="Views\Shared\View.cshtml" />
-    <Content Include="Views\Blog\AddBlog.cshtml" />
+    <Content Include="Views\Blog\AddPost.cshtml" />
     <Content Include="Views\Admin\Blogs.cshtml" />
     <Content Include="Views\Blog\BlogsByHashTag.cshtml" />
   </ItemGroup>

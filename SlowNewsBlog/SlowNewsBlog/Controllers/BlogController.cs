@@ -12,7 +12,7 @@ namespace SlowNewsBlog.Controllers
     public class BlogController : Controller
     {
         // GET: Blog
-        public ActionResult AddBlog()
+        public ActionResult AddPost()
         {
             var model = new AddBlogViewModel();
             var hashMgr = HashTagManagerFactory.Create();
@@ -38,7 +38,7 @@ namespace SlowNewsBlog.Controllers
 
         [ValidateInput(false)]
         [HttpPost]
-        public ActionResult AddBlog(AddBlogViewModel model)
+        public ActionResult AddPost(AddBlogViewModel model)
         {
             var hashMgr = HashTagManagerFactory.Create();
             var cateMgr = CategoryRepoManagerFactory.Create();
