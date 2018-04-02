@@ -71,16 +71,39 @@ namespace SlowNewsBlog.Controllers
         public ActionResult BlogsByHashTag(int hashId)
         {
             var blogMngr = BlogPostRepoManagerFactory.Create();
-            var model = blogMngr.GetBlogsByHashTag(hashId);
-            if(model.Success)
-            {
-                return View(model.BlogPosts);
-            }
-            else
+            var blogs = blogMngr.GetBlogsByHashTag(hashId);
+            var cateMngr = CategoryRepoManagerFactory.Create();
+            var cates = cateMngr.GetAllCategories();
+            var hashMngr = HashTagManagerFactory.Create();
+            var model = new MultipleBlogPostViewModel();
+            var hashtagsForBlogPosts = new Dictionary<int, List<HashTag>>();
+
+            if(!blogs.Success)
             {
                 return RedirectToAction("Index", "Home");
             }
-            
+            else
+            {
+                foreach (var blog in blogs.BlogPosts)
+                {
+                    var hashtags = hashMngr.GetHashTagsForBlog(blog.BlogPostId);
+                    if (hashtags.Success)
+                    {
+                        hashtagsForBlogPosts.Add(blog.BlogPostId, hashtags.HashTags);
+                    }
+                }
+                model.HashTagsForBlogPosts = hashtagsForBlogPosts;
+            }
+            if (cates.Success)
+            {
+                model.Categories = cates.Catagories;
+            }
+            if (blogs.Success)
+            {
+                model.BlogPosts = blogs.BlogPosts;
+            }
+
+            return View(model);
         }
     }
 }
