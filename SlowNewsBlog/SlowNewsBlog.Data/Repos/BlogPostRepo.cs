@@ -28,7 +28,7 @@ namespace SlowNewsBlog.Data.Repos
             }
         }
 
-        public void AddNewBlogPost(BlogPost post)
+        public BlogPost AddNewBlogPost(BlogPost post)
         {
             using (var sqlConnection = new SqlConnection())
             {
@@ -45,6 +45,8 @@ namespace SlowNewsBlog.Data.Repos
                 sqlConnection.Query<BlogPost>("AddNewBlogPost", 
                     parameters,
                     commandType: CommandType.StoredProcedure);
+
+                return post;
             }
         }
 
