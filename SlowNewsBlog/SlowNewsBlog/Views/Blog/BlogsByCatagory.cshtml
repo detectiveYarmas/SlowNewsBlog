@@ -29,7 +29,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Blog)
+            @Html.Raw(item.Blog)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
@@ -42,7 +42,8 @@
             @Html.DisplayFor(modelItem => item.DateAdded)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.HeaderImage)
+            <img src="@Url.Content($"~/Images/{item.HeaderImage}")" class="img-responsive" />
+
         </td>
 
     </tr>
