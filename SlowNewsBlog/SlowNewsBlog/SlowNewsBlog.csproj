@@ -201,6 +201,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -212,8 +213,10 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AddBlogViewModel.cs" />
     <Compile Include="Models\BlogPostCategoryViewModel.cs" />
-    <Compile Include="Models\BlogPreviewPageGroupModel.cs" />
+    <Compile Include="Models\BlogPostAddViewModel.cs" />
+    <Compile Include="Models\GroupedBlogViewModel.cs" />
     <Compile Include="Models\EditHashTagViewModel.cs" />
     <Compile Include="Models\GroupedViewModel.cs" />
     <Compile Include="Models\HashTagListViewModel.cs" />
@@ -441,6 +444,8 @@
     <Content Include="Views\Shared\_BlogPreviewPartial.cshtml" />
     <Content Include="Views\Admin\EditHashTag.cshtml" />
     <Content Include="Views\Shared\View.cshtml" />
+    <Content Include="Views\Blog\AddBlog.cshtml" />
+    <Content Include="Views\Admin\Blogs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -21,7 +21,7 @@ namespace SlowNewsBlog.Controllers
         public ActionResult Index()
         {
             
-            BlogPreviewPageGroupModel model = new BlogPreviewPageGroupModel();
+            BlogPostAddViewModel model = new BlogPostAddViewModel();
             var blogResponse = _blogManager.GetNewestBlogs();
             var categoryResponse = _categoryManager.GetAllCategories();            
             if (blogResponse.Success)
