@@ -20,5 +20,6 @@ namespace SlowNewsBlog.Data.Interfaces
         List<BlogPost> GetAllDisapprovedBlogPosts();
         List<BlogPost> GetBlogsByCatagory(int id);//
         List<BlogPost> GetNewestBlogs();
+        List<BlogPost> GetBlogsByHashTag(int hashId);
     }
 }

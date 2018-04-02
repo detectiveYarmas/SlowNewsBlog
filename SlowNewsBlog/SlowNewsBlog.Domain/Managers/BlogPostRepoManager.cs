@@ -172,5 +172,22 @@ namespace SlowNewsBlog.Domain.Managers
 
             return response;
         }
+
+        public GetBlogsByHashTagResponse GetBlogsByHashTag(int hashId)
+        {
+            var response = new GetBlogsByHashTagResponse();
+            var blogs = blogRepo.GetBlogsByHashTag(hashId);
+            if (blogs == null)
+            {
+                response.Success = false;
+                response.Message = "No blogs with that hashtag available";
+            }
+            else
+            {
+                response.Success = true;
+            }
+
+            return response;
+        }
     }
 }

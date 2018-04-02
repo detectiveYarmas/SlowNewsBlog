@@ -66,5 +66,21 @@ namespace SlowNewsBlog.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public ActionResult BlogsByHashTag(int hashId)
+        {
+            var blogMngr = BlogPostRepoManagerFactory.Create();
+            var model = blogMngr.GetBlogsByHashTag(hashId);
+            if(model.Success)
+            {
+                return View(model.BlogPosts);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
+        }
     }
 }

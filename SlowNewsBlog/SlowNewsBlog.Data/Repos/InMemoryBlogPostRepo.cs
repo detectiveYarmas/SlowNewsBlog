@@ -25,6 +25,15 @@ namespace SlowNewsBlog.Data.Repos
             new BlogPostsBloggers(){BlogPostId =3,UserName="3"},
             new BlogPostsBloggers(){UserName = "4", BlogPostId=4}
         };
+
+        public static List<BlogPostsHashTags> blogPostHashTags = new List<BlogPostsHashTags>()
+        {
+            new BlogPostsHashTags(){BlogPostId=1, Approved=true, HashTagId=1 },
+            new BlogPostsHashTags(){BlogPostId=2, Approved=true, HashTagId=1 },
+            new BlogPostsHashTags(){BlogPostId=1, Approved=false, HashTagId=2 },
+            new BlogPostsHashTags(){BlogPostId=3, Approved=false, HashTagId=1 },
+            new BlogPostsHashTags(){BlogPostId=1, Approved=true, HashTagId=3 }
+        };
         
 
         public void AddBloggerToBlogPost(string blogger, int blogPost)
@@ -102,6 +111,17 @@ namespace SlowNewsBlog.Data.Repos
         {
             blogPosts.Remove(blogPosts.Where(blog => blog.BlogPostId == blogPost.BlogPostId).FirstOrDefault());
             blogPosts.Add(blogPost);
+        }
+
+        public List<BlogPost> GetBlogsByHashTag(int hashId)
+        {
+            var blogpostshashtags = blogPostHashTags.Where(b => b.HashTagId == hashId && b.Approved == true).ToList();
+            var toReturn = new List<BlogPost>();
+            foreach(var item in blogpostshashtags)
+            {
+                toReturn.Add(GetBlog(item.BlogPostId));
+            }
+            return toReturn;
         }
     }
 }

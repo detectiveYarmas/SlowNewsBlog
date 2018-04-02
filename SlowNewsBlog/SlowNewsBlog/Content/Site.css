@@ -40,10 +40,9 @@ textarea {
 .blog-title:visited {
     color: black;
     text-decoration: none;
+
 }
-.row {
-    overflow:hidden;
-}
+
 .blogBlock {
     margin: 2px;
     padding: 4px;
@@ -62,14 +61,4 @@ textarea {
 
 .hashTagBlock {
     background-color: lightgray;
-}
-
-.headerImage {
-    
-   height: 400px;
-}
-
-.headerImage img {
-        max-width: 100%;
-        height: auto;
 }
