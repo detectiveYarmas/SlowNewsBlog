@@ -6,7 +6,7 @@ using System.Web;
 
 namespace SlowNewsBlog.Models
 {
-    public class BlogPostAddViewModel
+    public class MultipleBlogPostViewModel
     {
         public Dictionary<int, List<HashTag>> HashTagsForBlogPosts { get; set; }
         public List<BlogPost> BlogPosts { get; set; }

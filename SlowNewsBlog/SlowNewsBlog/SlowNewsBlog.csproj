@@ -215,7 +215,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddBlogViewModel.cs" />
     <Compile Include="Models\BlogPostCategoryViewModel.cs" />
-    <Compile Include="Models\BlogPostAddViewModel.cs" />
+    <Compile Include="Models\MultipleBlogPostViewModel.cs" />
     <Compile Include="Models\GroupedBlogViewModel.cs" />
     <Compile Include="Models\EditHashTagViewModel.cs" />
     <Compile Include="Models\GroupedViewModel.cs" />
