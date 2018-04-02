@@ -233,6 +233,7 @@ GO
 CREATE PROCEDURE RemoveCatagory @catagoryId INT
 AS
 BEGIN
+UPDATE BlogPosts SET CatagoryId=null WHERE BlogPosts.CatagoryId=@catagoryId;
 DELETE FROM Catagories
 WHERE @catagoryId = CatagoryId
 End
@@ -240,7 +241,7 @@ go
 
 CREATE PROCEDURE RemoveCatagoryFromBlogPost( @blogPostId INT)
 AS
-UPDATE BlogPosts SET CatagoryId=0 WHERE BlogPosts.BlogPostId=@blogPostId;
+UPDATE BlogPosts SET CatagoryId=null WHERE BlogPosts.BlogPostId=@blogPostId;
 
 GO
 
