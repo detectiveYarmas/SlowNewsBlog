@@ -263,8 +263,37 @@ namespace SlowNewsBlog.Controllers
         public ActionResult Blogs()
         {
             var blogMgr = BlogPostRepoManagerFactory.Create();
+            var hashMgr = HashTagManagerFactory.Create();
+            var cateMgr = CategoryRepoManagerFactory.Create();
             var approved = blogMgr.GetAllApprovedBlogPosted();
             var notApproved = blogMgr.GetAllDisapprovedBlogs();
+            List<HashTag> tags = new List<HashTag>();
+
+            foreach(var blog in approved.Blogs)
+            {
+                cateMgr.AddCatagoryToBlogPost(blog.BlogPostId, blog.CatagoryId);
+                var hashtags = hashMgr.GetHashTagsForBlog(blog.BlogPostId);
+                tags = hashtags.HashTags.ToList();
+                blog.BlogPostHashTags = new List<HashTag>();
+
+                foreach(var ht in tags)
+                {
+                    blog.BlogPostHashTags.Add(ht);
+                }
+
+            }
+
+            foreach(var blag in notApproved.BlogPosts)
+            {
+                cateMgr.AddCatagoryToBlogPost(blag.BlogPostId, blag.CatagoryId);
+                var hashtags = hashMgr.GetHashTagsForBlog(blag.BlogPostId);
+                tags = hashtags.HashTags.ToList();
+
+                foreach (var ht in tags)
+                {
+                    blag.BlogPostHashTags.Add(ht);
+                }
+            }
 
             var groupModel = new GroupedBlogViewModel { ApprovedBlogs = approved.Blogs, UnApprovedBlogs = notApproved.BlogPosts };
 

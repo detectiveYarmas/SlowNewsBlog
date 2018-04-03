@@ -37,7 +37,7 @@ CREATE TABLE BlogPosts
     PublishDate DATE,
     DateAdded DATE DEFAULT(GetDate()),
 	CatagoryId int foreign key REFERENCES Catagories(CatagoryId),
-	Id nvarchar(256) foreign key REFERENCES AspNetUsers(UserName),
+	Id nvarchar(128) foreign key REFERENCES AspNetUsers(Id),
 	HeaderImage nvarchar(128)
 )
 GO

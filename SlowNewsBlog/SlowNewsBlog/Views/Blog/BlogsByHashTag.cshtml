@@ -1,14 +1,21 @@
 ﻿@model SlowNewsBlog.Models.MultipleBlogPostViewModel
 @{
-    ViewBag.Title = "BlogsByHashTag";
+                /**/
+
+                ViewBag.Title = "BlogsByHashTag";
 }
 
 <h2>BlogsByHashTag</h2>
 
-@foreach (var blog in Model.BlogPosts)
-{
-<p>blog.Blog</p>
-}
-
-
+<div class="blogs">
+    @foreach (var blag in Model.BlogPosts)
+    {
+        <div class="blogBlock">
+            @Html.Partial("_BlogPreviewPartial", blag)
+            <div class="hashTagBlock">
+                @Html.Partial("_HashTagsList", Model.HashTagsForBlogPosts[blag.BlogPostId])
+            </div>
+        </div>
+    }
+</div>
 

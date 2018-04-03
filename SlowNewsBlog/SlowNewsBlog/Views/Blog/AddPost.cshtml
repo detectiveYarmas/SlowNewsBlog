@@ -23,12 +23,14 @@
             @Html.ListBoxFor(m => m.SelectedHashtagIds, Model.HashTags, new {@class = "form-control" })
         </div>
         <div class="form-group">
+            @Html.CheckBoxFor(m => m.BlogPost.Approved, new { @class = "form-control"})
+        </div>
+        <div class="form-group">
             <label>Image</label>
             <input id="ImageUpload" name="ImageUpload" type="file" class="form-control"/>
         </div>
         <div class="form-group">
             @Html.HiddenFor(m => m.BlogPost.CatagoryId)
-            @Html.HiddenFor(m => m.BlogPost.Approved)
             @Html.HiddenFor(m => m.BlogPost.HeaderImage)
             <input class="btn btn-primary" type="submit" value="Save" />
         </div>

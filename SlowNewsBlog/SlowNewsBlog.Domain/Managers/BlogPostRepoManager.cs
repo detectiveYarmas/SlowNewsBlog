@@ -38,7 +38,7 @@ namespace SlowNewsBlog.Domain.Managers
         {
             var response = new GetBlogResponse();
 
-            response.BlogPost = blogRepo.GetBlog(1);
+            response.BlogPost = blogRepo.GetBlog(id);
 
             if (response.BlogPost==null)
             {
@@ -183,6 +183,23 @@ namespace SlowNewsBlog.Domain.Managers
             return response;
         }
 
+        public GetBlogsByHashTagResponse GetBlogsByHashTag(int hashTagId)
+        {
+            GetBlogsByHashTagResponse response = new GetBlogsByHashTagResponse();
+            var blogsByHash = blogRepo.GetBlogsByHashTag(hashTagId);
+            if (blogsByHash.FirstOrDefault() == null)
+            {
+                response.Success = false;
+                response.Message = "Error: No blogs with HashTagId=" + hashTagId;
+            }
+            else
+            {
+                response.BlogPosts = blogsByHash;
+                response.Success = true;
+                response.Message = "Success"; 
+            }
+            return response;
+        }
 
         public GetBlogsByCatagoryResponse GetBlogsByCatagory(int id)
         {

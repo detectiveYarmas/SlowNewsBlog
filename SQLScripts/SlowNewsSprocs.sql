@@ -52,7 +52,8 @@ BEGIN
 	SELECT au.UserName
 	FROM AspNetUsers au
 	INNER JOIN AspNetUserRoles ar ON au.Id = ar.UserId
-	WHERE ar.RoleId = '0f23e78e-13be-4a36-8ab4-4ba857721bdb'
+	INNER JOIN AspNetRoles ON AspNetRoles.Id = ar.RoleId
+	WHERE ar.RoleId = (SELECT RoleId FROM AspNetUserRoles WHERE AspNetRoles.Name = 'Blogger')
 END
 GO
 
@@ -75,13 +76,13 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE AddNewBlogPost (@blog TEXT, @title NVARCHAR(100), @blogPostId INT OUTPUT, @CatagoryId INT, 
-@HeaderImage nvarchar(128), @Approved BIT) --when using this sproc, you must then add the blogger(AddAuthorToBlogPost) in a seperate call for the bridge table
+CREATE PROCEDURE AddNewBlogPost (@blog TEXT, @title NVARCHAR(100), @BlogPostId INT OUTPUT, @CatagoryId INT, 
+@HeaderImage nvarchar(128), @Id nvarchar(128)) --when using this sproc, you must then add the blogger(AddAuthorToBlogPost) in a seperate call for the bridge table
 AS
 BEGIN
-INSERT INTO BlogPosts (Blog, Title, CatagoryId, HeaderImage, Approved)
-VALUES (@blog, @title, @CatagoryId, @HeaderImage, @Approved)
-SET @blogPostId = SCOPE_IDENTITY()
+INSERT INTO BlogPosts (Blog, Title, CatagoryId, HeaderImage, Id)
+VALUES (@blog, @title, @CatagoryId, @HeaderImage, @Id)
+SET @BlogPostId = SCOPE_IDENTITY()
 END
 GO
 
@@ -102,6 +103,7 @@ CREATE PROCEDURE GetNewestBlogs
 AS
 SELECT TOP 10 *
 FROM BlogPosts
+WHERE Approved = 1 AND PublishDate IS NOT NULL AND GetDate() >= PublishDate
 ORDER BY PublishDate DESC
 GO
 
@@ -177,7 +179,7 @@ SELECT *
 FROM HashTags
 INNER JOIN BlogPostsHashTags ON HashTags.HashTagId = BlogPostsHashTags.HashTagId
 INNER JOIN BlogPosts ON BlogPosts.BlogPostId =  BlogPostsHashTags.BlogPostId
-WHERE @hashtagId = HashTags.HashTagId AND BlogPostsHashTags.Approved = 1
+WHERE @hashtagId = HashTags.HashTagId AND BlogPosts.Approved = 1
 GO
 
 CREATE PROCEDURE GetHashTag @hashTagId INT
@@ -198,7 +200,7 @@ AS
 SELECT *
 FROM BlogPostsHashTags
 INNER JOIN HashTags ON BlogPostsHashTags.HashTagId = HashTags.HashTagId
-WHERE BlogPostId = @blogPostId
+WHERE BlogPostId = @blogPostId AND HashTags.Approved = 1
 GO
 
 

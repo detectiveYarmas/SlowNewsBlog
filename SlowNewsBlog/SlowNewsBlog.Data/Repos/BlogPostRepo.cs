@@ -30,27 +30,29 @@ namespace SlowNewsBlog.Data.Repos
 
         public BlogPost AddNewBlogPost(BlogPost post)
         {
-            using (var sqlConnection = new SqlConnection())
+            using (var sqlConnection = new SqlConnection(Settings.GetConnectionString()))
             {
-                sqlConnection.ConnectionString = ConfigurationManager
-                    .ConnectionStrings["DefaultConnection"]
-                    .ConnectionString;
+                SqlCommand cmd = new SqlCommand("AddNewBlogPost", sqlConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                var parameters = new DynamicParameters();
-                parameters.Add("@blog", post.Blog);
-                parameters.Add("@title", post.Title);
-                parameters.Add("@blogPostId", dbType: DbType.Int32, direction: ParameterDirection.Output);
-                parameters.Add("@CatagoryId", post.CatagoryId);
-                parameters.Add("@HeaderImage", post.HeaderImage);
-                parameters.Add("@Approved", post.Approved);
-            
+                SqlParameter param = new SqlParameter("@BlogPostId", SqlDbType.Int);
+                param.Direction = ParameterDirection.Output;
 
-                sqlConnection.Query<BlogPost>("AddNewBlogPost", 
-                    parameters,
-                    commandType: CommandType.StoredProcedure);
+                cmd.Parameters.Add(param);
+                cmd.Parameters.AddWithValue("@blog", post.Blog);
+                cmd.Parameters.AddWithValue("@title", post.Title);
+                cmd.Parameters.AddWithValue("@CatagoryId", post.CatagoryId);
+                cmd.Parameters.AddWithValue("@HeaderImage", post.HeaderImage);
+                cmd.Parameters.AddWithValue("@Id", post.Id);
 
-                return post;
+                sqlConnection.Open();
+
+                cmd.ExecuteNonQuery();
+
+                post.BlogPostId = (int)param.Value;
             }
+
+            return post;
         }
 
          public List<BlogPost> GetNewestBlogs()
@@ -84,7 +86,7 @@ namespace SlowNewsBlog.Data.Repos
             }
         }
 
-        public BlogPost GetBlog(int id)
+        public BlogPost GetBlog(int blogId)
         {
             using (var sqlConnection = new SqlConnection())
             {
@@ -93,7 +95,7 @@ namespace SlowNewsBlog.Data.Repos
                     .ConnectionString;
 
                 var parameters = new DynamicParameters();
-                parameters.Add("@blogId", id);
+                parameters.Add("@blogId", blogId);
 
                 return sqlConnection.Query<BlogPost>("GetBlog",
                     parameters,
