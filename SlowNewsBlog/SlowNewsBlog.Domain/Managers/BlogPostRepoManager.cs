@@ -37,7 +37,7 @@ namespace SlowNewsBlog.Domain.Managers
         {
             var response = new GetBlogResponse();
 
-            response.BlogPost = blogRepo.GetBlog(1);
+            response.BlogPost = blogRepo.GetBlog(id);
 
             if (response.BlogPost==null)
             {

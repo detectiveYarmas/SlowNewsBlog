@@ -17,6 +17,7 @@
             <thead>
                 <tr>
                     <th>Title</th>
+                    <th>Header Image</th>
                     <th>Body</th>
                     <th>Date Added</th>
                     <th>Associated Hashtags</th>
@@ -27,9 +28,12 @@
                 {
                     if (blog.Approved == true)
                     {
+
+                        string firstParagraph = blog.Blog.Substring(0, blog.Blog.IndexOf("</p>") + 4);
                         <tr>
                             <td>@blog.Title</td>
-                            <td>@blog.Blog</td>
+                            <td><img src="~/Images/@blog.HeaderImage" class="img-thumbnail" /></td>
+                            <td>@Html.Raw(firstParagraph)</td>
                             <td>@blog.DateAdded</td>
                             <td>
                                 @foreach(var hashtag in blog.BlogPostHashTags)
@@ -55,6 +59,7 @@
             <thead>
                 <tr>
                     <th>Title</th>
+                    <th>Header Image</th>
                     <th>Body</th>
                     <th>Date Added</th>
                     <th>Associated Hashtags</th>
@@ -62,22 +67,25 @@
             </thead>
             <tbody>
                 @foreach (var blog in Model.UnApprovedBlogs)
-                {
-                    if (blog.Approved == false)
-                    {
-                        <tr>
-                            <td>@blog.Title</td>
-                            <td>@blog.Blog</td>
-                            <td>@blog.DateAdded</td>
-                            <td>
-                                @foreach(var hashtag in blog.BlogPostHashTags)
-                                {
-                                    @hashtag.HashTagName<br/>
-                                }
-                            </td>
-                        </tr>
-                    }
-                }
+    {
+        if (blog.Approved == false)
+        {
+            string firstParagraph = blog.Blog.Substring(0, blog.Blog.IndexOf("</p>") + 4);
+
+            <tr>
+                <td>@blog.Title</td>
+                <td><img src="~/Images/@blog.HeaderImage" class="img-thumbnail" /></td>
+                <td>@Html.Raw(firstParagraph)</td>
+                <td>@blog.DateAdded</td>
+                <td>
+                    @foreach (var hashtag in blog.BlogPostHashTags)
+        {
+            @hashtag.HashTagName<br />
+}
+                </td>
+            </tr>
+}
+}
             </tbody>
         </table>
     </div>
