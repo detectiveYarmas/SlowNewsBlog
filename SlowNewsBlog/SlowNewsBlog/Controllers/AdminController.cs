@@ -266,9 +266,9 @@ namespace SlowNewsBlog.Controllers
             var approved = blogMgr.GetAllApprovedBlogPosted();
             var notApproved = blogMgr.GetAllDisapprovedBlogs();
 
-            var model = new GroupedBlogViewModel { ApprovedBlogs = approved.Blogs, UnApprovedBlogs = notApproved.BlogPosts };
+            var groupModel = new GroupedBlogViewModel { ApprovedBlogs = approved.Blogs, UnApprovedBlogs = notApproved.BlogPosts };
 
-            return View(model);
+            return View(groupModel);
         }
 
     }

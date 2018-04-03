@@ -1,3 +1,4 @@
+using Microsoft.AspNet.Identity;
 using SlowNewsBlog.Data.Interfaces;
 using SlowNewsBlog.Data.Repos;
 using SlowNewsBlog.Domain.Factories;
@@ -50,46 +51,47 @@ namespace SlowNewsBlog.Controllers
         {
             var hashMgr = HashTagManagerFactory.Create();
             var cateMgr = CategoryRepoManagerFactory.Create();
+            var cResponse = cateMgr.GetCatagory(model.Catagory.CatagoryId);
+            model.Catagory = cResponse.CatagoryGot;
+            model.BlogPost.CatagoryId = model.Catagory.CatagoryId;
+            model.BlogPost.BlogPostHashTags = new List<HashTag>();
+            foreach (var id in model.SelectedHashtagIds)
+            {
+                var response = hashMgr.GetHashTag(id);
+
+                model.BlogPost.BlogPostHashTags.Add(response.HashTag);
+            }
+
+            if (model.ImageUpload != null && model.ImageUpload.ContentLength > 0)
+            {
+                var savepath = Server.MapPath("~/Images");
+
+                string fileName = Path.GetFileNameWithoutExtension(model.ImageUpload.FileName);
+                string extension = Path.GetExtension(model.ImageUpload.FileName);
+
+                var filePath = Path.Combine(savepath, fileName + extension);
+
+                int counter = 1;
+                while (System.IO.File.Exists(filePath))
+                {
+                    filePath = Path.Combine(savepath, fileName + counter.ToString() + extension);
+                    counter++;
+                }
+
+                model.ImageUpload.SaveAs(filePath);
+                model.BlogPost.HeaderImage = Path.GetFileName(filePath);
+            }
 
             if (ModelState.IsValid)
             {
-                model.BlogPost.BlogPostHashTags = new List<HashTag>();
-
-                foreach (var id in model.SelectedHashtagIds)
-                {
-                    var response = hashMgr.GetHashTag(id);
-
-                    model.BlogPost.BlogPostHashTags.Add(response.HashTag);
-                }
-
-                if (model.ImageUpload != null && model.ImageUpload.ContentLength > 0)
-                {
-                    var savepath = Server.MapPath("~/Images");
-
-                    string fileName = Path.GetFileNameWithoutExtension(model.ImageUpload.FileName);
-                    string extension = Path.GetExtension(model.ImageUpload.FileName);
-
-                    var filePath = Path.Combine(savepath, fileName + extension);
-
-                    int counter = 1;
-                    while (System.IO.File.Exists(filePath))
-                    {
-                        filePath = Path.Combine(savepath, fileName + counter.ToString() + extension);
-                        counter++;
-                    }
-
-                    model.ImageUpload.SaveAs(filePath);
-                    model.BlogPost.HeaderImage = Path.GetFileName(filePath);
-                }
-
-                var cResponse = cateMgr.GetCatagory(model.Catagory.CatagoryId);
-                model.Catagory = cResponse.CatagoryGot;
+                model.BlogPost.Id = User.Identity.GetUserId();
+                model.BlogPost.UserName = User.Identity.Name;
 
 
                 var blogMgr = BlogPostRepoManagerFactory.Create();
                 blogMgr.AddBlog(model.BlogPost);
 
-                return RedirectToAction("Blogs", "Admin", new { id = model.BlogPost.BlogPostId });
+                return RedirectToAction("BlogPost", "Blog", new { blogId = model.BlogPost.BlogPostId });
             }
 
             return View(model);

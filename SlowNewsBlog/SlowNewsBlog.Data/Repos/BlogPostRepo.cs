@@ -40,6 +40,9 @@ namespace SlowNewsBlog.Data.Repos
                 parameters.Add("@blog", post.Blog);
                 parameters.Add("@title", post.Title);
                 parameters.Add("@blogPostId", dbType: DbType.Int32, direction: ParameterDirection.Output);
+                parameters.Add("@CatagoryId", post.CatagoryId);
+                parameters.Add("@HeaderImage", post.HeaderImage);
+                parameters.Add("@Approved", post.Approved);
             
 
                 sqlConnection.Query<BlogPost>("AddNewBlogPost", 
