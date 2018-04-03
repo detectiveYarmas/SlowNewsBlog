@@ -30,18 +30,22 @@
                     {
 
                         string firstParagraph = blog.Blog.Substring(0, blog.Blog.IndexOf("</p>") + 4);
-                        <tr>
-                            <td>@blog.Title</td>
-                            <td><img src="~/Images/@blog.HeaderImage" class="img-thumbnail" /></td>
-                            <td>@Html.Raw(firstParagraph)</td>
-                            <td>@blog.DateAdded</td>
-                            <td>
-                                @foreach(var hashtag in blog.BlogPostHashTags)
-                                {
-                                    @hashtag.HashTagName<br/>
-                                }
-                            </td>
-                        </tr>
+                <tr>
+                    <td>@blog.Title</td>
+                    <td><img src="~/Images/@blog.HeaderImage" class="img-thumbnail" /></td>
+                    <td>@Html.Raw(firstParagraph)</td>
+                    <td>@blog.DateAdded</td>
+                    <td>
+                        @foreach (var hashtag in blog.BlogPostHashTags)
+        {
+                @hashtag.HashTagName<br />
+}
+                    </td>
+                    @using (Html.BeginForm("DeleteBlog", "Admin", FormMethod.Post))
+    {                   @Html.Hidden("blogPostId", blog.BlogPostId)
+                <td><button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this blog?');">Delete</button></td>
+}
+                </tr>
                     }
                 }
             </tbody>
@@ -67,7 +71,7 @@
             </thead>
             <tbody>
                 @foreach (var blog in Model.UnApprovedBlogs)
-    {
+                {
         if (blog.Approved == false)
         {
             string firstParagraph = blog.Blog.Substring(0, blog.Blog.IndexOf("</p>") + 4);
@@ -79,13 +83,13 @@
                 <td>@blog.DateAdded</td>
                 <td>
                     @foreach (var hashtag in blog.BlogPostHashTags)
-        {
-            @hashtag.HashTagName<br />
-}
+                    {
+                        @hashtag.HashTagName<br />
+                    }
                 </td>
             </tr>
-}
-}
+        }
+                }
             </tbody>
         </table>
     </div>

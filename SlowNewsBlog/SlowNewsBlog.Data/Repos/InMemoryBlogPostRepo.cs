@@ -123,5 +123,10 @@ namespace SlowNewsBlog.Data.Repos
             }
             return toReturn;
         }
+
+        public void RemoveBlog(int blogPostId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

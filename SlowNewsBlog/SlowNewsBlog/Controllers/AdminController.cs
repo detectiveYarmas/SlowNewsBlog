@@ -288,6 +288,7 @@ namespace SlowNewsBlog.Controllers
                 cateMgr.AddCatagoryToBlogPost(blag.BlogPostId, blag.CatagoryId);
                 var hashtags = hashMgr.GetHashTagsForBlog(blag.BlogPostId);
                 tags = hashtags.HashTags.ToList();
+                blag.BlogPostHashTags = new List<HashTag>();
 
                 foreach (var ht in tags)
                 {
@@ -298,6 +299,12 @@ namespace SlowNewsBlog.Controllers
             var groupModel = new GroupedBlogViewModel { ApprovedBlogs = approved.Blogs, UnApprovedBlogs = notApproved.BlogPosts };
 
             return View(groupModel);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteBlog(int blogPostId)
+        {
+            throw new NotImplementedException();
         }
 
     }

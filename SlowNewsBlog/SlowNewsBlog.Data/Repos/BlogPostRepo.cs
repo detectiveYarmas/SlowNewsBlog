@@ -209,5 +209,15 @@ namespace SlowNewsBlog.Data.Repos
 
             }
         }
+
+        public void RemoveBlog(int blogPostId)
+        {
+            using(var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                var param = new DynamicParameters();
+                param.Add("@blogId", blogPostId);
+                cn.Execute("RemoveBlog", param, commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }

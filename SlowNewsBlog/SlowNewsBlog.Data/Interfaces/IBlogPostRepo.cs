@@ -21,5 +21,6 @@ namespace SlowNewsBlog.Data.Interfaces
         List<BlogPost> GetBlogsByCatagory(int id);//
         List<BlogPost> GetNewestBlogs();
         List<BlogPost> GetBlogsByHashTag(int hashId);
+        void RemoveBlog(int blogPostId);
     }
 }
