@@ -90,7 +90,7 @@ namespace SlowNewsBlog.Controllers
                 var blogMgr = BlogPostRepoManagerFactory.Create();
                 blogMgr.AddBlog(model.BlogPost);
 
-                return RedirectToAction("BlogPost", "Blog");
+                return RedirectToAction("BlogPost", "Blog", new { blogId = model.BlogPost.BlogPostId });
             }
 
             return View(model);

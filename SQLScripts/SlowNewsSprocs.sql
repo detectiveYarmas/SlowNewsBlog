@@ -75,13 +75,13 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE AddNewBlogPost (@blog TEXT, @title NVARCHAR(100), @blogPostId INT OUTPUT, @CatagoryId INT, 
-@HeaderImage nvarchar(128), @Approved BIT) --when using this sproc, you must then add the blogger(AddAuthorToBlogPost) in a seperate call for the bridge table
+CREATE PROCEDURE AddNewBlogPost (@blog TEXT, @title NVARCHAR(100), @BlogPostId INT OUTPUT, @CatagoryId INT, 
+@HeaderImage nvarchar(128)) --when using this sproc, you must then add the blogger(AddAuthorToBlogPost) in a seperate call for the bridge table
 AS
 BEGIN
-INSERT INTO BlogPosts (Blog, Title, CatagoryId, HeaderImage, Approved)
-VALUES (@blog, @title, @CatagoryId, @HeaderImage, @Approved)
-SET @blogPostId = SCOPE_IDENTITY()
+INSERT INTO BlogPosts (Blog, Title, CatagoryId, HeaderImage)
+VALUES (@blog, @title, @CatagoryId, @HeaderImage)
+SET @BlogPostId = SCOPE_IDENTITY()
 END
 GO
 
