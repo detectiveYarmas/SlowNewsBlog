@@ -14,7 +14,7 @@ namespace SlowNewsBlog.Controllers
         
         private BlogPostRepoManager repo = BlogPostRepoManagerFactory.Create();
         // GET: Blogger
-        public ActionResult EditPost(string name)
+        public ActionResult EditPost()
         {
             GetBlogByBlogerResponse byBlogerResponse = repo.GetBlogByBloger(User.Identity.Name);
             if (!byBlogerResponse.Success)

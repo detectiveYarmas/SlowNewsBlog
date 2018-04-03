@@ -38,20 +38,19 @@ namespace SlowNewsBlog.Tests
         public void CanDisapproveBlog()
         {
             var repo = new BlogPostRepo();
-            Assert.IsTrue(repo.GetAllApprovedBlogPosts().Count == 0);
-            repo.ApproveBlog(1);
-            Assert.IsTrue(repo.GetAllApprovedBlogPosts().Count == 1);
+            Assert.IsTrue(repo.GetAllApprovedBlogPosts().Count == 2);
             repo.DisapproveBlog(1);
-            Assert.IsTrue(repo.GetAllApprovedBlogPosts().Count == 0);
+            Assert.IsTrue(repo.GetAllApprovedBlogPosts().Count == 1);
         }
 
         [Test]
         public void CanApproveBlog()
         {
             var repo = new BlogPostRepo();
-            Assert.IsTrue(repo.GetAllApprovedBlogPosts().Count == 0);
-            repo.ApproveBlog(1);
+            repo.DisapproveBlog(1);
             Assert.IsTrue(repo.GetAllApprovedBlogPosts().Count == 1);
+            repo.ApproveBlog(1);
+            Assert.IsTrue(repo.GetAllApprovedBlogPosts().Count == 2);
         }
 
 
@@ -119,21 +118,21 @@ namespace SlowNewsBlog.Tests
         public void CanGetAllApprovedBlogPosts()
         {
             var repo = new BlogPostRepo();
-            Assert.AreEqual(repo.GetAllApprovedBlogPosts().Count,0);
+            Assert.AreEqual(repo.GetAllApprovedBlogPosts().Count,2);
         }
 
         [Test]
         public void CanGetAllDisapprovedBlogPosts()
         {
             var repo = new BlogPostRepo();
-            Assert.AreEqual(repo.GetAllDisapprovedBlogPosts().Count, 2);
+            Assert.AreEqual(repo.GetAllDisapprovedBlogPosts().Count, 0);
         }
 
         [Test]
         public void CanGetNewestBlogs()
         {
             var repo = new BlogPostRepo();
-            Assert.AreEqual(1, repo.GetNewestBlogs().Count);
+            Assert.AreEqual(2, repo.GetNewestBlogs().Count);
         }
     }
 }
