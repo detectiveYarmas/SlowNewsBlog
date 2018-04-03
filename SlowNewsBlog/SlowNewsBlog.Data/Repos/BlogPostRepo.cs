@@ -82,7 +82,7 @@ namespace SlowNewsBlog.Data.Repos
             }
         }
 
-        public BlogPost GetBlog(int id)
+        public BlogPost GetBlog(int blogId)
         {
             using (var sqlConnection = new SqlConnection())
             {
@@ -91,7 +91,7 @@ namespace SlowNewsBlog.Data.Repos
                     .ConnectionString;
 
                 var parameters = new DynamicParameters();
-                parameters.Add("@blogId", id);
+                parameters.Add("@blogId", blogId);
 
                 return sqlConnection.Query<BlogPost>("GetBlog",
                     parameters,

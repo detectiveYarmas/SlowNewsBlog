@@ -102,6 +102,7 @@ CREATE PROCEDURE GetNewestBlogs
 AS
 SELECT TOP 10 *
 FROM BlogPosts
+WHERE Approved = 1
 ORDER BY PublishDate DESC
 GO
 
