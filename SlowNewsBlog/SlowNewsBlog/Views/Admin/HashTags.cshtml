@@ -59,7 +59,7 @@
                             <td>@hashtag.HashTagName</td>
                             @using (Html.BeginForm("ApproveHashtag", "Admin", FormMethod.Post))
                             {
-                                @Html.CheckBoxFor(m => m.HashTag.Approved)
+                            <td>@Html.CheckBoxFor(m => m.HashTag.Approved)</td>
                                 <td><button class="btn btn-primary col-md-offset-6" onclick="return confirm('Are you sure you want to approved this hashtag?')">Approve</button></td>
                             }
                             @using (Html.BeginForm("DeleteHashTag", "Admin", FormMethod.Post))

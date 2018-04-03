@@ -52,7 +52,8 @@ BEGIN
 	SELECT au.UserName
 	FROM AspNetUsers au
 	INNER JOIN AspNetUserRoles ar ON au.Id = ar.UserId
-	WHERE ar.RoleId = '0f23e78e-13be-4a36-8ab4-4ba857721bdb'
+	INNER JOIN AspNetRoles ON AspNetRoles.Id = ar.RoleId
+	WHERE ar.RoleId = (SELECT RoleId FROM AspNetUserRoles WHERE AspNetRoles.Name = 'Blogger')
 END
 GO
 
@@ -179,7 +180,7 @@ SELECT *
 FROM HashTags
 INNER JOIN BlogPostsHashTags ON HashTags.HashTagId = BlogPostsHashTags.HashTagId
 INNER JOIN BlogPosts ON BlogPosts.BlogPostId =  BlogPostsHashTags.BlogPostId
-WHERE @hashtagId = HashTags.HashTagId
+WHERE @hashtagId = HashTags.HashTagId AND BlogPosts.Approved = 1
 GO
 
 CREATE PROCEDURE GetHashTag @hashTagId INT
@@ -200,7 +201,7 @@ AS
 SELECT *
 FROM BlogPostsHashTags
 INNER JOIN HashTags ON BlogPostsHashTags.HashTagId = HashTags.HashTagId
-WHERE BlogPostId = @blogPostId
+WHERE BlogPostId = @blogPostId AND HashTags.Approved = 1
 GO
 
 
