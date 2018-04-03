@@ -55,6 +55,9 @@ namespace SlowNewsBlog.Controllers
             model.Catagory = cResponse.CatagoryGot;
             model.BlogPost.CatagoryId = model.Catagory.CatagoryId;
             model.BlogPost.BlogPostHashTags = new List<HashTag>();
+            model.BlogPost.Approved = false;
+            model.BlogPost.Id = User.Identity.GetUserId();
+            model.BlogPost.UserName = User.Identity.Name;
             foreach (var id in model.SelectedHashtagIds)
             {
                 var response = hashMgr.GetHashTag(id);
@@ -84,14 +87,10 @@ namespace SlowNewsBlog.Controllers
 
             if (ModelState.IsValid)
             {
-                model.BlogPost.Id = User.Identity.GetUserId();
-                model.BlogPost.UserName = User.Identity.Name;
-
-
                 var blogMgr = BlogPostRepoManagerFactory.Create();
                 blogMgr.AddBlog(model.BlogPost);
 
-                return RedirectToAction("BlogPost", "Blog", new { blogId = model.BlogPost.BlogPostId });
+                return RedirectToAction("BlogPost", "Blog");
             }
 
             return View(model);
