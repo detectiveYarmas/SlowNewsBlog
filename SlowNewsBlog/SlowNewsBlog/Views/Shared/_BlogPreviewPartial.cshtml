@@ -1,7 +1,7 @@
 ﻿@model SlowNewsBlog.Models.Tables.BlogPost
 
 <div class="blog-preview">
-    <h3>@Html.ActionLink($"{Model.Title}", "BlogPost", Model.BlogPostId, new { @class = "blog-title" })</h3>
+    <h3>@Html.ActionLink($"{Model.Title}", "BlogPost", "Blog", Model.BlogPostId, new { @class = "blog-title" })</h3>
     @{
             string firstParagraph = Model.Blog.Substring(0, Model.Blog.IndexOf("</p>")+4);
 
