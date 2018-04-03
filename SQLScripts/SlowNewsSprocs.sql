@@ -39,6 +39,7 @@ DROP PROCEDURE IF EXISTS dbo.HashTagUpdate
 DROP PROCEDURE IF EXISTS dbo.GetHashTagsForBlogPost
 DROP PROCEDURE IF EXISTS dbo.GetAllBloggers
 DROP PROCEDURE IF EXISTS dbo.GetBlogsByBlogger
+DROP PROCEDURE IF EXISTS dbo.GetAllHashTags
 GO
 
 
@@ -74,11 +75,12 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE AddNewBlogPost (@blog TEXT, @title NVARCHAR(100), @blogPostId INT OUTPUT) --when using this sproc, you must then add the blogger(AddAuthorToBlogPost) in a seperate call for the bridge table
+CREATE PROCEDURE AddNewBlogPost (@blog TEXT, @title NVARCHAR(100), @blogPostId INT OUTPUT, @CatagoryId INT, 
+@HeaderImage nvarchar(128), @Approved BIT) --when using this sproc, you must then add the blogger(AddAuthorToBlogPost) in a seperate call for the bridge table
 AS
 BEGIN
-INSERT INTO BlogPosts (Blog, Title)
-VALUES (@blog, @title)
+INSERT INTO BlogPosts (Blog, Title, CatagoryId, HeaderImage, Approved)
+VALUES (@blog, @title, @CatagoryId, @HeaderImage, @Approved)
 SET @blogPostId = SCOPE_IDENTITY()
 END
 GO
@@ -120,7 +122,7 @@ GO
 
 CREATE PROCEDURE GetAllHashTags
 AS
-SELECT *
+SELECT HashTagId, HashTagName, Approved
 FROM HashTags
 GO
 

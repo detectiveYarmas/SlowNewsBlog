@@ -7,7 +7,7 @@
 <h2>AddBlog</h2>
 
 <div class="row">
-    @using (Html.BeginForm(FormMethod.Post))
+    @using (Html.BeginForm("AddPost", "Blog", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="form-group">
             @Html.LabelFor(m => m.BlogPost.Title, new { @class = "control-label"})
@@ -27,6 +27,9 @@
             <input id="ImageUpload" name="ImageUpload" type="file" class="form-control"/>
         </div>
         <div class="form-group">
+            @Html.HiddenFor(m => m.BlogPost.CatagoryId)
+            @Html.HiddenFor(m => m.BlogPost.Approved)
+            @Html.HiddenFor(m => m.BlogPost.HeaderImage)
             <input class="btn btn-primary" type="submit" value="Save" />
         </div>
     }
