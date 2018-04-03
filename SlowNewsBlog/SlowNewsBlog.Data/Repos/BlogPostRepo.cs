@@ -40,6 +40,9 @@ namespace SlowNewsBlog.Data.Repos
                 parameters.Add("@blog", post.Blog);
                 parameters.Add("@title", post.Title);
                 parameters.Add("@blogPostId", dbType: DbType.Int32, direction: ParameterDirection.Output);
+                parameters.Add("@CatagoryId", post.CatagoryId);
+                parameters.Add("@HeaderImage", post.HeaderImage);
+                parameters.Add("@Approved", post.Approved);
             
 
                 sqlConnection.Query<BlogPost>("AddNewBlogPost", 
@@ -70,6 +73,10 @@ namespace SlowNewsBlog.Data.Repos
                 var parameters = new DynamicParameters();
                 parameters.Add("@blogPostId", blogPost.BlogPostId);
                 parameters.Add("@blogPost", blogPost.Blog);
+                parameters.Add("@title", blogPost.Title);
+                parameters.Add("@CatagoryId", blogPost.CatagoryId);
+                parameters.Add("@HeaderImage", blogPost.HeaderImage);
+                parameters.Add("@Approved", blogPost.Approved);
 
                 sqlConnection.Query<BlogPost>("UpdateBlogPost",
                     parameters,

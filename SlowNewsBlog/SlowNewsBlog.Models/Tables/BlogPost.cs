@@ -18,5 +18,6 @@ namespace SlowNewsBlog.Models.Tables
         public string Id { get; set; }
         public string HeaderImage { get; set; }
         public ICollection<HashTag> BlogPostHashTags { get; set; }
+        public string UserName { get; set; }
     }
 }
