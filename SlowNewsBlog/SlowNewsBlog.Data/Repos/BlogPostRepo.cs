@@ -43,6 +43,7 @@ namespace SlowNewsBlog.Data.Repos
                 cmd.Parameters.AddWithValue("@title", post.Title);
                 cmd.Parameters.AddWithValue("@CatagoryId", post.CatagoryId);
                 cmd.Parameters.AddWithValue("@HeaderImage", post.HeaderImage);
+                cmd.Parameters.AddWithValue("@Id", post.Id);
 
                 sqlConnection.Open();
 
