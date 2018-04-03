@@ -451,11 +451,12 @@
     <Content Include="Views\Blog\BlogsByHashTag.cshtml" />
     <Content Include="Views\Blog\BlogPost.cshtml" />
     <Content Include="Views\Blog\BlogsByCatagory.cshtml" />
+    <Content Include="Views\Blogger\EditPost.cshtml" />
+    <Content Include="Views\Blogger\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
-    <Folder Include="Views\Blogger\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SlowNewsBlog.Models.Tables.BlogPost>
+
+@{
+    ViewBag.Title = "EditPost";
+}
+
+<h2>EditPost</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Blog)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CatagoryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateAdded)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HeaderImage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Blog)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.CatagoryId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateAdded)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HeaderImage)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BlogPostId }) |
+            @Html.ActionLink("Delete", "Delete", new {  id=item.BlogPostId  })
+        </td>
+    </tr>
+}
+
+</table>

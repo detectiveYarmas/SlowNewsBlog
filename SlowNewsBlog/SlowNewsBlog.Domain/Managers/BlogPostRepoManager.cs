@@ -14,6 +14,7 @@ namespace SlowNewsBlog.Domain.Managers
         private IBlogPostRepo blogRepo { get; set; }
         private ICategory categoryRepo { get; set; }
 
+       
         public BlogPostRepoManager(IBlogPostRepo blogPostRepo, ICategory category)
         {
             blogRepo = blogPostRepo;
@@ -48,6 +49,15 @@ namespace SlowNewsBlog.Domain.Managers
 
             response.Message = "Returned post with id = " + id;
             response.Success = true;
+            return response;
+        }
+
+        public Response UpdateBlogPost(BlogPost blogPost)
+        {
+            Response response = new Response();
+            blogRepo.UpdateBlogPost(blogPost);
+            response.Success = true;
+            response.Message = "Updated";
             return response;
         }
 
