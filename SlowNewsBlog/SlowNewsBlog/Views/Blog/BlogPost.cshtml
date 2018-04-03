@@ -5,8 +5,23 @@
 
 <h2>BlogPost</h2>
 
-<div class="blogPost">
-@Model.BlogPost
-</div>
-@Html.Partial("_HashTagsList", Model.HashTags)
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-9">
+            <div class="blogPost">
+                <div class="blog-content">
+                    <div class="headerImage">
+                        <img src="@Url.Content($"~/Images/{Model.BlogPost.HeaderImage}")" class="img-responsive" />
+                    </div>
+                    @Html.Raw(Model.BlogPost.Blog)
+                </div>
+                @Html.Partial("_HashTagsList", Model.HashTags)
+            </div>
+        </div>
+        <div class="col-xs-3">
+            @Html.Partial("_CatagoriesList", Model.Catagories)
+        </div>
+    </div>
+    </div>
 
