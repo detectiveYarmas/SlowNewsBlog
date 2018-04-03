@@ -48,18 +48,20 @@ namespace SlowNewsBlog.Data.Repos
             return blogPost;
         }
 
-        public void ApproveBlog(int id)
+        public bool ApproveBlog(int id)
         {
             BlogPost blogPost = blogPosts.Where(blog => blog.BlogPostId == id).FirstOrDefault();
             blogPost.Approved = true;
             UpdateBlogPost(blogPost);
+            return true;
         }
 
-        public void DisapproveBlog(int id)
+        public bool DisapproveBlog(int id)
         {
             BlogPost blogPost = blogPosts.Where(blog => blog.BlogPostId == id).FirstOrDefault();
             blogPost.Approved = false;
             UpdateBlogPost(blogPost);
+            return true;
         }
 
         public List<BlogPost> GetAllApprovedBlogPosts()
@@ -124,7 +126,7 @@ namespace SlowNewsBlog.Data.Repos
             return toReturn;
         }
 
-        public void RemoveBlog(int blogPostId)
+        public bool RemoveBlog(int blogPostId)
         {
             throw new NotImplementedException();
         }

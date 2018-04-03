@@ -304,7 +304,19 @@ namespace SlowNewsBlog.Controllers
         [HttpPost]
         public ActionResult DeleteBlog(int blogPostId)
         {
-            throw new NotImplementedException();
+            var repo = BlogPostRepoManagerFactory.Create();
+            repo.RemoveBlog(blogPostId);
+
+            return RedirectToAction("Blogs");
+        }
+
+        [HttpPost]
+        public ActionResult ApproveBlog(int id)
+        {
+            var repo = BlogPostRepoManagerFactory.Create();
+            repo.ApproveBlog(id);
+
+            return RedirectToAction("Blogs");
         }
 
     }

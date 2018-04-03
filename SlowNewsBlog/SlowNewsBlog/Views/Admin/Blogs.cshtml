@@ -67,6 +67,7 @@
                     <th>Body</th>
                     <th>Date Added</th>
                     <th>Associated Hashtags</th>
+                    <th>Approval</th>
                 </tr>
             </thead>
             <tbody>
@@ -87,6 +88,11 @@
                         @hashtag.HashTagName<br />
                     }
                 </td>
+                @using (Html.BeginForm("ApproveBlog", "Admin", FormMethod.Post))
+                {       @Html.Hidden("id", blog.BlogPostId)
+                    <td><button class="btn btn-primary" onclick="return confirm('Are you sure you want to approve this blog?');">Approve</button></td>
+                }
+
             </tr>
         }
                 }

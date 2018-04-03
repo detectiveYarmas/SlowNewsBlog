@@ -209,5 +209,41 @@ namespace SlowNewsBlog.Domain.Managers
             }
 
         }
+
+        public RemoveBlogResponse RemoveBlog(int blogPostId)
+        {
+            var response = new RemoveBlogResponse();
+
+            response.Success = blogRepo.RemoveBlog(blogPostId);
+
+            if (!response.Success)
+            {
+                response.Message = "Delete was unsuccessful.";
+            }
+            else
+            {
+                response.Success = true;
+            }
+
+            return response;
+        }
+
+        public ApproveBlogResponse ApproveBlog(int id)
+        {
+            var response = new ApproveBlogResponse();
+
+            response.Success = blogRepo.ApproveBlog(id);
+
+            if (!response.Success)
+            {
+                response.Message = "Approval was unsuccessful.";
+            }
+            else
+            {
+                response.Success = true;
+            }
+
+            return response;
+        }
     }
 }

@@ -43,6 +43,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Responses\AddBlogResponse.cs" />
     <Compile Include="Responses\AddHashTagResponse.cs" />
+    <Compile Include="Responses\ApproveBlogResponse.cs" />
     <Compile Include="Responses\ApprovedHashTagsResponse.cs" />
     <Compile Include="Responses\DeleteHashTagResponse.cs" />
     <Compile Include="Responses\EditHashTagResponse.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Responses\GetHashTagResponse.cs" />
     <Compile Include="Responses\GetHashTagsResponse.cs" />
     <Compile Include="Responses\GetNewestBlogsResponse.cs" />
+    <Compile Include="Responses\RemoveBlogResponse.cs" />
     <Compile Include="Responses\Response.cs" />
     <Compile Include="Responses\UnapprovedHashTagsResponse.cs" />
     <Compile Include="Tables\BlogPost.cs" />
