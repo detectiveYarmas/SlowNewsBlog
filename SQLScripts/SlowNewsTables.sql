@@ -1,13 +1,20 @@
 USE SlowNewsBlog
 GO
 
+
 DROP TABLE IF EXISTS dbo.BlogPostsBloggers
+GO
 DROP TABLE IF EXISTS dbo.BlogPostsHashTags
-DROP TABLE IF EXISTS dbo.HashTags
+GO
 DROP TABLE IF EXISTS dbo.BlogPosts
-DROP TABLE IF EXISTS dbo.Catagories
-DROP TABLE IF EXISTS dbo.StaticPages
 GO 
+DROP TABLE IF EXISTS dbo.HashTags
+GO
+DROP TABLE IF EXISTS dbo.Catagories
+GO
+DROP TABLE IF EXISTS dbo.StaticPages
+GO
+
 
 CREATE TABLE StaticPages
 (
