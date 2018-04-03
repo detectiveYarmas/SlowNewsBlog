@@ -176,7 +176,7 @@ SELECT *
 FROM HashTags
 INNER JOIN BlogPostsHashTags ON HashTags.HashTagId = BlogPostsHashTags.HashTagId
 INNER JOIN BlogPosts ON BlogPosts.BlogPostId =  BlogPostsHashTags.BlogPostId
-WHERE @hashtagId = HashTags.HashTagId AND BlogPostsHashTags.Approved = 1
+WHERE @hashtagId = HashTags.HashTagId
 GO
 
 CREATE PROCEDURE GetHashTag @hashTagId INT

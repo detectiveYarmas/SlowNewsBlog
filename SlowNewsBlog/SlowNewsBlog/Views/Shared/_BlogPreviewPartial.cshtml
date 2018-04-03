@@ -11,6 +11,6 @@
             <img src="@Url.Content($"~/Images/{Model.HeaderImage}")" class="img-responsive" />
         </div>
             @Html.Raw(firstParagraph)
-            <strong>@Html.ActionLink("Read More", "Blog", "BlogPost", new { blogId = Model.BlogPostId })</strong>
+            <strong>@Html.ActionLink("Read More", "BlogPost", "Blog", new { blogId = Model.BlogPostId }, new { @class="ReadMore" })</strong>
         </div>
 </div>

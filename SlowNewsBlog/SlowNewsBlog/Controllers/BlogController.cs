@@ -136,6 +136,38 @@ namespace SlowNewsBlog.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public ActionResult BlogsByHashTag(int hashTagId)
+        {
+            MultipleBlogPostViewModel model = new MultipleBlogPostViewModel();
+            var blogResponse = _blogManager.GetBlogsByHashTag(hashTagId);
+            var categoryResponse = _categoryManager.GetAllCategories();
+            if (blogResponse.Success)
+            {
+                model.BlogPosts = blogResponse.BlogPosts;
+                Dictionary<int, List<HashTag>> hashtags = new Dictionary<int, List<HashTag>>();
+                foreach (var blah in blogResponse.BlogPosts)
+                {
+                    var hashResponse = _hashManager.GetHashTagsForBlog(blah.BlogPostId);
+                    if (hashResponse.Success)
+                    {
+                        hashtags.Add(blah.BlogPostId, hashResponse.HashTags);
+                    }
+
+                }
+                model.HashTagsForBlogPosts = hashtags;
+            }
+            if (categoryResponse.Success)
+            {
+                model.Categories = categoryResponse.Catagories;
+            }        
+            //else
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
+            return View(model);
+        }
     }
 }
 
