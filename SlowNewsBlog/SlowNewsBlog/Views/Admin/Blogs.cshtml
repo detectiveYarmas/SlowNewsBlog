@@ -93,6 +93,12 @@
                     <td><button class="btn btn-primary" onclick="return confirm('Are you sure you want to approve this blog?');">Approve</button></td>
                 }
 
+                @using (Html.BeginForm("DeleteBlog", "Admin", FormMethod.Post))
+                {
+                    @Html.Hidden("id", blog.BlogPostId)
+                    <td><button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this blog?');">Delete</button></td>
+                }
+
             </tr>
         }
                 }
