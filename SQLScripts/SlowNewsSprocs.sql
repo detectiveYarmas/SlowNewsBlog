@@ -44,6 +44,7 @@ DROP PROCEDURE IF EXISTS dbo.GetStaticPageById
 DROP PROCEDURE IF EXISTS dbo.AddStaticPage
 DROP PROCEDURE IF EXISTS dbo.DeleteStaticPage
 DROP PROCEDURE IF EXISTS dbo.UpdateStaticPage
+DROP PROCEDURE IF EXISTS dbo.GetStaticPages
 GO
 
 
@@ -127,6 +128,12 @@ AS
 SELECT *
 FROM StaticPages
 WHERE StaticPageId = @staticPageId
+GO
+
+CREATE PROCEDURE GetStaticPages
+AS
+SELECT Title, StaticPageId, Body
+FROM StaticPages
 GO
 
 CREATE PROCEDURE GetNewestBlogs
