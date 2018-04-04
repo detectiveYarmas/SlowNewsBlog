@@ -50,6 +50,7 @@
     <Compile Include="BlogPostResponseTests.cs" />
     <Compile Include="HashTagResponseTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaticPageResponseTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -11,5 +11,16 @@ namespace SlowNewsBlog.Models.Tables
         public int StaticPageId { get; set; }
         public string Title { get; set; }
         public string Body { get; set; }
+
+        public StaticPage(int staticPageId, string title, string body)
+        {
+            StaticPageId = staticPageId;
+            Title = title;
+            Body = body;
+        }
+
+        public StaticPage()
+        {
+        }
     }
 }

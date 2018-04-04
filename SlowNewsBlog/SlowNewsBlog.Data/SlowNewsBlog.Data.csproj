@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Interfaces\IBloggerRepo.cs" />
     <Compile Include="Interfaces\ICategory.cs" />
+    <Compile Include="Interfaces\IStaticPageRepo.cs" />
     <Compile Include="Repos\BloggerRepo.cs" />
     <Compile Include="Repos\CategoryRepo.cs" />
     <Compile Include="Repos\InMemoryBlogPostRepo.cs" />
@@ -56,6 +57,8 @@
     <Compile Include="Repos\BlogPostRepo.cs" />
     <Compile Include="Repos\HashTagRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repos\InMemoryStaticPageRepo.cs" />
+    <Compile Include="Repos\StaticPageRepo.cs" />
     <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
