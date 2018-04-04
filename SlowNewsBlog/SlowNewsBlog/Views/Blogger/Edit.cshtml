@@ -7,7 +7,8 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Blogger", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
 {
     @Html.AntiForgeryToken()
 
@@ -82,11 +83,11 @@
     </div>
 }
 
-    <div>
-        @Html.HiddenFor(m => m.BlogPost.HeaderImage)
+<div>
+    @Html.HiddenFor(m => m.BlogPost.HeaderImage)
 
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
 
 
 

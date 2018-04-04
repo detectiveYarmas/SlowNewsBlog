@@ -58,14 +58,16 @@ namespace SlowNewsBlog.Tests
         public void CanAddNewBlogPost()
         {
             DateTime dateTime = new DateTime().ToLocalTime();
-           
+
             BlogPost blogPost = new BlogPost()
             {
-                
+                Id = "phil@phil.com",
+                HeaderImage = "gogog",
                 Approved=false,
                 Blog="This is a test Blog",
                 DateAdded = dateTime,
-                Title="Test",                            
+                Title="Test",  
+                CatagoryId = 1
             };
             var repo = new BlogPostRepo();
             repo.AddNewBlogPost(blogPost);
@@ -134,7 +136,7 @@ namespace SlowNewsBlog.Tests
         public void CanGetNewestBlogs()
         {
             var repo = new BlogPostRepo();
-            Assert.AreEqual(2, repo.GetNewestBlogs().Count);
+            Assert.AreEqual(1, repo.GetNewestBlogs().Count);
         }
 
         [Test]
