@@ -151,7 +151,7 @@ namespace SlowNewsBlog.Data.Repos
             }
         }
 
-        public void DisapproveBlog(int id)
+        public bool DisapproveBlog(int id)
         {
             using (var sqlConnection = new SqlConnection())
             {
@@ -162,13 +162,15 @@ namespace SlowNewsBlog.Data.Repos
                 var parameters = new DynamicParameters();
                 parameters.Add("@blogPostId", id);
 
-                 sqlConnection.Query<BlogPost>("DisapproveBlog",
+                 sqlConnection.Execute("DisapproveBlog",
                     parameters,
-                    commandType: CommandType.StoredProcedure).AsList();
+                    commandType: CommandType.StoredProcedure);
             }
+
+            return true;
         }
 
-        public void ApproveBlog(int id)
+        public bool ApproveBlog(int id)
         {
             using (var sqlConnection = new SqlConnection())
             {
@@ -179,10 +181,12 @@ namespace SlowNewsBlog.Data.Repos
                 var parameters = new DynamicParameters();
                 parameters.Add("@blogPostId", id);
 
-                sqlConnection.Query<BlogPost>("ApproveBlog",
+                sqlConnection.Execute("ApproveBlog",
                    parameters,
-                   commandType: CommandType.StoredProcedure).AsList();
+                   commandType: CommandType.StoredProcedure);
             }
+
+            return true;
         }
         
 
@@ -212,6 +216,18 @@ namespace SlowNewsBlog.Data.Repos
                 return sqlConn.Query<BlogPost>("GetBlogsByHashTag", param, commandType: CommandType.StoredProcedure).AsList();
 
             }
+        }
+
+        public bool RemoveBlog(int blogPostId)
+        {
+            using(var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                var param = new DynamicParameters();
+                param.Add("@blogId", blogPostId);
+                cn.Execute("RemoveBlog", param, commandType: CommandType.StoredProcedure);
+            }
+
+            return true;
         }
     }
 }

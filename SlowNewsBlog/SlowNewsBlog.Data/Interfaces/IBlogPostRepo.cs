@@ -11,8 +11,8 @@ namespace SlowNewsBlog.Data.Interfaces
     {
         List<BlogPost> GetBlogsByBlogger(string id);
         BlogPost AddNewBlogPost(BlogPost blogPost);
-        void DisapproveBlog(int id);
-        void ApproveBlog(int id);
+        bool DisapproveBlog(int id);
+        bool ApproveBlog(int id);
         BlogPost GetBlog(int id);
         List<BlogPost> GetAllBlogs();
         void UpdateBlogPost(BlogPost blogPost);
@@ -21,5 +21,6 @@ namespace SlowNewsBlog.Data.Interfaces
         List<BlogPost> GetBlogsByCatagory(int id);//
         List<BlogPost> GetNewestBlogs();
         List<BlogPost> GetBlogsByHashTag(int hashId);
+        bool RemoveBlog(int blogPostId);
     }
 }
