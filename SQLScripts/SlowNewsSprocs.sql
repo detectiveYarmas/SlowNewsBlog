@@ -40,12 +40,35 @@ DROP PROCEDURE IF EXISTS dbo.GetHashTagsForBlogPost
 DROP PROCEDURE IF EXISTS dbo.GetAllBloggers
 DROP PROCEDURE IF EXISTS dbo.GetBlogsByBlogger
 DROP PROCEDURE IF EXISTS dbo.GetAllHashTags
+DROP PROCEDURE IF EXISTS dbo.GetStaticPageById
+DROP PROCEDURE IF EXISTS dbo.AddStaticPage
+DROP PROCEDURE IF EXISTS dbo.DeleteStaticPage
+DROP PROCEDURE IF EXISTS dbo.UpdateStaticPage
 GO
 
 
+--static page sprocs
+CREATE PROCEDURE DeleteStaticPage (@staticPageId INT)
+AS
+DELETE FROM StaticPages
+WHERE StaticPageId = @staticPageId
+GO
+
+CREATE PROCEDURE UpdateStaticPage (@staticPageId INT, @title NVARCHAR(100) , @body TEXT)
+AS
+UPDATE StaticPages
+SET Title = @title, Body = @body
+WHERE StaticPageId = @staticPageId
+GO
+
+CREATE PROCEDURE AddStaticPage (@title NVARCHAR(100), @body TEXT, @staticPageId INT OUTPUT)
+AS
+INSERT INTO StaticPages (Title, Body)
+VALUES (@title, @body)
+SET @staticPageId = SCOPE_IDENTITY();
+GO
+
 -- add new sprocs
-
-
 CREATE PROCEDURE GetAllBloggers
 AS
 BEGIN
@@ -99,6 +122,13 @@ GO
 
 
 -- get sprocs
+CREATE PROCEDURE GetStaticPageById (@staticPageId INT)
+AS
+SELECT *
+FROM StaticPages
+WHERE StaticPageId = @staticPageId
+GO
+
 CREATE PROCEDURE GetNewestBlogs
 AS
 SELECT TOP 10 *
