@@ -61,7 +61,7 @@ namespace SlowNewsBlog.Tests
 
             BlogPost blogPost = new BlogPost()
             {
-                Id = "phil@phil.com",
+                Id = "ec322f27-8f78-4aac-b593-5961688fdcbd",
                 HeaderImage = "gogog",
                 Approved=false,
                 Blog="This is a test Blog",
@@ -79,7 +79,7 @@ namespace SlowNewsBlog.Tests
         public void CanGetAllBlogs()
         {
             var repo = new BlogPostRepo();
-            Assert.AreEqual(2, repo.GetAllBlogs().Count);
+            Assert.AreEqual(3, repo.GetAllBlogs().Count);
         }
 
         [Test]
@@ -129,7 +129,7 @@ namespace SlowNewsBlog.Tests
         public void CanGetAllDisapprovedBlogPosts()
         {
             var repo = new BlogPostRepo();
-            Assert.AreEqual(repo.GetAllDisapprovedBlogPosts().Count, 0);
+            Assert.AreEqual(repo.GetAllDisapprovedBlogPosts().Count, 1);
         }
 
         [Test]

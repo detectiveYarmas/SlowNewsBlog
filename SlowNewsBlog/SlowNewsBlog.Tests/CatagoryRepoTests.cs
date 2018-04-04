@@ -124,8 +124,8 @@ namespace SlowNewsBlog.Tests
 
             Assert.AreEqual(8, repo.GetAllCategories().Count);
             Assert.AreEqual(1, repo2.GetBlogsByCatagory(2).Count);
-            repo.RemoveCatagoryFromBlogPost(2);
-            Assert.AreEqual(0, repo2.GetBlogsByCatagory(2).Count);
+            repo.RemoveCatagoryFromBlogPost(3);
+            Assert.AreEqual(0, repo2.GetBlogsByCatagory(1).Count);
         }    
     }
 }

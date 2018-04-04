@@ -137,11 +137,11 @@ WHERE Approved = 1 AND PublishDate IS NOT NULL AND GetDate() >= PublishDate
 ORDER BY PublishDate DESC
 GO
 
-CREATE PROCEDURE GetBlogsByBlogger @Id nvarchar(128)
+CREATE PROCEDURE GetBlogsByBlogger @Id nvarchar(256)
 AS
 SELECT *
 FROM BlogPosts
-WHERE BlogPosts.Id = @Id
+WHERE BlogPosts.Id = (SELECT AspNetUsers.Id FROM AspNetUsers WHERE Email = @Id)
 GO
 
 CREATE PROCEDURE GetAllCatagories
