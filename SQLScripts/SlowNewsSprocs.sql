@@ -188,7 +188,7 @@ CREATE PROCEDURE GetBlogsByCatagory @catagoryId INT
 AS
 SELECT *
 FROM BlogPosts
-WHERE @catagoryId = BlogPosts.CatagoryId
+WHERE @catagoryId = BlogPosts.CatagoryId AND Approved = 1 AND GETDATE() > PublishDate
 GO
 
 CREATE PROCEDURE GetBlog @blogId INT
@@ -210,7 +210,7 @@ SELECT *
 FROM HashTags
 INNER JOIN BlogPostsHashTags ON HashTags.HashTagId = BlogPostsHashTags.HashTagId
 INNER JOIN BlogPosts ON BlogPosts.BlogPostId =  BlogPostsHashTags.BlogPostId
-WHERE @hashtagId = HashTags.HashTagId AND BlogPosts.Approved = 1
+WHERE @hashtagId = HashTags.HashTagId AND BlogPosts.Approved = 1 AND GETDATE() > PublishDate
 GO
 
 CREATE PROCEDURE GetHashTag @hashTagId INT
