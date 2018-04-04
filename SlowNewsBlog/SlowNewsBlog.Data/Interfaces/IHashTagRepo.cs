@@ -9,6 +9,8 @@ namespace SlowNewsBlog.Data.Interfaces
 {
     public interface IHashTagRepo
     {
+        void RemoveHashTagsFromBlog(int blog);
+        void AddHashTagToBlog(int hash,int post);
         HashTag GetHashTag(int id);
         bool RemoveHashTag(int id);
         HashTag AddHashTag(HashTag hashtag);

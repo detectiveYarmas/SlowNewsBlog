@@ -25,6 +25,18 @@ namespace SlowNewsBlog.Data
             }
         }
 
+        public void AddHashTagToBlog(int hash, int post)
+        {
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@hashTagId", hash);
+                parameters.Add("@blogPostId", post);
+
+                cn.Execute("AddHashTagToBlogPost", parameters, commandType: CommandType.StoredProcedure);
+            }
+        }
+
         public HashTag EditHashTag(HashTag hash)
         {
             using (var cn = new SqlConnection(Settings.GetConnectionString()))
@@ -111,6 +123,17 @@ namespace SlowNewsBlog.Data
                 }
 
                 return false;
+            }
+        }
+
+        public void RemoveHashTagsFromBlog(int blog)
+        {
+            using (var con = new SqlConnection(Settings.GetConnectionString()))
+            {
+                var param = new DynamicParameters();
+                param.Add("@blogPostId", blog);
+
+                var hashtags = con.Query<HashTag>("RemoveHashTagFromBlogPost", param, commandType: CommandType.StoredProcedure).AsList();
             }
         }
     }

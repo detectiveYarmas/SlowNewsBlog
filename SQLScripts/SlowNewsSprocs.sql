@@ -249,10 +249,10 @@ UPDATE BlogPosts SET CatagoryId=null WHERE BlogPosts.BlogPostId=@blogPostId;
 
 GO
 
-CREATE PROCEDURE RemoveHashTagFromBlogPost @hashTagId INT, @blogPostId INT
+CREATE PROCEDURE RemoveHashTagFromBlogPost  @blogPostId INT
 AS
 DELETE FROM BlogPostsHashTags
-WHERE @hashtagId = HashTagId AND @blogPostId = BlogPostId
+WHERE @blogPostId = BlogPostId
 GO
 
 
@@ -294,12 +294,15 @@ SET HashTagName = @hashTag
 WHERE HashTagId = @hashTagId
 GO
 
-CREATE PROCEDURE UpdateBlogPost @blogPostId INT, @blogPost TEXT
+CREATE PROCEDURE UpdateBlogPost (@blog TEXT, @title NVARCHAR(100), @BlogPostId INT, @CatagoryId INT, 
+@HeaderImage NVARCHAR(128), @Approved bit)
 AS
 UPDATE BlogPosts
-SET Blog = @blogPost
-WHERE BlogPostId = @blogPostId
+SET Blog = @blog, Title =@title, CatagoryId =  @CatagoryId, HeaderImage =@HeaderImage, Approved =@Approved
+WHERE BlogPostId = @BlogPostId
 GO
+
+
 
 CREATE PROCEDURE UpdateCatagory @catagoryId INT, @catagoryName NVARCHAR(50)
 AS

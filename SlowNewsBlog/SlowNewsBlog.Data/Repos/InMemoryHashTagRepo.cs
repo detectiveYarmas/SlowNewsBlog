@@ -31,6 +31,11 @@ namespace SlowNewsBlog.Data.InMemoryRepos
             return hashtag;
         }
 
+        public void AddHashTagToBlog(int hash, int post)
+        {
+            throw new NotImplementedException();
+        }
+
         public HashTag EditHashTag(HashTag hash)
         {
             var oldHashTag = GetHashTag(hash.HashTagId);
@@ -98,6 +103,11 @@ namespace SlowNewsBlog.Data.InMemoryRepos
 
             hashtags.Remove(toRemove);
             return true;
+        }
+
+        public void RemoveHashTagsFromBlog(int blog)
+        {
+            throw new NotImplementedException();
         }
     }
 }

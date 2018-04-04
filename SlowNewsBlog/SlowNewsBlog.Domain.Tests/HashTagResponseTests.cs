@@ -94,6 +94,8 @@ namespace SlowNewsBlog.Domain.Tests
             Assert.IsFalse(response.Hashtag.Approved);
         }
 
+
+
         [Test]
         public void CanEditHashTag()
         {

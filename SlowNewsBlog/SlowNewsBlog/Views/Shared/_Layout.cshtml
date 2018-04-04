@@ -11,6 +11,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
+
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -20,23 +21,23 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <li>@Html.ActionLink("Bloggers", "Bloggers", "Admin")</li>
-                        <li>@Html.ActionLink("Blogs", "Blogs", "Admin")</li>
-                        <li>@Html.ActionLink("Hashtags", "HashTags", "Admin")</li>
-                    }
-                    @if (User.IsInRole("Blogger"))
-                    {
-                        <li>@Html.ActionLink("Add Post", "AddPost", "Blog")</li>
-                        <li>@Html.ActionLink("EditPost", "EditPost", "Blogger")</li>
-                    }
-                    else
-                    {
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    }
 
+                    @if (User.IsInRole("Admin"))
+    {
+                <li>@Html.ActionLink("Bloggers", "Bloggers", "Admin")</li>
+                <li>@Html.ActionLink("Blogs", "Blogs", "Admin")</li>
+                <li>@Html.ActionLink("Hashtags", "HashTags", "Admin")</li>
+}
+                    @if (User.IsInRole("Blogger"))
+    {
+                <li>@Html.ActionLink("Add Post", "AddPost", "Blog")</li>
+                <li>@Html.ActionLink("EditPost", "EditPost", "Blogger")</li>
+}
+else
+{
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+}
 
                 </ul>
                 @Html.Partial("_LoginPartial")

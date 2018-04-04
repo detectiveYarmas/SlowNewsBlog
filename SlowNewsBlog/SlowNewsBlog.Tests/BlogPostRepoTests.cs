@@ -61,6 +61,7 @@ namespace SlowNewsBlog.Tests
            
             BlogPost blogPost = new BlogPost()
             {
+                
                 Approved=false,
                 Blog="This is a test Blog",
                 DateAdded = dateTime,
@@ -106,6 +107,7 @@ namespace SlowNewsBlog.Tests
                 Blog = "This is a test Blog",
                 DateAdded = dateTime,
                 Title = "Test",
+                CatagoryId = 1,
             };
 
             var repo = new BlogPostRepo();

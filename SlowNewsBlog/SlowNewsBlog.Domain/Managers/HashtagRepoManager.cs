@@ -38,6 +38,33 @@ namespace SlowNewsBlog.Domain.Managers
             return response;
         }
 
+        public Response AddHashToPost(int hash,int post)
+        {
+            Response response = new Response();
+            if (repo.GetAllHashtags().All(h => h.HashTagId != hash))
+            {
+                response.Success = false;
+                response.Message = "No Hash Found";
+            }
+            else
+            {
+                repo.AddHashTagToBlog(hash, post);
+                response.Success = true;
+                response.Message = "Success";
+            }
+            return response;
+            
+        }
+
+        public Response RemoveHashTagsFromBlog(int id)
+        {
+            Response response = new Response();
+            repo.RemoveHashTagsFromBlog(id);
+            response.Message = "tags removed";
+            response.Success = true;
+            return response;
+        }
+
         public GetHashTagResponse GetHashTag(int id)
         {
             var response = new GetHashTagResponse();

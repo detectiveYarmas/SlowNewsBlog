@@ -11,83 +11,83 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>BlogPost</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.BlogPost.BlogPostId)
+    <div class="form-horizontal">
+        <h4>BlogPost</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.BlogPost.BlogPostId)
 
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.BlogPost.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.BlogPost.Title, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.BlogPost.Title, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.BlogPost.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BlogPost.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BlogPost.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.HiddenFor(model => model.BlogPost.Approved, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BlogPost.CatagoryId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Catagory.CatagoryId, Model.Catagories, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BlogPost.CatagoryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.HiddenFor(model => model.BlogPost.PublishedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+
+        <h4>Hashtags</h4>
+        <div class="form-group">
+            @Html.ListBoxFor(model => model.SelectedHashtagIds, Model.HashTags, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BlogPost.DateAdded, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BlogPost.DateAdded, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BlogPost.DateAdded, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.BlogPost.Id)
+
+        <div class="form-group">
+            <label>Image</label>
+            <input id="ImageUpload" name="ImageUpload" type="file" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BlogPost.Blog, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(m => m.BlogPost.Blog, new { @class = "textarea", id = "mytextarea" })
+                @Html.ValidationMessageFor(model => model.BlogPost.Blog, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.HiddenFor(model => model.BlogPost.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.HiddenFor(model => model.BlogPost.Approved, htmlAttributes: new { @class = "control-label col-md-2" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.BlogPost.CatagoryId, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Catagory.CatagoryId, Model.Catagories, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.BlogPost.CatagoryId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.HiddenFor(model => model.BlogPost.PublishedDate, htmlAttributes: new { @class = "control-label col-md-2" })
-    </div>
-
-    <h4>Hashtags</h4>
-    <div class="form-group">
-        @Html.ListBoxFor(model => model.SelectedHashtagIds, Model.HashTags, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.BlogPost.DateAdded, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.BlogPost.DateAdded, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.BlogPost.DateAdded, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    @Html.HiddenFor(model => model.BlogPost.Id)
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.BlogPost.HeaderImage, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.BlogPost.HeaderImage, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.BlogPost.HeaderImage, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.BlogPost.Blog, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextAreaFor(m => m.BlogPost.Blog, new { @class = "textarea", id = "mytextarea" })
-            @Html.ValidationMessageFor(model => model.BlogPost.Blog, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.HiddenFor(model => model.BlogPost.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
-        </div>
-    </div>
-</div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div>
+        @Html.HiddenFor(m => m.BlogPost.HeaderImage)
+
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
 
 
 @section Scripts{

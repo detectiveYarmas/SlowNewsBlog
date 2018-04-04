@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SlowNewsBlog.Data;
+using SlowNewsBlog.Data.Repos;
 using SlowNewsBlog.Models.Tables;
 using System;
 using System.Collections.Generic;
@@ -95,6 +96,7 @@ namespace SlowNewsBlog.Tests
 
             Assert.IsNull(loaded);
         }
+
 
         [Test]
         public void CanAddHashtag()

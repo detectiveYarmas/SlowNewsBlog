@@ -74,7 +74,7 @@ namespace SlowNewsBlog.Data.Repos
 
                 var parameters = new DynamicParameters();
                 parameters.Add("@blogPostId", blogPost.BlogPostId);
-                parameters.Add("@blogPost", blogPost.Blog);
+                parameters.Add("@blog", blogPost.Blog);
                 parameters.Add("@title", blogPost.Title);
                 parameters.Add("@CatagoryId", blogPost.CatagoryId);
                 parameters.Add("@HeaderImage", blogPost.HeaderImage);
