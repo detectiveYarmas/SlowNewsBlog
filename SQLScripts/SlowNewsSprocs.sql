@@ -45,8 +45,18 @@ DROP PROCEDURE IF EXISTS dbo.AddStaticPage
 DROP PROCEDURE IF EXISTS dbo.DeleteStaticPage
 DROP PROCEDURE IF EXISTS dbo.UpdateStaticPage
 DROP PROCEDURE IF EXISTS dbo.GetStaticPages
+DROP PROCEDURE IF EXISTS dbo.SetPublishDate
 GO
 
+
+
+--misc sprocs
+CREATE PROCEDURE SetPublishDate (@blogId INT, @publishDate DATE)
+AS
+UPDATE BlogPosts
+SET PublishDate = @publishDate
+WHERE BlogPostId = @blogId
+GO
 
 --static page sprocs
 CREATE PROCEDURE DeleteStaticPage (@staticPageId INT)

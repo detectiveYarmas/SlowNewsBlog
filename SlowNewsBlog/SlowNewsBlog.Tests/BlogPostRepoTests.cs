@@ -148,5 +148,14 @@ namespace SlowNewsBlog.Tests
 
             Assert.IsNull(blog);
         }
+
+        [Test]
+        public void CanUpdatePublishDate()
+        {
+            DateTime publishDate = DateTime.Parse("2/1/2010");
+            var repo = new BlogPostRepo();
+            repo.SetPublishDate(1, publishDate);
+            Assert.AreSame(repo.GetBlog(1).PublishedDate, publishDate);
+        }
     }
 }

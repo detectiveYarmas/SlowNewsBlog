@@ -256,6 +256,18 @@ namespace SlowNewsBlog.Domain.Managers
             return response;
         }
 
+        public PublishResponse SetPublishDate(int id, DateTime date)
+        {
+            var response = new PublishResponse();
+            response.Success = blogRepo.SetPublishDate(id, date);
+            if (response.Success)
+            {
+                response.BlogId = id;
+                response.Date = date;
+            }
+            return response;
+        }
+
 
     }
 }

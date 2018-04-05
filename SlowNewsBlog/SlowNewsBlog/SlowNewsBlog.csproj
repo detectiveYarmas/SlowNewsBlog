@@ -216,6 +216,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddBlogViewModel.cs" />
     <Compile Include="Models\BlogPostCategoryViewModel.cs" />
+    <Compile Include="Models\PublishDateViewModel.cs" />
     <Compile Include="Models\MultipleBlogPostViewModel.cs" />
     <Compile Include="Models\GroupedBlogViewModel.cs" />
     <Compile Include="Models\EditHashTagViewModel.cs" />
@@ -454,6 +455,7 @@
     <Content Include="Views\Blog\BlogsByCatagory.cshtml" />
     <Content Include="Views\Blogger\EditPost.cshtml" />
     <Content Include="Views\Blogger\Edit.cshtml" />
+    <Content Include="Views\Admin\SetPublishDate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
