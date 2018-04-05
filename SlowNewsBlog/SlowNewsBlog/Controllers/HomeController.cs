@@ -61,26 +61,26 @@ namespace SlowNewsBlog.Controllers
             return View();
         }
 
-        //[AllowAnonymous]
-        //public ActionResult Posts()
-        //{
-            
-        //    return View(_blogManager.GetAllBlogs());
-        //}
+        [AllowAnonymous]
+        public ActionResult Posts()
+        {
 
-        
-        //public ActionResult Create()
-        //{
-        //    BlogPost blogPost = new BlogPost();
-        //    return View(blogPost);
-        //}
+            return View(_blogManager.GetAllBlogs());
+        }
 
-        //[HttpPost]
-        //public ActionResult Create(BlogPost post)
-        //{
-        //    //_blogManager.AddNewBlogPost(post);
 
-        //    return RedirectToAction("Post");
-        //}
+        public ActionResult Create()
+        {
+            BlogPost blogPost = new BlogPost();
+            return View(blogPost);
+        }
+
+        [HttpPost]
+        public ActionResult Create(BlogPost post)
+        {
+            //_blogManager.AddNewBlogPost(post);
+
+            return RedirectToAction("Post");
+        }
     }
 }
