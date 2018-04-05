@@ -1,9 +1,9 @@
-﻿@model SlowNewsBlog.Models.PublishDateViewModel
+﻿@model List<SlowNewsBlog.Models.PublishDateViewModel>
 @{
     ViewBag.Title = "SetPublishDate";
 }
 
-<h2>Schedualer</h2>
+<h2>Scheduler</h2>
 
 <table>
     <thead>
@@ -13,22 +13,25 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var blog in Model.BlogPosts)
-    {
+        @{var sorted = Model.OrderByDescending(m => m.PublishedDate).ToList();}
+            @for (int i=0; i<sorted.Count;i++)
+            {
         <tr>
-            <td>@blog.Title</td>
-            @if (blog.PublishedDate == null)
-            { 
-                @Html.HiddenFor(Model => Model.BlogPosts.Where(d=>d.BlogPostId == blog.BlogPostId))
-        <td style="background-color: lightcoral">@Html.EditorFor(m=>m.BlogPosts.Where(d => d.BlogPostId == blog.BlogPostId).Select(f=>f.PublishedDate).First())</td>
+            <td>@sorted[i].Title</td>
+            @if (sorted[i].PublishedDate == null)
+    {
+        @Html.HiddenFor(m => sorted[i].BlogPostId)
+        <td style="background-color: red">@Html.EditorFor(m => sorted[i].PublishedDate, new { @class = "date" })</td>
 }
 else
 {
-        <td>@Html.EditorFor(m => m.BlogPosts.Where(d => d.BlogPostId == blog.BlogPostId).Select(f => f.PublishedDate).First())</td>
+        @Html.HiddenFor(m=>sorted[i].BlogPostId)
+        <td>@Html.EditorFor(m => sorted[i].PublishedDate, new { @class="date" })</td>
+
 }
 
         </tr>
-     }
+        }
 
     </tbody>
 </table>

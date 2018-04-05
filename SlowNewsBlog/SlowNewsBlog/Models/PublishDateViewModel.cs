@@ -14,8 +14,9 @@ namespace SlowNewsBlog.Models
         public string Title { get; set; }
         public bool Approved { get; set; }
         public int CatagoryId { get; set; }
-        [DisplayFormat(DataFormatString = "{0:Y}", ApplyFormatInEditMode = true)]
-        public DateTime PublishedDate { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime? PublishedDate { get; set; }
         public DateTime DateAdded { get; set; }
         public string Id { get; set; }
         public string HeaderImage { get; set; }
