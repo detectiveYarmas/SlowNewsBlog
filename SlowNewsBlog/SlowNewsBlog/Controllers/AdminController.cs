@@ -346,7 +346,7 @@ namespace SlowNewsBlog.Controllers
                         Title = blog.Title,
                         Approved = blog.Approved,
                         CatagoryId = blog.CatagoryId,
-                        PublishedDate = blog.PublishedDate,
+                        PublishedDate = blog.PublishDate,
                         DateAdded = blog.DateAdded,
                         Id = blog.Id,
                         HeaderImage = blog.HeaderImage,
