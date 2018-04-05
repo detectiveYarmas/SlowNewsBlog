@@ -145,7 +145,6 @@ namespace SlowNewsBlog.Tests
             var repo = new BlogPostRepo();
             repo.RemoveBlog(1);
             var blog = repo.GetBlog(1);
-
             Assert.IsNull(blog);
         }
     }
