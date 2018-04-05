@@ -43,6 +43,7 @@
     <Compile Include="Factories\BlogPostRepoManagerFactory.cs" />
     <Compile Include="Factories\CategoryRepoManagerFactory.cs" />
     <Compile Include="Factories\HashTagManagerFactory.cs" />
+    <Compile Include="Factories\StaticPageManagerFactory.cs" />
     <Compile Include="Managers\BlogPostRepoManager.cs" />
     <Compile Include="Managers\CategoryRepoManager.cs" />
     <Compile Include="Managers\HashtagRepoManager.cs" />

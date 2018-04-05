@@ -1,0 +1,41 @@
+﻿@model SlowNewsBlog.Models.StaticPagesViewModel
+
+@{
+    ViewBag.Title = "StaticPages";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Static Pages</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Body</th>
+                    <th>@Html.ActionLink("Add Page","AddStaticPage", "Admin", null, new { @class = "btn btn-primary"})</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var page in Model.StaticPages)
+                {
+                    <tr>
+                        <td>@page.Title</td>
+                        <td>@Html.Raw(page.Body)</td>
+                        <td>@Html.ActionLink("Edit", "EditStaticPage", new { staticPageId = page.StaticPageId }, new { @class = "btn btn-primary" } )</td>
+                        @using (Html.BeginForm("DeleteStaticPage", "Admin", FormMethod.Post))
+                        {
+                            @Html.Hidden("staticPageId", page.StaticPageId)
+                            <td><button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this hashtag?')">Delete</button></td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

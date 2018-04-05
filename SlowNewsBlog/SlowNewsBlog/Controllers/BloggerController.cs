@@ -20,7 +20,7 @@ namespace SlowNewsBlog.Controllers
         private CategoryRepoManager catRepo = CategoryRepoManagerFactory.Create();
         private HashtagRepoManager hashRepo = HashTagManagerFactory.Create();
 
-        // GET: Blogger
+        
         public ActionResult EditPost()
         {
             GetBlogByBlogerResponse byBlogerResponse = repo.GetBlogByBloger(User.Identity.Name);
@@ -114,6 +114,7 @@ namespace SlowNewsBlog.Controllers
                 
                 blog.CatagoryId = model.Catagory.CatagoryId;
                 blog.BlogPostHashTags = model.BlogPost.BlogPostHashTags;
+                blog.Approved = false;
                 repo.UpdateBlogPost(blog);
                 return RedirectToAction("EditPost");
             }
