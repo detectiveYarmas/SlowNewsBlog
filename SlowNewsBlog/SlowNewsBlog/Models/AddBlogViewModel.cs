@@ -13,6 +13,8 @@ namespace SlowNewsBlog.Models
         [AllowHtml]
         public Catagory Catagory { get; set; }
         [AllowHtml]
+        public int CatagoryId { get; set; }
+        [AllowHtml]
         public IEnumerable<SelectListItem> Catagories { get; set; }
         [AllowHtml]
         public BlogPost BlogPost { get; set; }
