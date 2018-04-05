@@ -19,5 +19,6 @@ namespace SlowNewsBlog.Data.Interfaces
         List<HashTag> GetUnapprovedHashtags();
         HashTag EditHashTag(HashTag hash);
         List<HashTag> GetHashTagsForBlog(int blogPostId);
+        bool ApproveHashTag(int hashTagId);
     }
 }

@@ -70,8 +70,7 @@ namespace SlowNewsBlog.Controllers
                         hashRepo.AddHashToPost(item, model.BlogPost.BlogPostId);
                     }
                 }
-                BlogPost blog = new BlogPost();
-                blog = model.BlogPost;
+                BlogPost blog = blog = model.BlogPost;
                 if (model.ImageUpload != null && model.ImageUpload.ContentLength > 0)
                 {
                     var savepath = Server.MapPath("~/Images");
@@ -91,6 +90,11 @@ namespace SlowNewsBlog.Controllers
                     model.ImageUpload.SaveAs(filePath);
                     model.BlogPost.HeaderImage = Path.GetFileName(filePath);
                 }
+                else
+                {
+                    blog.HeaderImage = repo.GetBlogById(model.BlogPost.BlogPostId).BlogPost.HeaderImage;
+                }
+                
                 blog.CatagoryId = model.Catagory.CatagoryId;
                 blog.BlogPostHashTags = model.BlogPost.BlogPostHashTags;
                 repo.UpdateBlogPost(blog);
