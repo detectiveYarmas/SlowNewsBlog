@@ -215,6 +215,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddBlogViewModel.cs" />
+    <Compile Include="Models\AddStaticPageViewModel.cs" />
     <Compile Include="Models\BlogPostCategoryViewModel.cs" />
     <Compile Include="Models\MultipleBlogPostViewModel.cs" />
     <Compile Include="Models\GroupedBlogViewModel.cs" />
@@ -454,6 +455,7 @@
     <Content Include="Views\Blog\BlogsByCatagory.cshtml" />
     <Content Include="Views\Blogger\EditPost.cshtml" />
     <Content Include="Views\Blogger\Edit.cshtml" />
+    <Content Include="Views\Admin\AddStaticPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

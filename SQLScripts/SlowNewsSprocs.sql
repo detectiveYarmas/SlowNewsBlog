@@ -301,11 +301,11 @@ SET Approved = 1
 WHERE BlogPostId = @blogPostId
 GO
 
-CREATE PROCEDURE ApproveHashTag @hashTagId INT, @blogPostId INT
+CREATE PROCEDURE ApproveHashTag @hashTagId INT
 AS
-UPDATE BlogPostsHashTags
+UPDATE HashTags
 SET  Approved = 1
-WHERE BlogPostId = @blogPostId AND HashTagId = @hashTagId
+WHERE HashTagId = @hashTagId
 GO
 
 CREATE PROCEDURE DisapproveBlog @blogPostId INT

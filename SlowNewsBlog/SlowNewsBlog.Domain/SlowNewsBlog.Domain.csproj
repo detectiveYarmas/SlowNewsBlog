@@ -46,6 +46,7 @@
     <Compile Include="Managers\BlogPostRepoManager.cs" />
     <Compile Include="Managers\CategoryRepoManager.cs" />
     <Compile Include="Managers\HashtagRepoManager.cs" />
+    <Compile Include="Managers\StaticPageRepoManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

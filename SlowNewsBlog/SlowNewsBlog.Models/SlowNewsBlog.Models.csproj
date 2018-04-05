@@ -46,6 +46,7 @@
     <Compile Include="Responses\AddStaticPageResponse.cs" />
     <Compile Include="Responses\ApproveBlogResponse.cs" />
     <Compile Include="Responses\ApprovedHashTagsResponse.cs" />
+    <Compile Include="Responses\ApproveHashTagResponse.cs" />
     <Compile Include="Responses\DeleteHashTagResponse.cs" />
     <Compile Include="Responses\DeleteStaticPageResponse.cs" />
     <Compile Include="Responses\EditHashTagResponse.cs" />

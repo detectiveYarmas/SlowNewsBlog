@@ -229,6 +229,17 @@ namespace SlowNewsBlog.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult ApproveHashtag(int hashTagId)
+        {
+            var hashMgr = HashTagManagerFactory.Create();
+            var hashtag = hashMgr.GetHashTag(hashTagId);
+
+            hashMgr.ApproveHashTag(hashtag.HashTag.HashTagId);
+
+            return RedirectToAction("HashTags");
+        }
+
         [HttpGet]
         public ActionResult EditHashTag(int hashTagId)
         {
@@ -246,13 +257,10 @@ namespace SlowNewsBlog.Controllers
         public ActionResult EditHashTag(EditHashTagViewModel model)
         {
             var hashMgr = HashTagManagerFactory.Create();
-            HashTag hash = new HashTag();
 
             if (ModelState.IsValid)
             {
-                hash.HashTagName = model.HashTag.HashTagName;
-                hash.Approved = model.HashTag.Approved;
-                hashMgr.EditHashTag(hash);
+                hashMgr.EditHashTag(model.HashTag);
 
                 return RedirectToAction("HashTags");
             }
@@ -317,6 +325,20 @@ namespace SlowNewsBlog.Controllers
             repo.ApproveBlog(id);
 
             return RedirectToAction("Blogs");
+        }
+
+        [HttpGet]
+        public ActionResult AddStaticPage()
+        {
+            var model = new AddStaticPageViewModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddStaticPage(AddStaticPageViewModel model)
+        {
+            throw new NotImplementedException();
         }
 
     }
