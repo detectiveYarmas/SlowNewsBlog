@@ -13,25 +13,39 @@
         </tr>
     </thead>
     <tbody>
-        @{var sorted = Model.OrderByDescending(m => m.PublishedDate).ToList();}
+        @{var sorted = Model.OrderByDescending(m => m.PublishDate).ToList();}
             @for (int i=0; i<sorted.Count;i++)
             {
         <tr>
             <td>@sorted[i].Title</td>
-            @if (sorted[i].PublishedDate == null)
-    {
-        @Html.HiddenFor(m => sorted[i].BlogPostId)
-        <td style="background-color: red">@Html.EditorFor(m => sorted[i].PublishedDate, new { @class = "date" })</td>
+            @if (sorted[i].PublishDate == null)
+            {
+
+
+                using (Html.BeginForm("SetPublishDate", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.Hidden("blogPostId", sorted[i].BlogPostId);
+        <td><div class="form-group">@Html.TextBox("date", sorted[i].PublishDate, null, new { @class = "date", style = "background-color= lightcoral" })</div></td>
+        <td><div class="form-group"><input type="submit" value="Save" class="btn btn-default" /></div></td>
+                }
+            }
+            else
+            {
+
+                using (Html.BeginForm("SetPublishDate", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.Hidden("blogPostId", sorted[i].BlogPostId);
+        <td><div class="form-group">@Html.TextBox("date", sorted[i].PublishDate, new { @class = "date" }) </div></td>
+        <td><div class="form-group"><input type="submit" value="Save" class="btn btn-default" /></div></td>
 }
-else
-{
-        @Html.HiddenFor(m=>sorted[i].BlogPostId)
-        <td>@Html.EditorFor(m => sorted[i].PublishedDate, new { @class="date" })</td>
+
 
 }
 
         </tr>
         }
+
+        @Html.ActionLink("Home", "Index")
 
     </tbody>
 </table>

@@ -14,7 +14,7 @@ namespace SlowNewsBlog.Models.Tables
         public string Title { get; set; }
         public bool Approved { get; set; }
         public int CatagoryId { get; set; }
-        public DateTime? PublishedDate { get; set; }
+        public DateTime? PublishDate { get; set; }
         public DateTime DateAdded { get; set; }
         public string Id { get; set; }
         public string HeaderImage { get; set; }

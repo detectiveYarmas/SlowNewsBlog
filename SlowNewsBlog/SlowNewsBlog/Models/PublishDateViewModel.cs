@@ -16,7 +16,8 @@ namespace SlowNewsBlog.Models
         public int CatagoryId { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime? PublishedDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? PublishDate { get; set; }
         public DateTime DateAdded { get; set; }
         public string Id { get; set; }
         public string HeaderImage { get; set; }

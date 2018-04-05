@@ -346,7 +346,7 @@ namespace SlowNewsBlog.Controllers
                         Title = blog.Title,
                         Approved = blog.Approved,
                         CatagoryId = blog.CatagoryId,
-                        PublishedDate = blog.PublishedDate,
+                        PublishDate = blog.PublishDate,
                         DateAdded = blog.DateAdded,
                         Id = blog.Id,
                         HeaderImage = blog.HeaderImage,
@@ -366,11 +366,11 @@ namespace SlowNewsBlog.Controllers
 
 
         [HttpPost]
-        public ActionResult SetPublishDate(BlogPost model, DateTime date)
+        public ActionResult SetPublishDate(int blogPostId, DateTime date)
         {
             var repo = BlogPostRepoManagerFactory.Create();
-            repo.SetPublishDate(model.BlogPostId, date);
-            return View(model);
+            repo.SetPublishDate(blogPostId, date);
+            return RedirectToAction("SetPublishDate", "Admin");
         }
 
         [HttpGet]
