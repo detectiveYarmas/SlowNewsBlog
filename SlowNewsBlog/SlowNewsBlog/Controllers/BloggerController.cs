@@ -163,6 +163,7 @@ namespace SlowNewsBlog.Controllers
                 }
                 blog.CatagoryId = model.Catagory.CatagoryId;
                 blog.BlogPostHashTags = model.BlogPost.BlogPostHashTags;
+                blog.Approved = false;
                 repo.UpdateBlogPost(blog);
                 return RedirectToAction("EditPost");
             }

@@ -6,9 +6,7 @@
 
 <h2>EditPost</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -48,8 +46,7 @@
             @Html.DisplayFor(modelItem => item.HeaderImage)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BlogPostId }) |
-            @Html.ActionLink("Delete", "Delete", new {  id=item.BlogPostId  })
+            @Html.ActionLink("Edit", "Edit", new { id=item.BlogPostId })
         </td>
     </tr>
 }
