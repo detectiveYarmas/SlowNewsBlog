@@ -33,6 +33,23 @@ namespace SlowNewsBlog.Controllers
 
         [ValidateInput(false)]
         [HttpGet]
+        public ActionResult RequestNewHashTag()
+        {
+            return View(new HashTag());
+        }
+
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult RequestNewHashTag(HashTag hashTag)
+        {
+            hashTag.HashTagName = "#" + hashTag.HashTagName;
+            hashTag.Approved = false;
+            hashRepo.AddHashTag(hashTag);
+            return RedirectToAction("Index", "Home");
+        }
+
+        [ValidateInput(false)]
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             return View(new AddBlogViewModel()

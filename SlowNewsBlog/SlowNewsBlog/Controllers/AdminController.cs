@@ -323,7 +323,7 @@ namespace SlowNewsBlog.Controllers
         {
             var repo = BlogPostRepoManagerFactory.Create();
             repo.ApproveBlog(id);
-
+            repo.SetPublishDate(id,DateTime.Now);
             return RedirectToAction("Blogs");
         }
 
