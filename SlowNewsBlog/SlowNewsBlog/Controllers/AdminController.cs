@@ -323,14 +323,14 @@ namespace SlowNewsBlog.Controllers
         {
             var repo = BlogPostRepoManagerFactory.Create();
             repo.ApproveBlog(id);
-
+            repo.SetPublishDate(id,DateTime.Now);
             return RedirectToAction("Blogs");
         }
 
         [HttpGet]
         public ActionResult SetPublishDate()
         {
-            var model = new Dictionary<int, PublishDateViewModel>();
+            var model = new List<PublishDateViewModel>();
             var bRepo = BlogPostRepoManagerFactory.Create();
 
             var blogResp = bRepo.GetAllBlogs();
@@ -339,7 +339,7 @@ namespace SlowNewsBlog.Controllers
                 var blogList = bRepo.GetAllBlogs().BlogPosts;
                 foreach (var blog in blogList)
                 {
-                    model.Add(blog.BlogPostId, new PublishDateViewModel()
+                    model.Add(new PublishDateViewModel()
                     {
                         BlogPostId = blog.BlogPostId,
                         Blog = blog.Blog,

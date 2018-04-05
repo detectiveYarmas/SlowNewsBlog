@@ -462,6 +462,7 @@
     <Content Include="Views\Admin\AddStaticPage.cshtml" />
     <Content Include="Views\Admin\StaticPages.cshtml" />
     <Content Include="Views\Admin\EditStaticPage.cshtml" />
+    <Content Include="Views\Blogger\RequestNewHashTag.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

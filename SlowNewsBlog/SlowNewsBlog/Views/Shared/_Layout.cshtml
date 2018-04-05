@@ -31,11 +31,13 @@
 }
                     @if (User.IsInRole("Blogger"))
     {
-                <li>@Html.ActionLink("Add Post", "AddPost", "Blogger")</li>
-                <li>@Html.ActionLink("EditPost", "EditPost", "Blogger")</li>
-}
-else
-{
+        
+                        <li>@Html.ActionLink("Request New Tag", "RequestNewHashTag", "Blogger")</li>
+                        <li>@Html.ActionLink("Add Post", "AddPost", "Blogger")</li>
+                        <li>@Html.ActionLink("EditPost", "EditPost", "Blogger")</li>
+    }
+    else
+    {
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
 }
