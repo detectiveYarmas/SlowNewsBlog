@@ -103,5 +103,72 @@ namespace SlowNewsBlog.Controllers
             return RedirectToAction("EditPost");
         }
 
+        public ActionResult AddPost()
+        {
+            var model = new AddBlogViewModel();
+            var hashMgr = HashTagManagerFactory.Create();
+            var hashTags = hashMgr.GetAllHashTags();
+            var cataMgr = CategoryRepoManagerFactory.Create();
+            var categories = cataMgr.GetAllCategories();
+
+
+            model.HashTags = new SelectList(hashTags.HashTags, "HashTagId", "HashTagName");
+
+            model.Catagories = new SelectList(categories.Catagories, "CatagoryId", "CatagoryName");
+
+
+            return View(model);
+        }
+
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult AddPost(AddBlogViewModel model)
+        {
+            var hashMgr = HashTagManagerFactory.Create();
+            var cateMgr = CategoryRepoManagerFactory.Create();
+            var cResponse = cateMgr.GetCatagory(model.CatagoryId);
+            model.Catagory = cResponse.CatagoryGot;
+            model.BlogPost.CatagoryId = model.Catagory.CatagoryId;
+            model.BlogPost.BlogPostHashTags = new List<HashTag>();
+            model.BlogPost.Approved = false;
+            model.BlogPost.Id = User.Identity.GetUserId();
+            model.BlogPost.UserName = User.Identity.Name;
+            foreach (var id in model.SelectedHashtagIds)
+            {
+                var response = hashMgr.GetHashTag(id);
+
+                model.BlogPost.BlogPostHashTags.Add(response.HashTag);
+            }
+
+            if (model.ImageUpload != null && model.ImageUpload.ContentLength > 0)
+            {
+                var savepath = Server.MapPath("~/Images");
+
+                string fileName = Path.GetFileNameWithoutExtension(model.ImageUpload.FileName);
+                string extension = Path.GetExtension(model.ImageUpload.FileName);
+
+                var filePath = Path.Combine(savepath, fileName + extension);
+
+                int counter = 1;
+                while (System.IO.File.Exists(filePath))
+                {
+                    filePath = Path.Combine(savepath, fileName + counter.ToString() + extension);
+                    counter++;
+                }
+
+                model.ImageUpload.SaveAs(filePath);
+                model.BlogPost.HeaderImage = Path.GetFileName(filePath);
+            }
+
+            if (ModelState.IsValid)
+            {
+                var blogMgr = BlogPostRepoManagerFactory.Create();
+                blogMgr.AddBlog(model.BlogPost);
+
+                return RedirectToAction("EditPost", "Blogger", new { blogId = model.BlogPost.BlogPostId });
+            }
+
+            return View(model);
+        }
     }
 }
