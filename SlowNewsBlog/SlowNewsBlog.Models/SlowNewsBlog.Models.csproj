@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -64,6 +65,7 @@
     <Compile Include="Responses\GetNewestBlogsResponse.cs" />
     <Compile Include="Responses\GetPageByIdResponse.cs" />
     <Compile Include="Responses\GetStaticPagesResponse.cs" />
+    <Compile Include="Responses\PublishResponse.cs" />
     <Compile Include="Responses\RemoveBlogResponse.cs" />
     <Compile Include="Responses\Response.cs" />
     <Compile Include="Responses\UnapprovedHashTagsResponse.cs" />

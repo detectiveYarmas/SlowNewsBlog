@@ -1,19 +1,20 @@
-﻿using System;
+﻿using SlowNewsBlog.Models.Tables;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace SlowNewsBlog.Models.Tables
+namespace SlowNewsBlog.Models
 {
-    public class BlogPost
+    public class PublishDateViewModel
     {
         public int BlogPostId { get; set; }
         public string Blog { get; set; }
         public string Title { get; set; }
         public bool Approved { get; set; }
         public int CatagoryId { get; set; }
+        [DisplayFormat(DataFormatString = "{0:Y}", ApplyFormatInEditMode = true)]
         public DateTime PublishedDate { get; set; }
         public DateTime DateAdded { get; set; }
         public string Id { get; set; }
@@ -21,4 +22,5 @@ namespace SlowNewsBlog.Models.Tables
         public ICollection<HashTag> BlogPostHashTags { get; set; }
         public string UserName { get; set; }
     }
+
 }

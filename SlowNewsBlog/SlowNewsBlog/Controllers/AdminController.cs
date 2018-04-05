@@ -277,21 +277,21 @@ namespace SlowNewsBlog.Controllers
             var notApproved = blogMgr.GetAllDisapprovedBlogs();
             List<HashTag> tags = new List<HashTag>();
 
-            foreach(var blog in approved.Blogs)
+            foreach (var blog in approved.Blogs)
             {
                 cateMgr.AddCatagoryToBlogPost(blog.BlogPostId, blog.CatagoryId);
                 var hashtags = hashMgr.GetHashTagsForBlog(blog.BlogPostId);
                 tags = hashtags.HashTags.ToList();
                 blog.BlogPostHashTags = new List<HashTag>();
 
-                foreach(var ht in tags)
+                foreach (var ht in tags)
                 {
                     blog.BlogPostHashTags.Add(ht);
                 }
 
             }
 
-            foreach(var blag in notApproved.BlogPosts)
+            foreach (var blag in notApproved.BlogPosts)
             {
                 cateMgr.AddCatagoryToBlogPost(blag.BlogPostId, blag.CatagoryId);
                 var hashtags = hashMgr.GetHashTagsForBlog(blag.BlogPostId);
@@ -328,6 +328,52 @@ namespace SlowNewsBlog.Controllers
         }
 
         [HttpGet]
+        public ActionResult SetPublishDate()
+        {
+            var model = new Dictionary<int, PublishDateViewModel>();
+            var bRepo = BlogPostRepoManagerFactory.Create();
+
+            var blogResp = bRepo.GetAllBlogs();
+            if (blogResp.Success)
+            {
+                var blogList = bRepo.GetAllBlogs().BlogPosts;
+                foreach (var blog in blogList)
+                {
+                    model.Add(blog.BlogPostId, new PublishDateViewModel()
+                    {
+                        BlogPostId = blog.BlogPostId,
+                        Blog = blog.Blog,
+                        Title = blog.Title,
+                        Approved = blog.Approved,
+                        CatagoryId = blog.CatagoryId,
+                        PublishedDate = blog.PublishedDate,
+                        DateAdded = blog.DateAdded,
+                        Id = blog.Id,
+                        HeaderImage = blog.HeaderImage,
+                        BlogPostHashTags = blog.BlogPostHashTags,
+                        UserName = blog.UserName
+                    });
+                }
+
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Blogs");
+            }
+
+        }
+
+
+        [HttpPost]
+        public ActionResult SetPublishDate(BlogPost model, DateTime date)
+        {
+            var repo = BlogPostRepoManagerFactory.Create();
+            repo.SetPublishDate(model.BlogPostId, date);
+            return View(model);
+        }
+
+        [HttpGet]
         public ActionResult AddStaticPage()
         {
             var model = new AddStaticPageViewModel();
@@ -340,6 +386,7 @@ namespace SlowNewsBlog.Controllers
         {
             throw new NotImplementedException();
         }
+
 
     }
 }

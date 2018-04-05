@@ -22,5 +22,6 @@ namespace SlowNewsBlog.Data.Interfaces
         List<BlogPost> GetNewestBlogs();
         List<BlogPost> GetBlogsByHashTag(int hashId);
         bool RemoveBlog(int blogPostId);
+        bool SetPublishDate(int id, DateTime date);
     }
 }

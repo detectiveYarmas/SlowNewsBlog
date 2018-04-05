@@ -12,10 +12,10 @@ namespace SlowNewsBlog.Data.Repos
     {
         public static List<BlogPost> blogPosts = new List<BlogPost>()
         {
-            new BlogPost (){BlogPostId = 1,Blog = "metapost",Title="Test1",Approved=true},
-            new BlogPost (){BlogPostId= 2,Blog= "horseandbuggy",Title="Test2",Approved = true},
-            new BlogPost (){BlogPostId=3, Blog="moon",Title="Test3", Approved = false},
-            new BlogPost (){BlogPostId= 4, Blog= "y2k",Title="Test4",Approved = false}
+            new BlogPost (){BlogPostId = 1,Blog = "metapost",Title="Test1",Approved=true, PublishedDate = DateTime.Parse("4/10/1999")},
+            new BlogPost (){BlogPostId= 2,Blog= "horseandbuggy",Title="Test2",Approved = true, PublishedDate = DateTime.Parse("4/10/1999")},
+            new BlogPost (){BlogPostId=3, Blog="moon",Title="Test3", Approved = false, PublishedDate = DateTime.Parse("4/10/1999")},
+            new BlogPost (){BlogPostId= 4, Blog= "y2k",Title="Test4",Approved = false, PublishedDate = DateTime.Parse("4/10/1999")}
         };
         public static List<BlogPostsBloggers> blogPostsBloggers = new List<BlogPostsBloggers>()
         {
@@ -128,7 +128,29 @@ namespace SlowNewsBlog.Data.Repos
 
         public bool RemoveBlog(int blogPostId)
         {
-            throw new NotImplementedException();
+            bool toReturn = false;
+            var badBlog = blogPosts.Where(b => b.BlogPostId == blogPostId).First();
+
+            if (badBlog != null)
+            {
+                blogPosts.Remove(badBlog);
+                toReturn = true;
+            }
+            return toReturn;
+        }
+           
+        
+
+        public bool SetPublishDate(int id, DateTime date)
+        {
+            bool toReturn = false;
+            var selectedBlog = blogPosts.Where(b => b.BlogPostId == id).First();
+            if (selectedBlog != null)
+            {
+                selectedBlog.PublishedDate = date;
+                toReturn = true;
+            }
+            return toReturn;
         }
     }
 }

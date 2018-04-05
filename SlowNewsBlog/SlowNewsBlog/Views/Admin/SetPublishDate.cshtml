@@ -1,0 +1,34 @@
+﻿@model SlowNewsBlog.Models.PublishDateViewModel
+@{
+    ViewBag.Title = "SetPublishDate";
+}
+
+<h2>Schedualer</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Blog Title</th>
+            <th>Publish Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var blog in Model.BlogPosts)
+    {
+        <tr>
+            <td>@blog.Title</td>
+            @if (blog.PublishedDate == null)
+            { 
+                @Html.HiddenFor(Model => Model.BlogPosts.Where(d=>d.BlogPostId == blog.BlogPostId))
+        <td style="background-color: lightcoral">@Html.EditorFor(m=>m.BlogPosts.Where(d => d.BlogPostId == blog.BlogPostId).Select(f=>f.PublishedDate).First())</td>
+}
+else
+{
+        <td>@Html.EditorFor(m => m.BlogPosts.Where(d => d.BlogPostId == blog.BlogPostId).Select(f => f.PublishedDate).First())</td>
+}
+
+        </tr>
+     }
+
+    </tbody>
+</table>

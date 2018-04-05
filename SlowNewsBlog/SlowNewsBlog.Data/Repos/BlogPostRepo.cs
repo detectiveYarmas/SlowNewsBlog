@@ -229,5 +229,18 @@ namespace SlowNewsBlog.Data.Repos
 
             return true;
         }
+
+        public bool SetPublishDate(int id, DateTime date)
+        {
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                var param = new DynamicParameters();
+                param.Add("@blogId", id);
+                param.Add("@publishDate", date);
+                cn.Execute("SetPublishDate", param, commandType: CommandType.StoredProcedure);
+
+            }
+            return true;
+        }
     }
 }
