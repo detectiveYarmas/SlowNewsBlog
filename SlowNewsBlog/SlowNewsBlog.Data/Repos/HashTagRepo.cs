@@ -37,6 +37,24 @@ namespace SlowNewsBlog.Data
             }
         }
 
+        public bool ApproveHashTag(int hashTagId)
+        {
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@hashTagId", hashTagId);
+
+                var rowsAffected = cn.Execute("ApproveHashTag", parameters, commandType: CommandType.StoredProcedure);
+
+                if(rowsAffected > 0)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
         public HashTag EditHashTag(HashTag hash)
         {
             using (var cn = new SqlConnection(Settings.GetConnectionString()))

@@ -241,5 +241,19 @@ namespace SlowNewsBlog.Domain.Managers
 
             return response;
         }
+
+        public ApproveHashTagResponse ApproveHashTag(int hashTagId)
+        {
+            var response = new ApproveHashTagResponse();
+
+            response.Success = repo.ApproveHashTag(hashTagId);
+
+            if (!response.Success)
+            {
+                response.Message = "Approval was unsuccessful.";
+            }
+
+            return response;
+        }
     }
 }

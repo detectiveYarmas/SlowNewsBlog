@@ -36,6 +36,11 @@ namespace SlowNewsBlog.Data.InMemoryRepos
             throw new NotImplementedException();
         }
 
+        public bool ApproveHashTag(int hashTagId)
+        {
+            throw new NotImplementedException();
+        }
+
         public HashTag EditHashTag(HashTag hash)
         {
             var oldHashTag = GetHashTag(hash.HashTagId);

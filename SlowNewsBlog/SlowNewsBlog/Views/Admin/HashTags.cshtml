@@ -27,7 +27,7 @@
                     <td>@Html.ActionLink("Edit", "EditHashTag", new { hashTagId = hashtag.HashTagId}, new { @class = "btn btn-primary" })</td>
                     @using (Html.BeginForm("DeleteHashTag", "Admin", FormMethod.Post))
                     {
-                        @Html.HiddenFor(m => m.HashTag.HashTagId)
+                        @Html.Hidden("hashTagId", hashtag.HashTagId)
                         <td><button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this hashtag?')">Delete</button></td>
                     }
                 </tr>
@@ -59,12 +59,12 @@
                             <td>@hashtag.HashTagName</td>
                             @using (Html.BeginForm("ApproveHashtag", "Admin", FormMethod.Post))
                             {
-                            <td>@Html.CheckBoxFor(m => m.HashTag.Approved)</td>
+                            <td>@Html.Hidden("hashTagId", hashtag.HashTagId)</td>
                                 <td><button class="btn btn-primary col-md-offset-6" onclick="return confirm('Are you sure you want to approved this hashtag?')">Approve</button></td>
                             }
                             @using (Html.BeginForm("DeleteHashTag", "Admin", FormMethod.Post))
                             {
-                                @Html.HiddenFor(m => m.HashTag.HashTagId)
+                                @Html.Hidden("hashTagId", hashtag.HashTagId)
                                 <td><button class="btn btn-danger col-md-offset-1" onclick="return confirm('Are you sure you want to delete this hashtag?')">Delete</button></td>
                             }
                         </tr>
