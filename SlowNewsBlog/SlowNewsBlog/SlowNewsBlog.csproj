@@ -217,6 +217,7 @@
     <Compile Include="Models\AddBlogViewModel.cs" />
     <Compile Include="Models\AddStaticPageViewModel.cs" />
     <Compile Include="Models\BlogPostCategoryViewModel.cs" />
+    <Compile Include="Models\EditStaticPageViewModel.cs" />
     <Compile Include="Models\PublishDateViewModel.cs" />
     <Compile Include="Models\MultipleBlogPostViewModel.cs" />
     <Compile Include="Models\GroupedBlogViewModel.cs" />
@@ -225,6 +226,7 @@
     <Compile Include="Models\HashTagListViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\StaticPagesViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -458,6 +460,8 @@
     <Content Include="Views\Blogger\Edit.cshtml" />
     <Content Include="Views\Admin\SetPublishDate.cshtml" />
     <Content Include="Views\Admin\AddStaticPage.cshtml" />
+    <Content Include="Views\Admin\StaticPages.cshtml" />
+    <Content Include="Views\Admin\EditStaticPage.cshtml" />
     <Content Include="Views\Blogger\RequestNewHashTag.cshtml" />
   </ItemGroup>
   <ItemGroup>

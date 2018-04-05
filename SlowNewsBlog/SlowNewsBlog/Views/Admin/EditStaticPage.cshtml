@@ -1,20 +1,21 @@
-﻿@model SlowNewsBlog.Models.AddStaticPageViewModel
+﻿@model SlowNewsBlog.Models.EditStaticPageViewModel
 
 @{
-    ViewBag.Title = "AddStaticPage";
+    ViewBag.Title = "EditStaticPage";
 }
 
-<h2>Add Page</h2>
+<h2>Edit Page</h2>
 
 <div class="row">
-    @using (Html.BeginForm("AddStaticPage", "Admin", FormMethod.Post))
+    @using (Html.BeginForm("EditStaticPage", "Admin", FormMethod.Post))
     {
         <div class="form-group">
-            @Html.TextBoxFor(m=> m.StaticPage.Title, new { @class = "form-control"})
+            @Html.TextBoxFor(m => m.Page.Title, new { @class = "form-control" })
         </div>
         <div class="form-group">
-            @Html.TextAreaFor(m=> m.StaticPage.Body, new { @class = "form-control", id = "mytextarea"})
+            @Html.TextAreaFor(m => m.Page.Body, new { @class = "form-control", id = "mytextarea" })
         </div>
+            @Html.HiddenFor(m => m.Page.StaticPageId)
         <button type="submit" class="btn btn-primary">Save</button>
     }
 </div>
@@ -47,3 +48,4 @@
                     });
     </script>
 }
+

@@ -381,12 +381,77 @@ namespace SlowNewsBlog.Controllers
             return View(model);
         }
 
+        [ValidateInput(false)]
         [HttpPost]
         public ActionResult AddStaticPage(AddStaticPageViewModel model)
         {
-            throw new NotImplementedException();
+            var staticPageMgr = StaticPageManagerFactory.Create();
+
+            if (ModelState.IsValid)
+            {
+                var response = staticPageMgr.AddStaticPage(model.StaticPage);
+
+                if (response.Success)
+                {
+                    return RedirectToAction("StaticPages");
+                }
+            }
+
+            return View(model);
         }
 
+        public ActionResult StaticPages()
+        {
+            var model = new StaticPagesViewModel();
+            var staticPageMgr = StaticPageManagerFactory.Create();
 
+            var response = staticPageMgr.GetStaticPages();
+
+            model.StaticPages = response.Pages;
+
+            return View(model);
+        }
+
+        [ValidateInput(false)]
+        [HttpGet]
+        public ActionResult EditStaticPage(int staticPageId)
+        {
+            var model = new EditStaticPageViewModel();
+            var staticPageMgr = StaticPageManagerFactory.Create();
+
+            var page = staticPageMgr.GetPageById(staticPageId);
+            model.Page = page.Page;
+
+            return View(model);
+        }
+
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult EditStaticPage(EditStaticPageViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var staticPageMgr = StaticPageManagerFactory.Create();
+                var response = staticPageMgr.UpdateStaticPage(model.Page);
+
+                if (response.Success)
+                {
+                    return RedirectToAction("StaticPages");
+                }
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteStaticPage(int staticPageId)
+        {
+            var staticPageMgr = StaticPageManagerFactory.Create();
+            var page = staticPageMgr.GetPageById(staticPageId);
+
+            var response = staticPageMgr.DeleteStaticPage(page.Page.StaticPageId);
+
+            return RedirectToAction("StaticPages");
+        }
     }
 }

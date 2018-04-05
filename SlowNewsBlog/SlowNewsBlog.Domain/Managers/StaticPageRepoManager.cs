@@ -74,5 +74,65 @@ namespace SlowNewsBlog.Domain.Managers
 
             return response;
         }
+
+        public GetStaticPageByIdResponse GetPageById(int staticPageId)
+        {
+            var response = new GetStaticPageByIdResponse();
+
+            response.Page = repo.GetStaticPageById(staticPageId);
+
+            if(response.Page == null)
+            {
+                response.Success = false;
+                response.Message = "No page exists for that id.";
+            }
+            else
+            {
+                response.Success = true;
+            }
+
+            return response;
+        }
+
+        public EditStaticPageResponse UpdateStaticPage(StaticPage page)
+        {
+            var response = new EditStaticPageResponse();
+
+            if(page == null)
+            {
+                response.Success = false;
+                response.Message = $"{page} does not exist.";
+            }
+            else
+            {
+                response.Page = repo.UpdateStaticPage(page);
+
+                if(response.Page == null)
+                {
+                    response.Success = false;
+                    response.Message = $"{response.Page} does not exist.";
+                }
+                else
+                {
+                    response.Success = true;
+                }
+            }
+
+            return response;
+        }
+
+        public DeleteStaticPageResponse DeleteStaticPage(int staticPageId)
+        {
+            var response = new DeleteStaticPageResponse();
+
+            response.Success = repo.DeleteStaticPage(staticPageId);
+
+            if (!response.Success)
+            {
+                response.Message = "Delete was unsuccessful.";
+            }
+
+            return response;
+        }
     }
 }

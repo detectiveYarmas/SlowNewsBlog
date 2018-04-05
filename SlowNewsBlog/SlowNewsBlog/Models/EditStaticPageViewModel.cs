@@ -3,13 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
 
 namespace SlowNewsBlog.Models
 {
-    public class AddStaticPageViewModel
+    public class EditStaticPageViewModel
     {
-        [AllowHtml]
-        public StaticPage StaticPage { get; set; }
+        public StaticPage Page { get; set; }
     }
 }
